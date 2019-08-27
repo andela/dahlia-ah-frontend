@@ -19,7 +19,7 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
           {
             loader: 'style-loader',
@@ -29,6 +29,12 @@ module.exports = {
             options: {
               modules: true,
               localsConvention: 'camelCase',
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
               sourceMap: true,
             },
           },
