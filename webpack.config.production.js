@@ -19,7 +19,7 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -32,6 +32,9 @@ module.exports = {
               localsConvention: 'camelCase',
               sourceMap: true,
             },
+          },
+          {
+            loader: 'sass-loader',
           },
           {
             loader: 'postcss-loader',
