@@ -15,8 +15,8 @@ const UnauthenticatedNav = ({ openModal }) => (
           {/* <i className="fas fa-bars" />/ */}
         </a>
         <span>
-          <button type="submit" className="btn-flat nav-link" onClick={openModal}>Sign Up</button>
-          <button type="submit" className="btn-flat nav-btn" onClick={openModal}>Sign In</button>
+          <button type="submit" className="btn-flat nav-link" onClick={() => openModal('signup')}>Sign Up</button>
+          <button type="submit" className="btn-flat nav-btn" onClick={() => openModal('login')}>Sign In</button>
         </span>
         {/* <ul id="nav-mobile" className="right hide-on-med-and-down">
 
@@ -24,8 +24,8 @@ const UnauthenticatedNav = ({ openModal }) => (
       </div>
     </nav>
     <ul className="sidenav" id="mobile-demo">
-      <button type="submit" className="nav-link" onClick={openModal}>Sign Up</button>
-      <button type="submit" className="nav-link" onClick={openModal}>Sign In</button>
+      <button type="submit" className="nav-link" onClick={() => openModal('signup')}>Sign Up</button>
+      <button type="submit" className="nav-link" onClick={() => openModal('login')}>Sign In</button>
     </ul>
   </div>
 );

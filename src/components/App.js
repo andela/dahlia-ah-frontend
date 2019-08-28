@@ -4,23 +4,46 @@ import Navbar from './layout/Navbar';
 import LandingPage from './LandingPage/LandingPage';
 import Footer from './layout/Footer/Footer';
 import Login from './Login/Login';
+import SignUp from './Backdrop/Backdrop';
 import UserContextProvider from '../context/UserContext';
 import './app.scss';
 
 const Welcome = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenLogin, setIsOpenLogin] = useState(false);
+  const [isOpenSignup, setIsOpenSignup] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
+  const handleOpenModal = (component) => {
+    switch (component) {
+      case 'login':
+        setIsOpenLogin(true);
+        setIsOpenSignup(false);
+        break;
+      case 'signup':
+        setIsOpenSignup(true);
+        setIsOpenLogin(false);
+        break;
+      default:
+        break;
+    }
   };
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
+  const handleCloseModal = (component) => {
+    switch (component) {
+      case 'login':
+        setIsOpenLogin(false);
+        break;
+      case 'signup':
+        setIsOpenSignup(false);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
     <div className="app">
-      <Login isOpen={isOpen} closeModal={handleCloseModal} />
+      <Login isOpen={isOpenLogin} openModal={handleOpenModal} closeModal={handleCloseModal} />
+      <SignUp isOpen={isOpenSignup} openModal={handleOpenModal} closeModal={handleCloseModal} />
       <Navbar openModal={handleOpenModal} />
       <LandingPage openModal={handleOpenModal} />
       <Footer />

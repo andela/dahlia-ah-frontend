@@ -6,12 +6,12 @@ import PropType from 'prop-types';
 import './AuthModal.scss';
 
 const AuthModal = ({
-  children, title, desc, isOpen, closeModal,
+  children, title, desc, isOpen, closeModal, componentName,
 }) => (
   <div className="backdrop-div" style={{ display: isOpen ? 'flex' : 'none' }}>
     <div className="modal">
       <div className="modal-content">
-        <i className="fas fa-times" role="button" onKeyDown={closeModal} onClick={closeModal} />
+        <i className="fas fa-times" role="button" onKeyDown={closeModal} onClick={() => closeModal(componentName)} />
         <h4>{title}</h4>
         <p className="description">{desc}</p>
         {children}
@@ -26,6 +26,7 @@ AuthModal.propTypes = {
   desc: PropType.string.isRequired,
   isOpen: PropType.bool.isRequired,
   closeModal: PropType.func.isRequired,
+  componentName: PropType.string.isRequired,
 };
 
 export default AuthModal;

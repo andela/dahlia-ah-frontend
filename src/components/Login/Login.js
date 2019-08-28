@@ -6,15 +6,15 @@ import Separator from '../Separator/Separator';
 import LoginForm from '../LoginForm/LoginForm';
 import './Login.scss';
 
-const Login = ({ isOpen, closeModal }) => (
-  <AuthModal title="WELCOME BACK" desc="Sign in using your social account" isOpen={isOpen} closeModal={closeModal}>
+const Login = ({ isOpen, closeModal, openModal }) => (
+  <AuthModal title="WELCOME BACK" desc="Sign in using your social account" isOpen={isOpen} componentName="login" closeModal={closeModal}>
     <SocialLogin />
     <Separator />
     <LoginForm />
     <p className="small-text">
     Dont’t have an account?
       {' '}
-      <a href="abc">Sign Up</a>
+      <button type="submit" className="auth-btn btn-flat" onClick={() => openModal('signup')}>Sign Up</button>
     </p>
   </AuthModal>
 );
@@ -23,6 +23,7 @@ const Login = ({ isOpen, closeModal }) => (
 Login.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default Login;
