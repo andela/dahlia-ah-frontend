@@ -1,0 +1,14 @@
+.social-icon{
+    width: 42px;
+    height: 41px;
+    margin:  0 35px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) and (min-width: 320px) {
+    .social-icon {
+      width: 31px;
+      height: 30px;
+      margin:  0 15px;
+    }
+}
