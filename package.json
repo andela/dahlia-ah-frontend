@@ -71,6 +71,7 @@
       "\\.(css|less|scss)$": "<rootDir>/src/config/assetsTransformer.js"
     },
     "collectCoverage": true,
+    "coverageReporters": ["lcov"],
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/config/assetsTransformer.js",
       "<rootDir>/(build|docs|node_modules)/"
