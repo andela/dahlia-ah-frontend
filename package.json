@@ -4,7 +4,7 @@
   "description": "Team Dahlia front-end implementation of Author's Haven",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "webpack-dev-server --config webpack.config.development.js",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
@@ -24,6 +24,8 @@
   "dependencies": {
     "cssnano": "^4.1.10",
     "dotenv": "^8.1.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "express": "^4.17.1",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.9.0",
@@ -48,6 +50,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
@@ -57,5 +60,20 @@
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "verbose": true,
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png)$": "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "<rootDir>/src/config/assetsTransformer.js"
+    },
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/config/assetsTransformer.js",
+      "<rootDir>/(build|docs|node_modules)/"
+    ]
   }
 }
