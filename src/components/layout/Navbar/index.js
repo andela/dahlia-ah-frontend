@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Materialize from 'materialize-css';
 import PropTypes from 'prop-types';
 import './navbar.scss';
+import AuthenticatedNav from './AuthenticatedNav';
 import UnauthenticatedNav from './UnauthenticatedNav';
 
 
@@ -28,7 +29,9 @@ const Navbar = ({ openModal }) => {
 
   return (
     <>
-      <UnauthenticatedNav openModal={openModal} />
+      {
+      localStorage.getItem('AuthorsHavenToken') === null ? <UnauthenticatedNav openModal={openModal} /> : <AuthenticatedNav />
+    }
     </>
   );
 };

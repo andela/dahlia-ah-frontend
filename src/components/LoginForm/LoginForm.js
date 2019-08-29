@@ -36,12 +36,12 @@ const LoginForm = ({ history, openModal }) => {
           const { user } = data;
           setUser(user);
           localStorage.setItem('AuthorsHavenToken', user.token);
-          history.push('/');
+          history.push('/homepage');
         })
         .catch(({ response: { data, status } }) => {
           if (status === 401) {
             setError(data.errors);
-            localStorage.setItem('AuthorsHavenToken', null);
+            localStorage.removeItem('AuthorsHavenToken');
           }
           setLoader(false);
         });

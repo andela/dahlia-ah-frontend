@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import Homepage from './Homepage';
 import Navbar from './layout/Navbar';
 import LandingPage from './LandingPage/LandingPage';
 import Footer from './layout/Footer/Footer';
@@ -9,12 +11,19 @@ import ResetPassword from './ResetPassword/ResetPassword';
 import UserContextProvider from '../context/UserContext';
 import './app.scss';
 
-const Welcome = () => {
+const Welcome = ({ history }) => {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenSignup, setIsOpenSignup] = useState(false);
   const [isOpenResetPassword, setIsOpenResetPassword] = useState(false);
 
+  useEffect(() => {
+    if (localStorage.getItem('AuthorsHavenToken')) {
+      history.push('/homepage');
+    }
+  }, []);
+
   const handleOpenModal = (component) => {
+
     switch (component) {
       case 'login':
         setIsOpenLogin(true);
@@ -64,10 +73,15 @@ const Welcome = () => {
   );
 };
 
+Welcome.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+};
+
 const App = () => (
   <Switch>
     <UserContextProvider>
       <Route exact path="/" component={Welcome} />
+      <Route path="/homepage" component={Homepage} />
     </UserContextProvider>
   </Switch>
 );

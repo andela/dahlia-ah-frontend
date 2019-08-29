@@ -25,7 +25,7 @@ const AuthenticatedNav = () => {
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li className="notification" data-target="notification-dropdown">
               <img
-                src="https://img.icons8.com/ios/25/000000/appointment-reminders.png"
+                src="https://res.cloudinary.com/drlcfqzym/image/upload/v1567080014/notification_icon.png"
                 alt="notification icon"
               />
             </li>
@@ -34,7 +34,7 @@ const AuthenticatedNav = () => {
             </ul>
             <li className="dropdown-trigger" data-target="nav-dropdown">
               <img
-                src="https://img.icons8.com/color/25/000000/person-male.png"
+                src="https://res.cloudinary.com/drlcfqzym/image/upload/v1567080039/person_icon.png"
                 alt="profile"
               />
               <span className="greeting">
