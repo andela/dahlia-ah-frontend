@@ -1,9 +1,15 @@
-$color-new: #cc4397;
-$color-blue: #0059ff;
+$color-new: #2196f3;
+$color-black: #000000;
+
+body{
+  font-family: 'Ubuntu', sans-serif;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
 
 .app {
-  color: $color-blue;
-  font-size: 2rem;
+  color: $color-black;
   text-align: center;
   .sassyDiv {
     font-size: 3rem;

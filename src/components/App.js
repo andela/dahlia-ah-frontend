@@ -1,12 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HelloDahlia from './DummyComponent/DummyComponent';
-import style from './app.scss';
+import './app.scss';
+import Navbar from './layout/Navbar';
 
 const Welcome = () => (
-  <div className={style.app}>
-    <h1>Authors Haven</h1>
-    <div className={style.sassyDiv}>Welcome!</div>
+  <div className="app">
+    <Navbar />
+    <h1>...</h1>
   </div>
 );
 
