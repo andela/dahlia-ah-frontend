@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import Navbar from './layout/Navbar';
 import LandingPage from './LandingPage/LandingPage';
 import Footer from './layout/Footer/Footer';
+import Login from './Login/Login';
+import UserContextProvider from '../context/UserContext';
 import './app.scss';
 
 const Welcome = () => (
@@ -15,7 +17,10 @@ const Welcome = () => (
 
 const App = () => (
   <Switch>
-    <Route exact path="/" component={Welcome} />
+    <UserContextProvider>
+      <Route exact path="/" component={Welcome} />
+      <Route path="/login" component={Login} />
+    </UserContextProvider>
   </Switch>
 );
 

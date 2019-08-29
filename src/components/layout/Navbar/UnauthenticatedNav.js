@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const UnauthenticatedNav = () => (
   <div className="navbar-fixed">
@@ -14,14 +15,14 @@ const UnauthenticatedNav = () => (
           {/* <i className="fas fa-bars" />/ */}
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li className="nav-link">Sign Up</li>
-          <li className="nav-btn">Sign In</li>
+          <Link to="/login"><li className="nav-link">Sign Up</li></Link>
+          <Link to="/login"><li className="nav-btn">Sign In</li></Link>
         </ul>
       </div>
     </nav>
     <ul className="sidenav" id="mobile-demo">
-      <li className="nav-link">Sign Up</li>
-      <li className="nav-link">Sign In</li>
+      <Link to="/login"><li className="nav-link">Sign Up</li></Link>
+      <Link to="/login"><li className="nav-link">Sign In</li></Link>
     </ul>
   </div>
 );
