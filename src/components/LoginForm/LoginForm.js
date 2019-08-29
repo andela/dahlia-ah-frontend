@@ -1,20 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import validator from 'validator';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import axios from 'axios';
-import './LoginForm.scss';
 import { UserContext } from '../../context/UserContext';
 import appConfig from '../../config/appConfig';
+import LoginFormRender from './LoginFormRender';
+import {
+  emailState, passwordState, errorState, isLoadingState,
+} from '../../hooks/Login';
 
 const { BASE_PATH } = appConfig;
 
 const LoginForm = ({ history }) => {
   const { setUser } = useContext(UserContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setLoader] = useState(false);
+  const { email, setEmail } = emailState();
+  const { password, setPassword } = passwordState();
+  const { error, setError } = errorState();
+  const { isLoading, setLoader } = isLoadingState();
   const handleValidation = () => {
     const isValidEmail = validator.isEmail(email);
     if (!isValidEmail) {
@@ -35,7 +38,7 @@ const LoginForm = ({ history }) => {
           const { user } = data;
           setUser(user);
           localStorage.setItem('AuthorsHavenToken', user.token);
-          history.push('/');
+          history.push('/homepage');
         })
         .catch(({ response: { data, status } }) => {
           if (status === 401) {
@@ -47,15 +50,15 @@ const LoginForm = ({ history }) => {
     }
   };
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <input className="login-input" type="email" autoComplete="email" name="email" placeholder="Email" onChange={(event) => setEmail(event.target.value)} value={email} required />
-      <input className="login-input" type="password" autoComplete="current-password" name="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} value={password} required />
-      <div className="align-right"><a href="/forgot-password">Forgot password?</a></div>
-      <span className="form-error">{error}</span>
-      <button type="submit" className="btn">
-        { !isLoading ? 'Sign In' : <i className="fa fa-spinner fa-spin loader" />}
-      </button>
-    </form>
+    <LoginFormRender
+      handleSubmit={handleSubmit}
+      setEmail={setEmail}
+      email={email}
+      setPassword={setPassword}
+      password={password}
+      error={error}
+      isLoading={isLoading}
+    />
   );
 };
 
