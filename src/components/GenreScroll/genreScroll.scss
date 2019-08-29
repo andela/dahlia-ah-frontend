@@ -1,0 +1,23 @@
+.genre-scroll {
+  width: 100%;
+  overflow-x: scroll;
+  height: calc(100vh - (85px + 78vh));
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+
+  .genre {
+    width: 112px;
+    min-width: 112px;
+    height: 51px;
+    border-radius: 4px;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    margin-right: 1.5rem;
+  }
+
+}
