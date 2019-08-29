@@ -1,0 +1,15 @@
+.small-text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    a {
+        color: #2D9CDB;
+        }
+    }
+
+    @media screen and (max-width: 330px) {
+        .small-text {
+            font-size: 12px;
+        }
+      }
