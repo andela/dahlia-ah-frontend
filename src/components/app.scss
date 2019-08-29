@@ -1,12 +1,41 @@
-$color-new: #cc4397;
-$color-blue: #0059ff;
+/*
+* app.scss 
+* 
+* Dahlia Frontend - Andela Simulations Challenge ©️ 2019
+* Andela Simulations Challenge ©️ 2019
+* https://github.com/andela/dahlia-ah-frontend
+*
+* SCSS Designed by TeamDahlia.
+*/
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:100,200,300,400,500,600,700,800,900,bold,bolder');
 
-.app {
-  color: $color-blue;
-  font-size: 2rem;
-  text-align: center;
-  .sassyDiv {
-    font-size: 3rem;
-    color: $color-new;
-  }
+$grey: #e5e5e5;
+$white: #ffffff;
+$black: #000008;
+
+/*border box allows us to add padding and border to our elements without increasing their size */
+*, *::before, *::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Globals */
+body {
+  padding: 0;
+  margin: 0;
+  font: 14px/1.5 'Ubuntu', Arial, Helvetica, sans-serif;   
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+ul {
+  padding-left: 0;
+}
+
+ul li {
+  list-style: none;
 }

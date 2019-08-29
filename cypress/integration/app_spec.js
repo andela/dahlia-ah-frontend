@@ -1,14 +1,15 @@
 describe('Authors Haven Frontend Pages', () => {
-  it('should show welcome message', () => {
+  it('should show novel of the week title', () => {
     cy.visit('/');
-    cy.get('h1')
-      .should('have.text', 'Authors Haven');
+    cy.get('#weekNovel')
+      .find('h2')
+      .should('have.text', 'Novel of the Week');
   });
-  it('Display text of Routes', () => {
-    cy.visit('/hello');
-    cy.get('h1')
-      .should('have.text', 'Hello AnDahlian');
-    cy.get('h3')
-      .should('have.text', 'You Rock!!!');
+
+  it('should show membership title', () => {
+    cy.visit('/');
+    cy.get('#membership')
+      .find('h2')
+      .should('have.text', 'Membership');
   });
 });

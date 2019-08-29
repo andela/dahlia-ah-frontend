@@ -1,0 +1,95 @@
+/*
+ * footer.scss 
+ * 
+ * Dahlia Frontend - Andela Simulations ©️ 2019
+ * Andela Simulations ©️ 2019
+ * https://github.com/andela/dahlia-ah-frontend
+ *
+ * SCSS Designed by TeamDahlia.
+ */
+
+$background: #000008;
+$white: #ffffff;
+
+/* Footer */
+footer {
+  width: 100%;
+  align-self: center;
+  padding: 35px 40px 20px 40px;
+  margin: 0;
+  color: $white;
+  background-color: $background;
+
+  .footerContainer {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas: "information"
+                            "copyright";
+
+    .information {
+      grid-area: information;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-items: left;
+      text-align: left;
+      margin-bottom: 2%;
+
+      h4 {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 20px;
+        padding-left: 20px;
+        margin-top: 0;
+        margin-bottom: 5px;
+      }
+
+      i {
+        width: 17px;
+        height: 17px;
+        margin-right: 5px;
+      }
+    
+      div {
+          &:not(:first-child) {
+          border-left: 1px solid $white;
+        }
+      }
+
+      .subFooter {
+        border-left: 0 !important;
+      }
+    }
+  }
+}
+
+footer .information .subFooter, footer .information ul li {
+  font-weight: 200;
+  font-style: normal;
+  padding-left: 20px;
+  padding-right: 15px;
+}
+
+footer .information ul li {
+  padding-left: 0;
+}
+
+.copyright {
+  grid-area: copyright;
+  display: grid;
+  border-top: 1px solid $white;
+  align-self: center;
+  text-align: center;
+}
+
+@media(max-width: 900px){
+  footer .footerContainer .information {
+    grid-template-columns: 1fr;
+    
+    div {
+          &:not(:first-child) {
+          border: none;
+          margin-top: 10px;
+        }
+      }
+  }
+}
