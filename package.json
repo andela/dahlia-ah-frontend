@@ -4,12 +4,13 @@
   "description": "Team Dahlia front-end implementation of Author's Haven",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --forceExit --verbose --coverage",
     "dev": "webpack-dev-server --config webpack.config.development.js",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
     "lint": "eslint src",
-    "e2e": "node_modules/.bin/cypress open"
+    "e2e": "node_modules/.bin/cypress open",
+    "coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "coveralls": "^3.0.6",
     "cross-env": "^5.2.0",
     "css-loader": "^3.2.0",
     "cypress": "^3.4.1",
@@ -71,7 +73,6 @@
       "\\.(css|less|scss)$": "<rootDir>/src/config/assetsTransformer.js"
     },
     "collectCoverage": true,
-    "coverageReporters": ["lcov"],
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/config/assetsTransformer.js",
       "<rootDir>/(build|docs|node_modules)/"
