@@ -10,10 +10,6 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:100,200,300,400,500,600,700,800,900,bold,bolder');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap');
 
-
-$color-new: #cc4397;
-$color-blue: #0059ff;
-
 /*border box allows us to add padding and border to our elements without increasing their size */
 *, *::before, *::after {
   -moz-box-sizing: border-box;
@@ -37,19 +33,9 @@ body {
   ul {
     padding-left: 0;
   }
-  
-  ul li {
-    list-style: none;
-    color: $color-blue;
-    font-size: 2rem;
-    text-align: center;
-  }
 
   h1 {
     margin: 0;
   }
-  .sassyDiv {
-    font-size: 3rem;
-    color: $color-new;
-  }
+
 }

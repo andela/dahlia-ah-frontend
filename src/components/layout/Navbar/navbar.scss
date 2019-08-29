@@ -12,15 +12,21 @@ $color-black: #000008;
   height: 85px;
   transition: height 1s;
 
-  .right li{
+  .nav-btn{
     padding: 0.3rem 2.5rem;
     cursor: pointer;
     line-height: 1.5;
-  }
-
-  .nav-btn {
     border: 1px solid $color-white;
   }
+
+  .nav-btn, .nav-link {
+    color: #ffffff !important;
+  }
+
+  .nav-link {
+    margin-right: 25px;
+  }
+
 }
 
 .brand-logo {

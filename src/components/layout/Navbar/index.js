@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import Materialize from 'materialize-css';
+import PropTypes from 'prop-types';
 import './navbar.scss';
 import UnauthenticatedNav from './UnauthenticatedNav';
 
-const Navbar = () => {
+
+const Navbar = ({ openModal }) => {
   useEffect(() => {
     const sidenav = document.querySelector('.sidenav');
     Materialize.Sidenav.init(sidenav);
@@ -26,9 +28,13 @@ const Navbar = () => {
 
   return (
     <>
-      <UnauthenticatedNav />
+      <UnauthenticatedNav openModal={openModal} />
     </>
   );
+};
+
+Navbar.propTypes = {
+  openModal: PropTypes.func.isRequired,
 };
 
 export default Navbar;
