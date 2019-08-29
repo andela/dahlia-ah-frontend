@@ -10,7 +10,7 @@ const Login = ({ isOpen, closeModal, openModal }) => (
   <AuthModal title="WELCOME BACK" desc="Sign in using your social account" isOpen={isOpen} componentName="login" closeModal={closeModal}>
     <SocialLogin />
     <Separator />
-    <LoginForm />
+    <LoginForm openModal={openModal} />
     <p className="small-text">
     Dont’t have an account?
       {' '}

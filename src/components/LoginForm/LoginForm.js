@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import validator from 'validator';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import './LoginForm.scss';
 import { UserContext } from '../../context/UserContext';
@@ -9,7 +10,7 @@ import appConfig from '../../config/appConfig';
 
 const { BASE_PATH } = appConfig;
 
-const LoginForm = ({ history }) => {
+const LoginForm = ({ history, openModal }) => {
   const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +51,7 @@ const LoginForm = ({ history }) => {
     <form className="login-form" onSubmit={handleSubmit}>
       <input className="login-input" type="email" autoComplete="email" name="email" placeholder="Email" onChange={(event) => setEmail(event.target.value)} value={email} required />
       <input className="login-input" type="password" autoComplete="current-password" name="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} value={password} required />
-      <div className="align-right"><a href="/forgot-password">Forgot password?</a></div>
+      <div className="align-right"><button type="submit" className="auth-btn btn-flat" onClick={() => openModal('resetPassword')}>Forgot password?</button></div>
       <span className="form-error">{error}</span>
       <button type="submit" className="btn">
         { !isLoading ? 'Sign In' : <i className="fa fa-spinner fa-spin loader" />}
@@ -61,6 +62,7 @@ const LoginForm = ({ history }) => {
 
 LoginForm.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default withRouter(LoginForm);
