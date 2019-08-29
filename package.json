@@ -4,10 +4,12 @@
   "description": "Team Dahlia front-end implementation of Author's Haven",
   "main": "index.js",
   "scripts": {
+    "start": "node ./server/server.js",
     "test": "jest --forceExit --verbose --coverage",
     "dev": "webpack-dev-server --config webpack.config.development.js",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
+    "heroku-postbuild": "npm run build",
     "lint": "eslint src",
     "e2e": "node_modules/.bin/cypress open",
     "coverage": "cat ./coverage/lcov.info | coveralls"
