@@ -25,13 +25,10 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           {
+            loader: 'style-loader',
+          },
+          {
             loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localsConvention: 'camelCase',
-              sourceMap: true,
-            },
           },
           {
             loader: 'sass-loader',
