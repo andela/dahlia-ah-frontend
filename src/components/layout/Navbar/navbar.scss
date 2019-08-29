@@ -1,0 +1,121 @@
+$color-white: #ffffff;
+$color-black: #000008;
+
+.navSection {
+  .navbar-fixed {
+    position: fixed;
+  }
+
+  .unauthenticated-nav {
+    background-color: #00000000;
+    box-shadow: 0 0 0 0;
+    width: 100vw;
+    height: 85px;
+    transition: height 1s;
+
+    .right li{
+      padding: 0.3rem 2.5rem;
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .nav-btn {
+      border: 1px solid $color-white;
+    }
+  }
+
+  .brand-logo {
+    width: 285px;
+    transition: width 1s;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0rem 2rem;
+  }
+
+  nav .sidenav-trigger {
+    margin: 0px;
+  }
+
+  .font-icon {
+    width: 35px;
+    vertical-align: middle;
+  }
+
+  .authenticated-nav {
+    background-color: $color-white;
+    color: $color-black;
+    height: 85px;
+    transition: height 1s;
+
+    .nav-wrapper {
+      justify-content: space-between;
+    }
+
+    .right li{
+      padding-left: 1.5rem;
+      cursor: pointer;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+
+    .greeting {
+      margin: 0 1rem;
+    }
+
+    .nav-btn {
+      background-color: $color-white;
+      color: $color-black;
+      border: 1px solid $color-black;
+    }
+    
+    .dropdown-content {
+      top: -2rem;
+    }
+
+  }
+
+  .change-nav {
+    height: 60px;
+    transition: height 1s;
+
+    .brand-logo {
+      width: 200px;
+      transition: width 1s;
+    }
+  }
+
+  .nav-black {
+    background-color: $color-black;
+    color: $color-white;
+  }
+
+  .nav-white {
+    background-color: $color-white;
+    color: $color-black;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+// .navSection {
+    .authenticated-nav, .unauthenticated-nav {
+      
+      .nav-wrapper {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+    
+      .brand-logo.center{
+        width: 200px;
+        position: relative;
+        left: 0%;
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+      }
+    }
+  // } 
+}

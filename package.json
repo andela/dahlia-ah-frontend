@@ -30,6 +30,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "express": "^4.17.1",
+    "materialize-css": "^1.0.0",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

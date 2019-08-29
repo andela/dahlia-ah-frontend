@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     filename: 'bundle.js',
     publicPath: '/',
@@ -14,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
@@ -26,17 +26,9 @@ module.exports = {
           },
           {
             loader: 'css-loader',
-            options: {
-              modules: true,
-              localsConvention: 'camelCase',
-              sourceMap: true,
-            },
           },
           {
             loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
           },
         ],
       },
@@ -45,6 +37,9 @@ module.exports = {
         loader: 'file-loader',
       },
     ],
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
