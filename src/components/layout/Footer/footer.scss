@@ -20,7 +20,7 @@ footer {
   color: $white;
   background-color: $background;
 
-  .container {
+  .footerContainer {
     display: grid;
     grid-template-rows: auto;
     grid-template-areas: "information"
@@ -43,8 +43,8 @@ footer {
       margin-top: 0;
       margin-bottom: 5px;
     }
-  
-    img {
+
+    i {
       width: 17px;
       height: 17px;
       margin-right: 5px;
@@ -55,10 +55,14 @@ footer {
         border-left: 1px solid $white;
       }
     }
+
+    .subFooter {
+      border-left: 0 !important;
+    }
   }
 }
 
-footer .information p, footer .information ul li {
+footer .information .subFooter, footer .information ul li {
   font-weight: 200;
   font-style: normal;
   padding-left: 20px;

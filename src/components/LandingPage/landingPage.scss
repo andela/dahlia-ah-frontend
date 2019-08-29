@@ -1,0 +1,228 @@
+/*
+* landingPage.scss 
+* 
+* Dahlia Frontend - Andela Simulations Challenge ©️ 2019
+* Andela Simulations Challenge ©️ 2019
+* https://github.com/andela/dahlia-ah-frontend
+*
+* SCSS Designed by TeamDahlia.
+*/
+
+$grey: #e5e5e5;
+$white: #ffffff;
+$black: #000008;
+
+/* Writing Caption */
+#writingCaption {
+  min-height:100%;
+  background-size:cover;
+  background:url(https://res.cloudinary.com/allebd/image/upload/v1567024807/dahlia/Rectangle_4.png) rgba(0,0,0,0.3);
+  background-blend-mode: overlay;
+  width: 100%;
+  text-align: center;
+  color: $white;
+  padding: 45px;
+
+  p {
+    font-size: 42px;
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+}
+
+button.btnLarge {
+  color: $white;
+  border: 2px solid $white;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  background-color: rgba(0,0,0,0)
+}
+
+/* Banner */
+#banner {
+  background: url(https://res.cloudinary.com/allebd/image/upload/v1567031693/dahlia/banner.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% auto;
+  height: 800px;
+  color: $white;
+
+  .bannerGradient {
+    width: 690px;
+    height: 100%;
+    overflow: hidden;
+    background: rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 40px 40px rgba(0,0,0,0.3);
+    align-items: center;
+    padding: 4em;
+    padding-top: 16em;
+
+    h2 {
+      font-size: 3.5em;
+      line-height: 1.2;
+      margin: 0;
+    }
+  }
+}
+
+/* Weekly Novel Section */
+#weekNovel {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas: "weekNovel-title"
+                          "weekNovel-box";
+  background: $grey;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5%;
+
+  h2 {
+    grid-area: weekNovel-title;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 36px;
+  }
+}
+
+.weekNovelBox {
+  grid-area: weekNovel-box;
+  display: grid;
+  padding: 20px;
+  padding-top: 0;
+  grid-template-columns: auto auto;
+
+  .weekNovelImage {
+    padding: 20px;
+    
+    img {
+    width: 300px;
+    height: 300px;
+  }
+  }
+
+  .weekNovelDescription {
+    text-align: left;
+    padding: 20px;
+    
+    h3 {
+      font-size: 1.17em;
+    }
+  }
+}
+
+button.btnMedium {
+  color: $black;
+  border: 2px solid $black;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  background-color: rgba(0,0,0,0);
+}
+
+/* Membership Sections */
+#membership {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas: "membership-title"
+                          "membership-box";
+  background: $grey;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5%;
+
+  h2 {
+    grid-area: membership-title;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 36px;
+  }
+
+  h4 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 24px;
+    padding: 10px 0;
+    border-bottom: 1px solid $white;
+  }
+
+  .subscribeMembership h4 {
+    border-bottom: 1px solid $black;
+  }
+}
+
+#membership ul, #membership li {
+  padding: 5px;
+}
+
+.membershipBox {
+  grid-area: membership-box;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: $white;
+  width: 550px;
+  justify-self: center;
+}
+
+.freeMembership {
+  border: 1px solid $black;
+}
+
+.freeMembership div:first-child {
+  height: 300px;
+  background: $black;
+  color: $white;
+}
+
+.subscribeMembership {
+  background: #eeeeee;
+  box-shadow: 0px 4px 46px rgba(0, 0, 0, 0.25);
+}
+
+.subscribeMembership div:first-child {
+  height: 300px;
+  background: $white;
+}
+
+@media(max-width: 1200px){
+  #banner {
+    background-size: auto;
+    height: 100%;
+  }
+}
+
+@media(max-width: 900px){
+  #banner {
+    .bannerGradient {
+      width: 100%;
+      padding-top: 30%;
+    }
+  }
+
+  .weekNovelBox {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  #writingCaption p {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .membershipBox {
+    width: 400px;
+  }
+}
+
+@media(max-width: 380px){
+  .membershipBox {
+    grid-template-columns: 1fr;
+    width: 300px;
+  }
+}
