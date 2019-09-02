@@ -1,5 +1,5 @@
 import React from 'react';
-import './landingPage.scss';
+import './banner.scss';
 
 const Banner = () => (
   <div>
