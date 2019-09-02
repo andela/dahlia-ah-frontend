@@ -3,11 +3,14 @@ import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 const ConfirmationPage = ({ history }) => {
+  const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
   useEffect(() => {
-    if (!localStorage.getItem('AuthorsHavenToken')) {
+    if (!user) {
       history.push('/');
+    } else if (user.isVerified) {
+      history.push('/homepage');
     }
-  });
+  }, []);
 
   return (
     <div>
