@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from '../Banner/Banner';
-import NovelOfTheWeek from '../NovelOfTheWeek/NovelOfTheWeek';
+import Banner from './Banner/Banner';
+import NovelOfTheWeek from './NovelOfTheWeek/NovelOfTheWeek';
 import './landingPage.scss';
 
 const LandingPage = () => (
