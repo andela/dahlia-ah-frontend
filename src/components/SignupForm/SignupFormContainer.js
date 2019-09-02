@@ -68,9 +68,9 @@ const SignupFormContainer = ({
         password: formdata[3].value,
       })
         .then((res) => {
-          setResourceLoading(false);
           closeModal();
-          localStorage.setItem('AuthorsHavenToken', res.body.user.token);
+          setResourceLoading(false);
+          localStorage.setItem('AuthorsHavenToken', res.data.user.token);
           history.push('/ConfirmationPage');
         })
         .catch((err) => {

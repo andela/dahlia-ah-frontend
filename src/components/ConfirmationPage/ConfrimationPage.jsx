@@ -4,7 +4,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 const ConfirmationPage = ({ history }) => {
   useEffect(() => {
-    if (localStorage.getItem('AuthorsHavenToken')) {
+    if (!localStorage.getItem('AuthorsHavenToken')) {
       history.push('/');
     }
   });
