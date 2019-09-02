@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AuthModal from './AuthModal';
 import './AuthModal.scss';
 
 const AuthModalContainer = ({
-  children, title, desc, isOpen,
-}) => {
-  const [display, setDisplay] = useState(isOpen);
-  const closeModal = () => {
-    setDisplay(false);
-  };
-
-  return (
-    <AuthModal title={title} desc={desc} isOpen={isOpen} display={display} closeModal={closeModal}>
-      {children}
-    </AuthModal>
-  );
-};
+  children, title, desc, isOpen, closeModal,
+}) => (
+  <AuthModal title={title} desc={desc} isOpen={isOpen} closeModal={closeModal}>
+    {children}
+  </AuthModal>
+);
 
 AuthModalContainer.propTypes = {
   children: PropTypes.oneOfType([
@@ -26,6 +19,7 @@ AuthModalContainer.propTypes = {
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default AuthModalContainer;

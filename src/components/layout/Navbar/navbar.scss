@@ -13,14 +13,21 @@ $color-black: #000008;
     height: 85px;
     transition: height 1s;
 
-    .right li{
+    .nav-btn{
       padding: 0.3rem 2.5rem;
       cursor: pointer;
       line-height: 1.5;
-    }
-
-    .nav-btn {
       border: 1px solid $color-white;
+    }
+  
+    .nav-btn, .nav-link {
+      color: #ffffff !important;
+      background-color: transparent !important;
+    }
+  
+    .nav-link {
+      margin-right: 25px;
+      border: none;
     }
   }
 
@@ -66,12 +73,6 @@ $color-black: #000008;
     .greeting {
       margin: 0 1rem;
     }
-
-    .nav-btn {
-      background-color: $color-white;
-      color: $color-black;
-      border: 1px solid $color-black;
-    }
     
     .dropdown-content {
       top: -2rem;
@@ -101,7 +102,7 @@ $color-black: #000008;
 }
 
 @media only screen and (max-width: 600px) {
-// .navSection {
+ .navSection {
     .authenticated-nav, .unauthenticated-nav {
       
       .nav-wrapper {
@@ -117,5 +118,5 @@ $color-black: #000008;
         transform: translateX(0%);
       }
     }
-  // } 
+   } 
 }
