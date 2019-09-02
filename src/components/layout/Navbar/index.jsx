@@ -7,11 +7,11 @@ import UnauthenticatedNav from './UnauthenticatedNav';
 
 const Navbar = ({ openModal }) => {
   useNavigation();
-
+  const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
   return (
     <>
       {
-        localStorage.getItem('AuthorsHavenToken') === null ? <UnauthenticatedNav openModal={openModal} /> : <AuthenticatedNav />
+        user === null ? <UnauthenticatedNav openModal={openModal} /> : <AuthenticatedNav />
       }
     </>
   );

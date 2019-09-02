@@ -70,7 +70,7 @@ const SignupFormContainer = ({
         .then((res) => {
           closeModal();
           setResourceLoading(false);
-          localStorage.setItem('AuthorsHavenToken', res.data.user.token);
+          localStorage.setItem('AuthorsHavenUser', JSON.stringify(res.data.user));
           history.push('/ConfirmationPage');
         })
         .catch((err) => {
