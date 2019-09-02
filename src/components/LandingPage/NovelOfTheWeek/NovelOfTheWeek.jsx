@@ -1,5 +1,5 @@
 import React from 'react';
-import './NovelOfTheWeek.scss';
+import './novelOfTheWeek.scss';
 
 const NovelOfTheWeek = () => (
   <div>
