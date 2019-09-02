@@ -3,7 +3,13 @@ import validator from 'validator';
 const validation = (field, value, setFormData, formdata) => {
   switch (field) {
     case 'Password':
-      if (!validator.isAlphanumeric(value)) {
+      if (validator.isEmpty(value)) {
+        setFormData((prevFormdata) => {
+          const tempFormData = [...prevFormdata];
+          tempFormData[3].errorMessage = 'password cannot be empty';
+          return tempFormData;
+        });
+      } else if (!validator.isAlphanumeric(value)) {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
           tempFormData[3].errorMessage = 'Password must be 8 characters long and contain only alphanumeric characters ';
@@ -24,7 +30,13 @@ const validation = (field, value, setFormData, formdata) => {
       }
       break;
     case 'Email':
-      if (!validator.isEmail(value)) {
+      if (validator.isEmpty(value)) {
+        setFormData((prevFormdata) => {
+          const tempFormData = [...prevFormdata];
+          tempFormData[2].errorMessage = 'Email cannot be empty';
+          return tempFormData;
+        });
+      } else if (!validator.isEmail(value)) {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
           tempFormData[2].errorMessage = 'Email is invalid';
@@ -39,7 +51,13 @@ const validation = (field, value, setFormData, formdata) => {
       }
       break;
     case 'Confirm Password':
-      if (!validator.equals(value, formdata[3].value)) {
+      if (validator.isEmpty(value)) {
+        setFormData((prevFormdata) => {
+          const tempFormData = [...prevFormdata];
+          tempFormData[4].errorMessage = 'Confirm Password cannot be empty';
+          return tempFormData;
+        });
+      } else if (!validator.equals(value, formdata[3].value)) {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
           tempFormData[4].errorMessage = 'password does not match';
@@ -54,10 +72,16 @@ const validation = (field, value, setFormData, formdata) => {
       }
       break;
     case 'Firstname':
-      if (!validator.isAlphanumeric(value)) {
+      if (validator.isEmpty(value)) {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
-          tempFormData[0].errorMessage = `${field} must contain only alphanumeric input`;
+          tempFormData[0].errorMessage = 'Firstname cannot be empty';
+          return tempFormData;
+        });
+      } else if (!validator.isAlphanumeric(value)) {
+        setFormData((prevFormdata) => {
+          const tempFormData = [...prevFormdata];
+          tempFormData[0].errorMessage = 'Firstname must contain only alphanumeric input';
           return tempFormData;
         });
       } else {
