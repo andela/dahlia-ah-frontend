@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import validator from 'validator';
-import AuthModal from '../AuthModal/AuthModal';
-import TextInput from '../TextInput/TextInput';
-import SuccessIcon from '../Icons/SuccessIcon';
+import ResetPasswordModal from './ResetPassword';
 import appConfig from '../../config/appConfig';
-import './ResetPassword.scss';
 
-const ResetPassword = () => {
+const ResetPasswordContianer = () => {
   const title = 'FORGOT PASSWORD';
 
   const [formFields, setFormFields] = useState([
@@ -98,27 +95,18 @@ const ResetPassword = () => {
   };
 
   return (
-    <AuthModal title={title} desc={desc} isOpen>
-      { !ajaxSuccess ? (
-        <form className="reset-password-form" onSubmit={(e) => handleSubmit(e)}>
-          <TextInput
-            onChange={handleInputChange}
-            key={formFields[0].id.toString()}
-            index={0}
-            formField={formFields[0]}
-          />
-          { ajaxError ? (
-            <p className="validation-error">
-              {failureMessage}
-            </p>
-          ) : null}
-          <button type="submit" className="btn ajax-button">
-            { ajaxLoading ? <i className="fa fa-spinner fa-spin loader" /> : 'SEND' }
-          </button>
-        </form>
-      ) : <SuccessIcon />}
-    </AuthModal>
+    <ResetPasswordModal
+      title={title}
+      desc={desc}
+      ajaxSuccess={ajaxSuccess}
+      onSubmit={handleSubmit}
+      onChange={handleInputChange}
+      formFields={formFields}
+      ajaxError={ajaxError}
+      failureMessage={failureMessage}
+      ajaxLoading={ajaxLoading}
+    />
   );
 };
 
-export default ResetPassword;
+export default ResetPasswordContianer;

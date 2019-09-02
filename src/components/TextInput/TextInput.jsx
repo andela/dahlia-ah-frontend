@@ -3,18 +3,14 @@ import PropTypes from 'prop-types';
 import './TextInput.scss';
 
 
-const TextInput = (props) => {
-  const {
-    formField, onChange, index,
-  } = props;
-  return (
-    <>
-      <input className="text-input" type="text" placeholder={`${formField.name}`} onChange={(e) => onChange(e, index)} value={formField.value} />
-      {formField.errorMessage ? <p className="validation-error">{formField.errorMessage}</p> : null }
-      {/*  */}
-    </>
-  );
-};
+const TextInput = ({
+  formField, onChange, index,
+}) => (
+  <>
+    <input className="text-input" type="text" placeholder={`${formField.name}`} onChange={(e) => onChange(e, index)} value={formField.value} />
+    {formField.errorMessage ? <p className="validation-error">{formField.errorMessage}</p> : null }
+  </>
+);
 
 TextInput.propTypes = {
   formField: PropTypes.shape({
