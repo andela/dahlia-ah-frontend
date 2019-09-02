@@ -137,11 +137,11 @@ $black: #000008;
       width: 400px;
     }
   }
-}
 
-@media(max-width: 380px){
-  .membershipBox {
-    grid-template-columns: 1fr;
-    width: 300px;
+  @media(max-width: 380px){
+    .membershipBox {
+      grid-template-columns: 1fr;
+      width: 300px;
+    }
   }
 }

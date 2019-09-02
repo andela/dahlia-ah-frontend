@@ -1,0 +1,53 @@
+/*
+* notFound.scss 
+* 
+* Dahlia Frontend - Andela Simulations Challenge ©️ 2019
+* Andela Simulations Challenge ©️ 2019
+* https://github.com/andela/dahlia-ah-frontend
+*
+* SCSS Designed by TeamDahlia.
+*/
+
+$black: #000008;
+
+.notFound {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px 50px auto;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  height: 70vh;
+  padding-bottom: 0;
+  border-top: 85px solid $black;
+
+  h1 {
+    margin-bottom: 0;
+    color: $black;
+    line-height: 100%;
+    font-size: 10em;
+  }
+
+  p {
+    font-size: 1em;
+    margin-top: 0;
+  }
+
+  /* buttons */
+  button.btnLarge {
+    color: $black;
+    border: 2px solid $black;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    height: 50px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background-color: rgba(0,0,0,0)
+  }
+
+  @media(max-width: 380px){
+    padding: 0;
+  }
+}
