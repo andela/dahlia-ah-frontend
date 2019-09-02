@@ -13,7 +13,7 @@ const useNavigation = () => useEffect(() => {
   }
   document.addEventListener('scroll', () => {
     const scroll = window.scrollY;
-    if (scroll > 100) {
+    if (scroll > 10) {
       nav.classList.add('change-nav', `${changeNavColor}`);
     } else {
       nav.classList.remove('change-nav', `${changeNavColor}`);
