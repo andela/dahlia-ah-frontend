@@ -1,0 +1,68 @@
+/*
+* novelOfTheWeek.scss 
+* 
+* Dahlia Frontend - Andela Simulations Challenge ©️ 2019
+* Andela Simulations Challenge ©️ 2019
+* https://github.com/andela/dahlia-ah-frontend
+*
+* SCSS Designed by TeamDahlia.
+*/
+
+$grey: #e5e5e5;
+$white: #ffffff;
+$black: #000008;
+
+/* Novel of the Week Section */
+#weekNovel {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas: "weekNovel-title"
+                          "weekNovel-box";
+  background: $grey;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5%;
+
+  h2 {
+    grid-area: weekNovel-title;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 36px;
+  }
+}
+
+.weekNovelBox {
+  grid-area: weekNovel-box;
+  display: grid;
+  padding: 20px;
+  padding-top: 0;
+  grid-template-columns: auto auto;
+
+  .weekNovelImage {
+    padding: 20px;
+    
+    img {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  .weekNovelDescription {
+    text-align: left;
+    padding: 20px;
+    
+    h3 {
+      font-size: 1.17em;
+    }
+  }
+}
+
+
+@media(max-width: 900px){
+  .weekNovelBox {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}

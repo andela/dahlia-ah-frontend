@@ -1,0 +1,56 @@
+/*
+* banner.scss 
+* 
+* Dahlia Frontend - Andela Simulations Challenge ©️ 2019
+* Andela Simulations Challenge ©️ 2019
+* https://github.com/andela/dahlia-ah-frontend
+*
+* SCSS Designed by TeamDahlia.
+*/
+
+$grey: #e5e5e5;
+$white: #ffffff;
+$black: #000008;
+
+/* Banner */
+#banner {
+  background: url(https://res.cloudinary.com/allebd/image/upload/v1567031693/dahlia/banner.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% auto;
+  height: 800px;
+  color: $white;
+
+  .bannerGradient {
+    width: 690px;
+    height: 100%;
+    overflow: hidden;
+    background: rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 40px 40px rgba(0,0,0,0.3);
+    align-items: center;
+    padding: 4em;
+    padding-top: 16em;
+
+    h2 {
+      font-size: 3.5em;
+      line-height: 1.2;
+      margin: 0;
+    }
+  }
+}
+
+@media(max-width: 1200px){
+  #banner {
+    background-size: auto;
+    height: 100%;
+  }
+}
+
+@media(max-width: 900px){
+  #banner {
+    .bannerGradient {
+      width: 100%;
+      padding-top: 30%;
+    }
+  }
+}
