@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import ReactRouterPropTypes from 'react-router-prop-types';
+import PropType from 'prop-types';
 import axios from 'axios';
 import SignupForm from './SignupForm';
 import './SignupForm.scss';
 import validation from './validation';
 
-const SignupFormContainer = () => {
+const SignupFormContainer = ({
+  isOpen, closeModal, history,
+}) => {
   const [formdata, setFormData] = useState([
     {
       name: 'Firstname',
@@ -37,9 +42,8 @@ const SignupFormContainer = () => {
       errorMessage: '',
     },
   ]);
-  const [reqSuccess, setReqSuccess] = useState(false);
-  const [resourceLoading, setResourceLoading] = useState(false);
 
+  const [resourceLoading, setResourceLoading] = useState(false);
   const onChange = (event, index) => {
     const inputValue = event.target.value;
     setFormData((prevFormdata) => {
@@ -63,9 +67,11 @@ const SignupFormContainer = () => {
         email: formdata[2].value,
         password: formdata[3].value,
       })
-        .then(() => {
-          setReqSuccess(true);
+        .then((res) => {
           setResourceLoading(false);
+          closeModal();
+          localStorage.setItem('AuthorsHavenToken', res.body.user.token);
+          history.push('/ConfirmationPage');
         })
         .catch((err) => {
           const message = err.response.data.errors;
@@ -84,10 +90,19 @@ const SignupFormContainer = () => {
     <SignupForm
       handleSubmit={handleSubmit}
       onChange={onChange}
-      reqSuccess={reqSuccess}
       resourceLoading={resourceLoading}
       formdata={formdata}
+      isOpen={isOpen}
+      closeModal={closeModal}
     />
   );
 };
-export default SignupFormContainer;
+
+SignupFormContainer.propTypes = {
+  isOpen: PropType.bool.isRequired,
+  closeModal: PropType.func.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
+};
+
+
+export default withRouter(SignupFormContainer);
