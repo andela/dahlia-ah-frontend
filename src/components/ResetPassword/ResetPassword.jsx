@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AuthModalContainer from '../AuthModal/AuthModalContainer';
 import TextInput from '../TextInput/TextInput';
-import SuccessIcon from '../Icons/SuccessIcon';
+import SuccessIcon from '../Icons/SucessIcon/SuccessIcon';
 import './ResetPassword.scss';
 
 const ResetPassword = ({
