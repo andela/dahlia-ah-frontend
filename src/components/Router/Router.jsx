@@ -5,8 +5,7 @@ import Footer from '../layout/Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
 import NotFound from '../NotFound/NotFound';
 import SignUpFormContainer from '../SignupForm/SignupFormContainer';
-import ConfirmationPage from '../ConfirmationPage/ConfrimationPage';
-import UserProtected from './Protect';
+import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
 
 const Router = () => {
   const [isOpenSignup, setIsOpenSignup] = useState(false);
@@ -29,8 +28,8 @@ const Router = () => {
       <Navbar openModal={handleOpenModal} />
       <Switch>
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/confirmation-page" component={ConfirmationPage} />
         <Route component={NotFound} />
-        <UserProtected exact path="/ConfirmationPage" component={ConfirmationPage} />
       </Switch>
       <Footer />
     </div>

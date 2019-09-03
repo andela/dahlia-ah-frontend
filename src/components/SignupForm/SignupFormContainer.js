@@ -71,7 +71,7 @@ const SignupFormContainer = ({
           closeModal();
           setResourceLoading(false);
           localStorage.setItem('AuthorsHavenUser', JSON.stringify(res.data.user));
-          history.push('/ConfirmationPage');
+          history.push('/confirmation-page');
         })
         .catch((err) => {
           const message = err.response.data.errors;
