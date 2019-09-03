@@ -14,8 +14,7 @@ const Login = ({ isOpen, closeModal }) => (
     <div className="login">
       <p className="small-text">
           Don’t have an account?
-        {' '}
-        <a href="abc">Sign Up</a>
+        <button className="auth-btn btn-flat" onClick={() => {}} type="button">Sign Up</button>
       </p>
     </div>
   </AuthModal>

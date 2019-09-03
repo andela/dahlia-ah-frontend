@@ -4,8 +4,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import Banner from './Banner/Banner';
 import NovelOfTheWeek from './NovelOfTheWeek/NovelOfTheWeek';
 import './landingPage.scss';
-import Login from '../Login/Login';
-import UserContextProvider from '../../context/UserContext';
 
 const LandingPage = ({ history }) => {
   const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));

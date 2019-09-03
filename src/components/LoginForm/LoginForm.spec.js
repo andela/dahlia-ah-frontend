@@ -1,8 +1,8 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
-
 import Adapter from 'enzyme-adapter-react-16';
 import { renderHook, act } from '@testing-library/react-hooks';
+
 import LoginForm from './LoginForm';
 import LoginFormRender from './LoginFormRender';
 import {
