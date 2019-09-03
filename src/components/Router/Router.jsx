@@ -6,6 +6,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import NotFound from '../NotFound/NotFound';
 import SignUpFormContainer from '../SignupForm/SignupFormContainer';
 import ConfirmationPage from '../ConfirmationPage/ConfrimationPage';
+import UserProtected from './Protect';
 
 const Router = () => {
   const [isOpenSignup, setIsOpenSignup] = useState(false);
@@ -29,7 +30,7 @@ const Router = () => {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route component={NotFound} />
-        <Route exact path="/ConfirmationPage" component={ConfirmationPage} />
+        <UserProtected exact path="/ConfirmationPage" component={ConfirmationPage} />
       </Switch>
       <Footer />
     </div>
