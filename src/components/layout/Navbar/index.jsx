@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropType from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import useNavigation from './effects';
 import './navbar.scss';
 import AuthenticatedNav from './AuthenticatedNav';
 import UnauthenticatedNav from './UnauthenticatedNav';
 
-const Navbar = ({ openModal }) => {
+const Navbar = ({ openModal, history }) => {
   useNavigation();
-  const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
+  let user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+
+  useEffect(() => {
+    user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+  }, [history]);
+
   return (
     <>
       {
-        user === null ? <UnauthenticatedNav openModal={openModal} /> : <AuthenticatedNav />
+        user && user.token
+          ? <AuthenticatedNav />
+          : <UnauthenticatedNav openModal={openModal} />
       }
     </>
   );
@@ -19,6 +28,7 @@ const Navbar = ({ openModal }) => {
 
 Navbar.propTypes = {
   openModal: PropType.func.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
-export default Navbar;
+export default withRouter(Navbar);

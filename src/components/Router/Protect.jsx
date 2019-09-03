@@ -2,15 +2,16 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-let isUser;
+let user;
 
 const UserProtected = ({ component: Component, path }) => {
-  isUser = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+  user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+
   return (
     <Route
       path={path}
       render={({ location }) => (
-        isUser && isUser.isVerified
+        user && user.isVerified
           ? <Component />
           : <Redirect to={{ pathname: '/confirmation-page', state: { from: location } }} />
       )}
