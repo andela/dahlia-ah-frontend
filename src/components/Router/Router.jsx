@@ -12,10 +12,14 @@ const Router = () => {
 
   const handleOpenModal = () => {
     setIsOpenSignup(true);
+    document.body.style.height = '100vh';
+    document.body.style.overflowY = 'hidden';
   };
 
   const handleCloseModal = () => {
     setIsOpenSignup(false);
+    document.body.style.height = '100vh';
+    document.body.style.overflowY = 'auto';
   };
 
   return (
