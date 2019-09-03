@@ -20,4 +20,5 @@ const Navbar = ({ openModal }) => {
 Navbar.propTypes = {
   openModal: PropType.func.isRequired,
 };
+
 export default Navbar;

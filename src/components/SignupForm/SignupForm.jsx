@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Input from '../TextInput/TextInput';
-import AuthModalContainer from '../AuthModal/AuthModalContainer';
-import SocialLogin from '../SocialLogin/SocialLogin';
-import Separator from '../Separator/Separator';
+import Input from '../helpers/TextInput/TextInput';
+import AuthModalContainer from '../helpers/AuthModal/AuthModalContainer';
+import SocialLogin from '../helpers/SocialLogin/SocialLogin';
+import Separator from '../helpers/Separator/Separator';
 import './SignupForm.scss';
 
 const SignupForm = ({

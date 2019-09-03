@@ -32,6 +32,10 @@ a {
   color: var(--white);
 }
 
+.sidenav-overlay {
+  z-index: 2 !important;
+}
+
 ul {
   padding-left: 0;
 }
