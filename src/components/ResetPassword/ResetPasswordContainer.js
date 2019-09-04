@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import validator from 'validator';
+import PropTypes from 'prop-types';
 import ResetPasswordModal from './ResetPassword';
 import appConfig from '../../config/appConfig';
 
-const ResetPasswordContianer = () => {
+const ResetPasswordContianer = ({ closeModal }) => {
   const title = 'FORGOT PASSWORD';
 
   const [formFields, setFormFields] = useState([
@@ -101,12 +102,17 @@ const ResetPasswordContianer = () => {
       ajaxSuccess={ajaxSuccess}
       onSubmit={handleSubmit}
       onChange={handleInputChange}
+      closeModal={closeModal}
       formFields={formFields}
       ajaxError={ajaxError}
       failureMessage={failureMessage}
       ajaxLoading={ajaxLoading}
     />
   );
+};
+
+ResetPasswordContianer.propTypes = {
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default ResetPasswordContianer;
