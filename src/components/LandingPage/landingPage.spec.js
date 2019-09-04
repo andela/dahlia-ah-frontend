@@ -4,6 +4,7 @@ import { configure, mount } from 'enzyme';
 
 import Adapter from 'enzyme-adapter-react-16';
 import LandingPage from './LandingPage';
+import AuthModalContextProvider from '../../context/AuthModalContext';
 
 configure({ adapter: new Adapter() });
 
@@ -12,7 +13,9 @@ describe('App component', () => {
     const wrapper = mount(
       <BrowserRouter>
         <Switch>
-          <LandingPage />
+          <AuthModalContextProvider>
+            <LandingPage />
+          </AuthModalContextProvider>
         </Switch>
       </BrowserRouter>,
     );

@@ -25,7 +25,7 @@ const SignupForm = ({
       <p className="small-text">
           Already have an account?
         {' '}
-        <button className="auth-btn btn-flat" onClick={() => openModal('signin')} type="button">Sign Up</button>
+        <button className="auth-btn btn-flat" onClick={() => openModal('signin')} type="button">Sign In</button>
       </p>
     </form>
   </AuthModalContainer>
