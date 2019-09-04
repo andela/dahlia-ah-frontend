@@ -2,13 +2,14 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import validator from 'validator';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 import LoginFormRender from './LoginFormRender';
 import loginApiCall from '../../api/login';
 import {
   emailState, passwordState, errorState, isLoadingState,
 } from '../../hooks/Login';
 
-const LoginForm = ({ history }) => {
+const LoginForm = ({ history, openModal }) => {
   const { email, setEmail } = emailState();
   const { password, setPassword } = passwordState();
   const { error, setError } = errorState();
@@ -40,12 +41,14 @@ const LoginForm = ({ history }) => {
       password={password}
       error={error}
       isLoading={isLoading}
+      openModal={openModal}
     />
   );
 };
 
 LoginForm.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default withRouter(LoginForm);

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthModalContext } from '../../../context/AuthModalContext';
 import Login from '../../Login/Login';
 import SignUpFormContainer from '../../SignupForm/SignupFormContainer';
+import ResetPassword from '../../ResetPassword/ResetPasswordContainer';
 
 const UnauthenticatedNav = () => {
   const { modalComponent, setModalComponent } = useContext(AuthModalContext);
@@ -33,6 +34,13 @@ const UnauthenticatedNav = () => {
         <Login
           closeModal={handleCloseModal}
           openModal={handleOpenModal}
+        />
+      );
+      break;
+    case 'reset-password':
+      renderedModal = (
+        <ResetPassword
+          closeModal={handleCloseModal}
         />
       );
       break;

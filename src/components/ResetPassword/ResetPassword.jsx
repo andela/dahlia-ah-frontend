@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AuthModalContainer from '../AuthModal/AuthModalContainer';
-import TextInput from '../TextInput/TextInput';
+import AuthModalContainer from '../helpers/AuthModal/AuthModalContainer';
+import TextInput from '../helpers/TextInput/TextInput';
 import SuccessIcon from '../Icons/SucessIcon/SuccessIcon';
 import './ResetPassword.scss';
 
 const ResetPassword = ({
-  title, desc, ajaxSuccess, onSubmit,
+  title, desc, ajaxSuccess, onSubmit, closeModal,
   onChange, formFields, ajaxError, failureMessage, ajaxLoading,
 }) => (
-  <AuthModalContainer title={title} desc={desc} isOpen>
+  <AuthModalContainer title={title} desc={desc} isOpen closeModal={closeModal}>
     { !ajaxSuccess ? (
       <form className="reset-password-form" onSubmit={(e) => onSubmit(e)}>
         <TextInput
@@ -38,6 +38,7 @@ ResetPassword.propTypes = {
   ajaxLoading: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
   formFields: PropTypes.arrayOf(PropTypes.object).isRequired,
   ajaxError: PropTypes.bool.isRequired,
   failureMessage: PropTypes.string.isRequired,
