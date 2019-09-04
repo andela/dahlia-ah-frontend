@@ -9,7 +9,7 @@ configure({ adapter: new Adapter() });
 describe('Login component', () => {
   it('renders correctly', () => {
     const wrapper = shallow(
-      <Login isOpen={false} closeModal={() => {}} />,
+      <Login openModal={() => {}} closeModal={() => {}} />,
     );
     expect(wrapper).toMatchSnapshot();
   });

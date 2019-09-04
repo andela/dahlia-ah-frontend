@@ -8,7 +8,7 @@ import './SignupForm.scss';
 import validation from './validation';
 
 const SignupFormContainer = ({
-  isOpen, closeModal, history,
+  openModal, closeModal, history,
 }) => {
   const [formdata, setFormData] = useState([
     {
@@ -68,7 +68,6 @@ const SignupFormContainer = ({
         password: formdata[3].value,
       })
         .then((res) => {
-          closeModal();
           setResourceLoading(false);
           localStorage.setItem('AuthorsHavenUser', JSON.stringify(res.data.user));
           history.push('/confirmation-page');
@@ -92,14 +91,14 @@ const SignupFormContainer = ({
       onChange={onChange}
       resourceLoading={resourceLoading}
       formdata={formdata}
-      isOpen={isOpen}
+      openModal={openModal}
       closeModal={closeModal}
     />
   );
 };
 
 SignupFormContainer.propTypes = {
-  isOpen: PropType.bool.isRequired,
+  openModal: PropType.func.isRequired,
   closeModal: PropType.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
 };

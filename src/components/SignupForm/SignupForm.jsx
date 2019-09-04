@@ -7,9 +7,9 @@ import Separator from '../helpers/Separator/Separator';
 import './SignupForm.scss';
 
 const SignupForm = ({
-  formdata, onChange, handleSubmit, resourceLoading, closeModal, isOpen,
+  formdata, onChange, handleSubmit, resourceLoading, closeModal, openModal,
 }) => (
-  <AuthModalContainer desc="Sign up to create an account" title="CREATE AN ACCOUNT" isOpen={isOpen} closeModal={closeModal}>
+  <AuthModalContainer desc="Sign up to create an account" title="CREATE AN ACCOUNT" closeModal={() => { closeModal('signup'); }}>
     <SocialLogin />
     <Separator />
     <form onSubmit={handleSubmit}>
@@ -25,7 +25,7 @@ const SignupForm = ({
       <p className="small-text">
           Already have an account?
         {' '}
-        <a href="abc">Sign In</a>
+        <button className="auth-btn btn-flat" onClick={() => openModal('signin')} type="button">Sign Up</button>
       </p>
     </form>
   </AuthModalContainer>

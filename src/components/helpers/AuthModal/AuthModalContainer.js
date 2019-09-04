@@ -4,9 +4,9 @@ import AuthModal from './AuthModal';
 import './AuthModal.scss';
 
 const AuthModalContainer = ({
-  children, title, desc, isOpen, closeModal,
+  children, title, desc, closeModal,
 }) => (
-  <AuthModal title={title} desc={desc} isOpen={isOpen} closeModal={closeModal}>
+  <AuthModal title={title} desc={desc} closeModal={closeModal}>
     {children}
   </AuthModal>
 );
@@ -18,7 +18,6 @@ AuthModalContainer.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
 };
 

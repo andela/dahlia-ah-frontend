@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Banner from './Banner/Banner';
+import { AuthModalContext } from '../../context/AuthModalContext';
+
 import NovelOfTheWeek from './NovelOfTheWeek/NovelOfTheWeek';
 import './landingPage.scss';
 
 const LandingPage = ({ history }) => {
+  const { setModalComponent } = useContext(AuthModalContext);
   const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
 
   return (
@@ -15,11 +18,11 @@ const LandingPage = ({ history }) => {
       }
       <div>
         <div className="landingPage">
-          <Banner />
-          <NovelOfTheWeek />
+          <Banner openModal={setModalComponent} />
+          <NovelOfTheWeek openModal={setModalComponent} />
           <section id="writingCaption">
             <p>The Best Place To Express Yourself and Collaborate</p>
-            <button type="button" className="btnLarge">Start Writing</button>
+            <button type="button" onClick={() => { setModalComponent('signin'); }} className="btnLarge">Start Writing</button>
           </section>
           <section id="membership">
             <h2>Membership</h2>

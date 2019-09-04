@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import validator from 'validator';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import LoginFormRender from './LoginFormRender';
 import loginApiCall from '../../api/login';
-import { UserContext } from '../../context/UserContext';
 import {
   emailState, passwordState, errorState, isLoadingState,
 } from '../../hooks/Login';
 
 const LoginForm = ({ history }) => {
-  const { setUser } = useContext(UserContext);
   const { email, setEmail } = emailState();
   const { password, setPassword } = passwordState();
   const { error, setError } = errorState();
@@ -30,7 +28,7 @@ const LoginForm = ({ history }) => {
     setLoader(true);
     if (handleValidation()) {
       const formData = { email, password };
-      loginApiCall(formData, history, setError, setUser, setLoader);
+      loginApiCall(formData, history, setError, setLoader);
     }
   };
   return (
