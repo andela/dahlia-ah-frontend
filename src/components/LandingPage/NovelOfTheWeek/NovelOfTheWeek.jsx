@@ -1,7 +1,8 @@
 import React from 'react';
+import PropType from 'prop-types';
 import './novelOfTheWeek.scss';
 
-const NovelOfTheWeek = () => (
+const NovelOfTheWeek = ({ openModal }) => (
   <div>
     <section id="weekNovel">
       <h2>Novel of the Week</h2>
@@ -29,12 +30,16 @@ const NovelOfTheWeek = () => (
               sunt in culpa qui officia deserunt mollit anim id est
               laborum upidatat non proident, sunt in culpa qui officia.
             </p>
-            <button type="button" className="btnMedium">View Snippet</button>
+            <button type="button" onClick={() => { openModal('signin'); }} className="btnMedium">View Snippet</button>
           </div>
         </div>
       </div>
     </section>
   </div>
 );
+
+NovelOfTheWeek.propTypes = {
+  openModal: PropType.func.isRequired,
+};
 
 export default NovelOfTheWeek;

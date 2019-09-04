@@ -80,16 +80,16 @@ describe('TEST API CALLS RESPONSE', () => {
     loginApiCall({ }, { push: () => {} }, () => {}, () => {});
     expect(localStorage.getItem('AuthorsHavenToken')).toBe('');
   });
-  it('should return 200 and update localStorage', () => {
+  it('should return 401 and update localStorage', () => {
     const mock = new MockAdapter(axios);
+    const mockData = { data: { error: 'error' }, status: 401 };
     const url = `${BASE_PATH}/auth/login`;
-    mock.onPost(url).reply(401);
+    mock.onPost(url).reply(401, mockData);
 
     localStorage.setItem('AuthorsHavenToken', '');
 
     loginApiCall({}, { push: () => {} }, () => {}, () => {});
-    expect(localStorage.getItem('AuthorsHavenToken')).toBe('');
-    localStorage.removeItem('AuthorsHavenToken');
-    expect(localStorage.getItem('AuthorsHavenToken')).toBe(null);
+    localStorage.removeItem('AuthorsHavenTokenUser');
+    expect(localStorage.getItem('AuthorsHavenUser')).toBe('undefined');
   });
 });

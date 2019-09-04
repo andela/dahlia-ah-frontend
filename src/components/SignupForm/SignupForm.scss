@@ -40,3 +40,14 @@
 .btn:disabled{
     background-color: #ffffff !important;
 }
+
+.auth-btn {
+    text-transform: capitalize;
+    padding: 0 2px;
+    color: #2d9cdb;
+    vertical-align: baseline;
+}
+
+.btn-flat:focus {
+    background-color:#fafafa 
+}

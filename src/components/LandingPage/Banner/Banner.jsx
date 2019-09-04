@@ -1,7 +1,8 @@
 import React from 'react';
+import PropType from 'prop-types';
 import './banner.scss';
 
-const Banner = () => (
+const Banner = ({ openModal }) => (
   <div>
     <section id="banner">
       <div className="bannerGradient">
@@ -17,10 +18,15 @@ const Banner = () => (
             non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
-        <button type="button" className="btnLarge">View Snippet</button>
+        <button type="button" onClick={() => { openModal('signin'); }} className="btnLarge">View Snippet</button>
       </div>
     </section>
   </div>
 );
+
+Banner.propTypes = {
+  openModal: PropType.func.isRequired,
+};
+
 
 export default Banner;

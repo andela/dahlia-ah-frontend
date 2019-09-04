@@ -4,9 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AuthModal = ({
-  children, title, desc, isOpen, closeModal,
+  children, title, desc, closeModal,
 }) => (
-  <div className="backdrop-div" style={{ display: isOpen ? 'flex' : 'none' }}>
+  <div className="backdrop-div" role="button">
     <div className="modal">
       <div className="modal-content">
         <i className="fas fa-times" role="button" onKeyDown={closeModal} onClick={closeModal} />
@@ -25,7 +25,6 @@ AuthModal.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
 };
 
