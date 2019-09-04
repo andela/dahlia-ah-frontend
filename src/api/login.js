@@ -8,7 +8,11 @@ export default (formData, history, setError, setLoader) => {
     .then(({ data }) => {
       const { user } = data;
       localStorage.setItem('AuthorsHavenUser', JSON.stringify(user));
-      history.push('/homepage');
+      if (user.isVerified) {
+        history.push('/homepage');
+      } else {
+        history.push('/confirmation-page');
+      }
     })
     .catch(({ response: { data, status } }) => {
       if (status === 401) {

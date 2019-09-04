@@ -29,7 +29,12 @@ const UnauthenticatedNav = () => {
       );
       break;
     case 'signin':
-      renderedModal = <Login closeModal={handleCloseModal} openModal={handleOpenModal} />;
+      renderedModal = (
+        <Login
+          closeModal={handleCloseModal}
+          openModal={handleOpenModal}
+        />
+      );
       break;
     default:
       break;

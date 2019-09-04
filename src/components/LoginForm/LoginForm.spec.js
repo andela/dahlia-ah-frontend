@@ -18,16 +18,18 @@ configure({ adapter: new Adapter() });
 
 describe('LoginForm component', () => {
   it('renders correctly', () => {
+    const mockFunc = jest.fn;
     const wrapper = shallow(
-      <LoginForm isOpen={false} closeModal={() => {}} />,
+      <LoginForm isOpen={false} closeModal={mockFunc} />,
     );
     expect(wrapper).toMatchSnapshot();
   });
 });
 describe('LoginFormRenderer component', () => {
   it('renders correctly', () => {
+    const mockFunc = jest.fn;
     const wrapper = shallow(
-      <LoginFormRender handleSubmit={() => {}} setEmail={() => {}} email="" setPassword={() => {}} password="" error="" isLoading={false} />,
+      <LoginFormRender handleSubmit={mockFunc} setEmail={mockFunc} email="" setPassword={mockFunc} password="" error="" isLoading={false} />,
     );
     expect(wrapper).toMatchSnapshot();
   });
@@ -75,9 +77,11 @@ describe('TEST API CALLS RESPONSE', () => {
     const url = `${BASE_PATH}/auth/login`;
     mock.onPost(url).reply(200, mockData);
 
+    const mockFunc = jest.fn;
+
     localStorage.setItem('AuthorsHavenToken', '');
 
-    loginApiCall({ }, { push: () => {} }, () => {}, () => {});
+    loginApiCall(mockFunc, { push: mockFunc }, mockFunc, mockFunc);
     expect(localStorage.getItem('AuthorsHavenToken')).toBe('');
   });
   it('should return 401 and update localStorage', () => {
@@ -85,11 +89,9 @@ describe('TEST API CALLS RESPONSE', () => {
     const mockData = { data: { error: 'error' }, status: 401 };
     const url = `${BASE_PATH}/auth/login`;
     mock.onPost(url).reply(401, mockData);
+    const mockFunc = jest.fn;
 
-    localStorage.setItem('AuthorsHavenToken', '');
-
-    loginApiCall({}, { push: () => {} }, () => {}, () => {});
-    localStorage.removeItem('AuthorsHavenTokenUser');
+    loginApiCall(mockFunc, { push: mockFunc }, mockFunc, mockFunc);
     expect(localStorage.getItem('AuthorsHavenUser')).toBe('undefined');
   });
 });
