@@ -21,14 +21,14 @@ footer {
   background-color: $background;
 
   .footerContainer {
-    display: grid;
+    display: grid !important;
     grid-template-rows: auto;
     grid-template-areas: "information"
                             "copyright";
 
     .information {
       grid-area: information;
-      display: grid;
+      display: grid !important;
       grid-template-columns: repeat(4, 1fr);
       justify-items: left;
       text-align: left;

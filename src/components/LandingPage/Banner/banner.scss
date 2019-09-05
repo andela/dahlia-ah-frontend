@@ -22,10 +22,11 @@ $black: #000008;
   color: $white;
 
   .bannerGradient {
-    width: 690px;
+    width: 100%;
     height: 100%;
     overflow: hidden;
     background: rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 40px 40px rgba(0,0,0,0.3);
     align-items: center;
     padding: 4em;
     padding-top: 16em;
@@ -33,7 +34,12 @@ $black: #000008;
     h2 {
       font-size: 3.5em;
       line-height: 1.2;
+      text-transform: capitalize;
       margin: 0;
+    }
+
+    .bannerText {
+      width: 500px;
     }
   }
 }
@@ -50,6 +56,10 @@ $black: #000008;
     .bannerGradient {
       width: 100%;
       padding-top: 30%;
+      
+      .bannerText {
+        width: 80%;
+      }
     }
   }
 }
