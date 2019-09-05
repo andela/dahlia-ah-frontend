@@ -71,8 +71,8 @@ const ResetPasswordContianer = ({ closeModal }) => {
       axios.post(`${appConfig.BASE_PATH}/auth/forgotpassword`, {
         email: formFields[0].value,
       })
-        .then((response) => {
-          setDesc(response.data.message);
+        .then(() => {
+          setDesc('Kindly check your email for the next steps to reset your password');
           setAjaxLoading(false);
           setAjaxSuccess(true);
         })
