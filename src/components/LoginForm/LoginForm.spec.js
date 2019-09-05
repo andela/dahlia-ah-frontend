@@ -12,7 +12,7 @@ import {
   emailState, passwordState, errorState, isLoadingState,
 } from '../../hooks/Login';
 
-const { BASE_PATH } = appConfig;
+const { BACKEND_PATH } = appConfig;
 
 configure({ adapter: new Adapter() });
 
@@ -74,7 +74,7 @@ describe('TEST API CALLS RESPONSE', () => {
   it('should return 200 and update localStorage', () => {
     const mock = new MockAdapter(axios);
     const mockData = { data: { user: { token: 'test' } } };
-    const url = `${BASE_PATH}/auth/login`;
+    const url = `${BACKEND_PATH}/auth/login`;
     mock.onPost(url).reply(200, mockData);
 
     const mockFunc = jest.fn;
@@ -87,7 +87,7 @@ describe('TEST API CALLS RESPONSE', () => {
   it('should return 401 and update localStorage', () => {
     const mock = new MockAdapter(axios);
     const mockData = { data: { error: 'error' }, status: 401 };
-    const url = `${BASE_PATH}/auth/login`;
+    const url = `${BACKEND_PATH}/auth/login`;
     mock.onPost(url).reply(401, mockData);
     const mockFunc = jest.fn;
 
