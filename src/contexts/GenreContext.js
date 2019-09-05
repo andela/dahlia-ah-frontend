@@ -8,7 +8,7 @@ const GenreContextProvider = ({ children }) => {
   const [genres, setGenres] = useState({ genres: [] });
   useEffect(() => {
     const fetchAsyncData = async () => {
-      const res = await axios.get('https://ah-dahlia-staging.herokuapp.com/api/v1/genres');
+      const res = await axios.get('https://ah-dahlia.herokuapp.com/api/v1/genres');
       setGenres(res.data.data);
     };
     fetchAsyncData();
