@@ -1,15 +1,15 @@
 .genre-scroll {
   width: 100%;
   overflow-x: scroll;
-  height: calc(100vh - (85px + 78vh));
+  height: 14vh;
   display: flex;
   align-items: center;
   padding-left: 2rem;
 
   .genre {
-    width: 112px;
-    min-width: 112px;
+    min-width: 114px;
     height: 51px;
+    transition: height 0.5s;
     border-radius: 4px;
     background-color: #000000;
     color: #ffffff;
@@ -18,6 +18,16 @@
     align-items: center;
     text-transform: uppercase;
     margin-right: 1.5rem;
+    padding: 0rem 1rem;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% auto;
+  }
+
+  .genre:hover {
+    height: 70px;
+    transition: height 0.5s;
   }
 
 }

@@ -12,7 +12,7 @@ const SignupForm = ({
   <AuthModalContainer desc="Sign up to create an account" title="CREATE AN ACCOUNT" closeModal={() => { closeModal('signup'); }}>
     <SocialLogin />
     <Separator />
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signup-form">
       {formdata.map((formField, index) => (
         <Input
           key={formField.id}

@@ -9,7 +9,7 @@ export default (formData, history, setError, setLoader) => {
       const { user } = data;
       localStorage.setItem('AuthorsHavenUser', JSON.stringify(user));
       if (user.isVerified) {
-        history.push('/homepage');
+        window.location.assign('/homepage');
       } else {
         history.push('/confirmation-page');
       }
