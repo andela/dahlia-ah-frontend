@@ -4,8 +4,8 @@ import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
 import NotFound from '../NotFound/NotFound';
-import ConfirmationPage from '../ConfirmationPage/ConfirmationPage';
 import AuthModalContextProvider from '../../context/AuthModalContext';
+import ConfirmationPageContainer from '../ConfirmationPage/ConfirmationPageContainer';
 
 const Router = () => (
   <div>
@@ -13,7 +13,7 @@ const Router = () => (
       <Navbar />
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/confirmation-page" component={ConfirmationPage} />
+        <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
         <Route component={NotFound} />
       </Switch>
     </AuthModalContextProvider>
