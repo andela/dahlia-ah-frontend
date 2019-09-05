@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 import Materialize from 'materialize-css';
 
 const useNavigation = () => useEffect(() => {
+  const authNav = document.querySelector('.authenticated-nav');
+  const nav = document.querySelector('.navbar');
+
   const sidenav = document.querySelector('.sidenav');
   Materialize.Sidenav.init(sidenav);
 
-  const nav = document.querySelector('.navbar');
-  const authNav = document.querySelector('.authenticated-nav');
   let changeNavColor = 'nav-black';
   if (authNav) {
     changeNavColor = 'nav-white';

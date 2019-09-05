@@ -1,33 +1,28 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 
-const ConfirmationPage = ({ history }) => {
-  const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
-
-  const checkVerification = () => {
-    if (user && user.isVerified) {
-      history.push('/homepage');
-    } else if (!user) {
-      history.push('/');
-    }
-  };
-
-  return (
-    <>
-      {checkVerification()}
-      <div>
-        <h3>Congratulations</h3>
-        <p>
-          You have been sent an email, please click on the link in your email to verify your account
-        </p>
-        <p> if you dont receive the email click here to be resent the email</p>
-      </div>
-    </>
-  );
-};
+const ConfirmationPage = ({ email }) => (
+  <div>
+    <img className="mail-icon" src="https://img.icons8.com/cotton/128/000000/delivered-mail.png" alt="Delivered mail" />
+    <h6> thanks for registering </h6>
+    <p>
+        We’ve emailed a confirmation link to
+      {' '}
+      {email}
+      <br />
+        Click on the link to verify your account
+    </p>
+    <p>
+        Didn’t get a confirmation email ?
+      <br />
+        Check your spam folder or
+      <button type="button"> Send again </button>
+    </p>
+  </div>
+);
 
 ConfirmationPage.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
+  email: PropTypes.string.isRequired,
 };
-export default withRouter(ConfirmationPage);
+
+export default ConfirmationPage;

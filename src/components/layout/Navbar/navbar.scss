@@ -120,3 +120,26 @@ $color-black: #000008;
     }
    } 
 }
+
+.confirm-page{
+  .greeting {
+      display: none !important;
+  }
+
+  img:not(.brand-logo){
+      display: none !important;
+  }
+
+  .btn-small{
+    display: none !important;
+  }
+
+  @media(max-width: 600px){
+    .brand-logo.center{
+      width: 200px;
+      position: relative;
+      left:-19% !important;
+    }
+  }
+}
+

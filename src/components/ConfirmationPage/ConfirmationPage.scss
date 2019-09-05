@@ -1,0 +1,74 @@
+.verify-account{
+    border-top: 85px solid black;
+    div{
+        margin: 70px auto 120px auto;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        max-width: 600px;
+        text-align: center;
+        border-radius: 5px;
+        box-sizing: border-box;
+        padding: 50px;
+        position: relative;
+    }
+    svg{
+        position: relative;
+        top: 10px;
+    }
+    img{
+        width: 70px
+    }
+
+    button{
+        color:  #518EF8;
+        background-color: white;
+        border:none;
+        cursor: pointer;
+    }
+
+    button:active{
+        font-size:15px;
+    }
+
+    .error{
+        color:white;
+        background-color: #fa5f50; 
+        display: inline-block;
+        padding: 8px;
+        border-radius: 3px;
+    }
+
+    .empty{
+        display: none;
+    }
+    p{
+        margin: 30px auto;
+        line-height: 30px;
+    }
+
+    h6{
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    @media(max-width: 600px){
+        div{
+            border:none;
+            margin: 70px auto 70px auto;
+            padding: 20px;
+        }
+        p{
+            line-height: 17px;
+        }
+    }
+
+    @media(max-width: 380px){
+        div{
+            border:none;
+            margin: 0 auto 40px auto;
+            padding: 20px;
+        }
+        p{
+            line-height: 17px;
+        }
+    }
+}
