@@ -6,7 +6,6 @@ const { BACKEND_PATH } = AppConfig;
 
 const SocialLogin = () => (
   <div>
-    <a href={`${BACKEND_PATH}/oauth/facebook`}><img className="social-icon" src="https://img.icons8.com/color/96/000000/twitter.png" alt="twitter" /></a>
     <a href={`${BACKEND_PATH}/oauth/google`}>
       <img className="social-icon" src="https://img.icons8.com/color/96/000000/google-logo.png" alt="google" />
     </a>
