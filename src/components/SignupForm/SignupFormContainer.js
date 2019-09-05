@@ -6,6 +6,9 @@ import axios from 'axios';
 import SignupForm from './SignupForm';
 import './SignupForm.scss';
 import validation from './validation';
+import appConfig from '../../config/appConfig';
+
+const { BACKEND_PATH } = appConfig;
 
 const SignupFormContainer = ({
   openModal, closeModal, history,
@@ -61,7 +64,7 @@ const SignupFormContainer = ({
 
     if (!errors) {
       setResourceLoading(true);
-      axios.post('https://ah-dahlia.herokuapp.com/api/v1/auth/register', {
+      axios.post(`${BACKEND_PATH}/auth/register`, {
         firstName: formdata[0].value,
         lastName: formdata[1].value,
         email: formdata[2].value,
