@@ -3,8 +3,10 @@ import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import jwtDecode from 'jwt-decode';
 import Banner from './Banner/Banner';
-import { AuthModalContext } from '../../context/AuthModalContext';
 import NovelOfTheWeek from './NovelOfTheWeek/NovelOfTheWeek';
+import { AuthModalContext } from '../../context/AuthModalContext';
+import BannerContextProvider from '../../context/BannerContext';
+import NovelOfTheWeekContextProvider from '../../context/NovelOfTheWeekContext';
 import './landingPage.scss';
 
 const LandingPage = ({ history, location }) => {
@@ -28,8 +30,12 @@ const LandingPage = ({ history, location }) => {
       }
       <div>
         <div className="landingPage">
-          <Banner openModal={setModalComponent} />
-          <NovelOfTheWeek openModal={setModalComponent} />
+          <BannerContextProvider>
+            <Banner openModal={setModalComponent} />
+          </BannerContextProvider>
+          <NovelOfTheWeekContextProvider>
+            <NovelOfTheWeek openModal={setModalComponent} />
+          </NovelOfTheWeekContextProvider>
           <section id="writingCaption">
             <p>The Best Place To Express Yourself and Collaborate</p>
             <button type="button" onClick={() => { setModalComponent('signin'); }} className="btnLarge">Start Writing</button>
