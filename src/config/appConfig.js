@@ -1,4 +1,4 @@
 export default {
   BASE_PATH: 'https://ah-dahlia.herokuapp.com',
-  BACKEND_PATH: 'http://localhost:3000/api/v1',
+  BACKEND_PATH: 'https://ah-dahlia-staging-pr-22.herokuapp.com/api/v1',
 };
