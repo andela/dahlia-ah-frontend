@@ -8,7 +8,7 @@ const SliderContextProvider = ({ children }) => {
   const [novels, setNovels] = useState({ novels: [] });
   useEffect(() => {
     const fetchAsyncData = async () => {
-      const res = await axios.get('https://ah-dahlia-staging.herokuapp.com/api/v1/novels/random?limit=3');
+      const res = await axios.get('https://ah-dahlia.herokuapp.com/api/v1/novels/random?limit=3');
       setNovels(res.data.data);
     };
     fetchAsyncData();
