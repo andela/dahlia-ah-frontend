@@ -1,0 +1,135 @@
+.featured-books {
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .genre-books {
+    display: flex;
+    height: 65vh;
+
+    .genre-image {
+      width: 50%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .genre-details {
+      width: 50%;
+      padding: 1rem 4rem;
+
+      h3 {
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .novels {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .novel-image img {
+          width: 116px;
+          height: 160px;
+        }
+
+        .read-btn {
+          display: block;
+          width: 100%;
+          font-weight: bold;
+          margin-top: 0.5rem;
+          color: #000000;
+          border: 1px solid #c4c4c4;
+          background-color: #ffffff;
+        }
+      }
+
+      .view-more-btn {
+        display: block;
+        width: fit-content;
+        font-weight: bold;
+        margin: 2rem auto;
+        color: #000000;
+        border: 1px solid #000000;
+        background-color: #ffffff;
+        padding: 0rem 2rem;
+      }
+
+      .view-more-btn:hover {
+        background-color: #000000;
+        color: #ffffff;
+        transition: background-color 0.5s;
+      }
+    }
+  }
+
+  .genre-books:nth-child(odd) {
+    flex-direction: row-reverse;
+  }
+
+  .load-more-btn {
+    display: block;
+    margin: 2rem auto 4rem;
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 0 0;
+
+    span {
+      display: block;
+      margin: -0.5rem 0rem;
+      transition: margin 0.5s;
+    }
+
+  }
+
+  .load-more-btn:hover span{
+    margin: -1rem 0rem;
+    transition: margin 0.5s;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .genre-books {
+      flex-direction: column;
+      height: auto;
+
+      .genre-image {
+        display: none;
+  
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .genre-details {
+        width: 100%;
+        padding: 1rem 2rem;
+      }
+
+      .novels {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .novel-image img {
+          width: 116px;
+          height: 160px;
+        }
+
+        .read-btn {
+          margin: 0.5rem 0rem 2rem;
+        }
+      }
+    }
+
+    .genre-books:nth-child(odd) {
+      flex-direction: column;
+    }
+  }
+}

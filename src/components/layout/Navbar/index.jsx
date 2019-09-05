@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import useNavigation from './effects';
 import './navbar.scss';
+import UserContextProvider from '../../../contexts/UserContext';
 import AuthenticatedNav from './AuthenticatedNav';
 import UnauthenticatedNav from './UnauthenticatedNav';
 
@@ -18,7 +19,11 @@ const Navbar = ({ history }) => {
     <>
       {
         user && user.token
-          ? <AuthenticatedNav />
+          ? (
+            <UserContextProvider>
+              <AuthenticatedNav />
+            </UserContextProvider>
+          )
           : <UnauthenticatedNav />
       }
     </>

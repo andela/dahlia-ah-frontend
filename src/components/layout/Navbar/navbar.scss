@@ -15,7 +15,6 @@ $color-black: #000008;
 
     .nav-btn{
       padding: 0.3rem 2.5rem;
-      cursor: pointer;
       line-height: 1.5;
       border: 1px solid $color-white;
     }
@@ -23,6 +22,7 @@ $color-black: #000008;
     .nav-btn, .nav-link {
       color: #ffffff !important;
       background-color: transparent !important;
+      cursor: pointer;
     }
   
     .nav-link {
@@ -68,6 +68,15 @@ $color-black: #000008;
       line-height: 1.5;
       display: flex;
       align-items: center;
+
+      a {
+        color: $color-black;
+        font-size: inherit;
+      }
+    }
+
+    ul a:hover {
+      background-color: #eeeeee;
     }
 
     .greeting {
@@ -78,6 +87,26 @@ $color-black: #000008;
       top: -2rem;
     }
 
+    .nav-btn {
+      background-color: $color-white;
+      color: $color-black;
+      border: 1px solid $color-black;
+    }
+
+  }
+
+  ul.sidenav {
+    padding-left: 2rem;
+  }
+
+  .unauthenticated-nav + .sidenav .nav-link, .unauthenticated-nav + .sidenav .nav-btn {
+    display: block;
+    padding: 1rem 0rem;
+  }
+
+  .unauthenticated-nav + .sidenav .nav-link, .unauthenticated-nav + .sidenav .nav-btn:hover {
+    background-color: #ffffff;
+    border: transparent;
   }
 
   .change-nav {
@@ -118,7 +147,7 @@ $color-black: #000008;
         transform: translateX(0%);
       }
     }
-   } 
+   }
 }
 
 .confirm-page{
