@@ -1,15 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import jwtDecode from 'jwt-decode';
 import Banner from './Banner/Banner';
 import { AuthModalContext } from '../../context/AuthModalContext';
-
 import NovelOfTheWeek from './NovelOfTheWeek/NovelOfTheWeek';
 import './landingPage.scss';
 
-const LandingPage = ({ history }) => {
+const LandingPage = ({ history, location }) => {
   const { setModalComponent } = useContext(AuthModalContext);
   const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
+
+  useEffect(() => {
+    if (location.search) {
+      const tokenData = location.search.replace('?token=', '');
+      const token = jwtDecode(tokenData);
+      localStorage.setItem('AuthorsHavenUser', JSON.stringify(token));
+      window.location.href = '/homepage';
+    }
+  }, []);
 
   return (
     <>
@@ -66,6 +75,7 @@ const LandingPage = ({ history }) => {
 
 LandingPage.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
 };
 
 export default withRouter(LandingPage);
