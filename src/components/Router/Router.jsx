@@ -8,6 +8,7 @@ import Homepage from '../Homepage';
 import NotFound from '../NotFound/NotFound';
 import AuthModalContextProvider from '../../context/AuthModalContext';
 import ConfirmationPageContainer from '../ConfirmationPage/ConfirmationPageContainer';
+import ResetPasswordContainer from '../ResetPassword/ResetPasswordContainer';
 
 const Router = () => (
   <div>
@@ -16,6 +17,7 @@ const Router = () => (
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
+        <Route exact path="/reset-password" component={ResetPasswordContainer} />
         <UserProtected exact path="/homepage" component={Homepage} />
         <Route component={NotFound} />
       </Switch>
