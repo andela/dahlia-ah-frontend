@@ -9,7 +9,7 @@ const AuthenticatedNav = () => {
   return (
     <UserContext.Consumer>
       {(context) => {
-        const { firstname, isVerified } = context.user;
+        const { firstName, isVerified } = context.user;
         return (
           <div className="navSection">
             <div className="navbar-fixed">
@@ -41,7 +41,7 @@ const AuthenticatedNav = () => {
                       />
                       <span className="greeting">
                         Hi,
-                        { ` ${firstname}` }
+                        { ` ${firstName}` }
                       </span>
                       <img
                         src="https://img.icons8.com/ios/20/000000/expand-arrow--v1.png"
