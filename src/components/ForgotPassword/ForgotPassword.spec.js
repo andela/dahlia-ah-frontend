@@ -36,7 +36,7 @@ describe('Forgot password component <ForgotPassword />', () => {
       <ForgotPassword formFields={formFields} />,
     );
 
-    expect(wrapper.find('.reset-password-form')).toHaveLength(1);
+    expect(wrapper.find('.forgot-password-form')).toHaveLength(1);
     expect(wrapper.find('button')).toHaveLength(1);
     expect(wrapper.find('button').get(0).props.children).toEqual('SEND');
   });
