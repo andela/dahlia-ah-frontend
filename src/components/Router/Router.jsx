@@ -4,8 +4,11 @@ import UserProtected from './Protect';
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
+import GenreContextProvider from '../../contexts/GenreContext';
 import Homepage from '../Homepage';
 import NotFound from '../NotFound/NotFound';
+
+import CreateNovel from '../CreateNovel/CreateNovelContainer';
 import AuthModalContextProvider from '../../context/AuthModalContext';
 import ConfirmationPageContainer from '../ConfirmationPage/ConfirmationPageContainer';
 import ResetPasswordContainer from '../ResetPassword/ResetPasswordContainer';
@@ -19,7 +22,10 @@ const Router = () => (
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
         <Route exact path="/reset-password" component={ResetPasswordContainer} />
-        <UserProtected exact path="/homepage" component={Homepage} />
+        <GenreContextProvider>
+          <UserProtected exact path="/homepage" component={Homepage} />
+          <UserProtected exact path="/write-novel" component={CreateNovel} />
+        </GenreContextProvider>
         <UserProtected exact path="/user/settings" component={Settings} />
         <Route component={NotFound} />
       </Switch>
