@@ -61,8 +61,12 @@ const UnauthenticatedNav = () => {
             </div>
           </nav>
           <ul className="sidenav" id="mobile-demo">
-            <button type="button" className="nav-link" onClick={() => { handleOpenModal('signup'); }}>Sign Up </button>
-            <button type="button" className="nav-btn" onClick={() => { handleOpenModal('signin'); }}>Sign In</button>
+            <li>
+              <button type="button" className="nav-link" onClick={() => { handleOpenModal('signup'); }}>Sign Up </button>
+            </li>
+            <li>
+              <button type="button" className="nav-btn" onClick={() => { handleOpenModal('signin'); }}>Sign In</button>
+            </li>
           </ul>
         </div>
       </div>

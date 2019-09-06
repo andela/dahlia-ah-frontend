@@ -96,7 +96,15 @@ $color-black: #000008;
   }
 
   ul.sidenav {
-    padding-left: 2rem;
+    padding: 0 1.5rem;
+    
+    li:not(:last-child) {
+      border-bottom: 1px solid $color-black;
+    }
+
+    li button {
+      padding-left: 20px !important;
+    }
   }
 
   .unauthenticated-nav + .sidenav .nav-link, .unauthenticated-nav + .sidenav .nav-btn {
