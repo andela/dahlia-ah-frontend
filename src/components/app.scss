@@ -7,11 +7,8 @@
 *
 * SCSS Designed by TeamDahlia.
 */
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:100,200,300,400,500,600,700,800,900,bold,bolder');
-
-/* $grey: #e5e5e5;
-$white: #ffffff;
-$black: #000008; */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu::300,300i,400,400i,500,500i,700,700i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i,900,900i&display=swap');
 
 /*border box allows us to add padding and border to our elements without increasing their size */
 *, *::before, *::after {
@@ -47,7 +44,7 @@ ul {
 ul li {
   list-style: none;
 }
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap');
 
-$color-new: #cc4397;
-$color-blue: #0059ff;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
