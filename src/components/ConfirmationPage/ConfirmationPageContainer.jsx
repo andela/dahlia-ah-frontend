@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import ConfirmationPage from './ConfirmationPage';
@@ -13,15 +13,6 @@ const ConfirmationPageContainer = ({ history }) => {
   const [error, setError] = useState('');
   const token = new URLSearchParams(location.search).get('token');
 
-  useEffect(() => {
-    const authNav = document.querySelector('.authenticated-nav');
-    if (location.pathname === '/confirmation-page') {
-      authNav.classList.add('confirm-page');
-    } else {
-      authNav.classList.remove('confirm-page');
-    }
-  }, []);
-
   const checkVerification = () => {
     if (user && user.isVerified) {
       history.push('/homepage');
@@ -30,20 +21,22 @@ const ConfirmationPageContainer = ({ history }) => {
     }
   };
 
+  const verify = user ? (
+    <VerifyStatus
+      user={user}
+      requestSuccess={requestSuccess}
+      setRequestSuccess={setRequestSuccess}
+      error={error}
+      setError={setError}
+    />
+  ) : null;
+
   return (
     <>
       {checkVerification()}
       <div className="verify-account">
-        {!token ? <ConfirmationPage email={user.email} />
-          : (
-            <VerifyStatus
-              user={user}
-              requestSuccess={requestSuccess}
-              setRequestSuccess={setRequestSuccess}
-              error={error}
-              setError={setError}
-            />
-          )}
+        {!token && user ? <ConfirmationPage email={user.email} />
+          : verify}
       </div>
     </>
   );

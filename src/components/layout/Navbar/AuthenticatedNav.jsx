@@ -9,11 +9,11 @@ const AuthenticatedNav = () => {
   return (
     <UserContext.Consumer>
       {(context) => {
-        const { firstname } = context.user;
+        const { firstname, isVerified } = context.user;
         return (
           <div className="navSection">
             <div className="navbar-fixed">
-              <nav className="authenticated-nav navbar">
+              <nav className={isVerified ? 'authenticated-nav navbar' : 'authenticated-nav navbar confirm-page'}>
                 <div className="nav-wrapper">
                   <img
                     className="brand-logo center"
