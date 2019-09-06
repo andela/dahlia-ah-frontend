@@ -68,7 +68,7 @@ const ForgotPasswordContianer = ({ closeModal }) => {
 
     if (!inputError) {
       setAjaxLoading(true);
-      axios.post(`${appConfig.BASE_PATH}/api/v1/auth/forgotpassword`, {
+      axios.post(`${appConfig.BACKEND_PATH}/auth/forgotpassword`, {
         email: formFields[0].value,
       })
         .then(() => {

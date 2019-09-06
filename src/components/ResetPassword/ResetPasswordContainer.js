@@ -103,7 +103,7 @@ const ResetPasswordContainer = ({ location, history }) => {
 
     if (!inputError && isConfirmed) {
       setAjaxLoading(true);
-      axios.patch(`${appConfig.BASE_PATH}/api/v1/auth/passwordreset?token=${token}`, {
+      axios.patch(`${appConfig.BACKEND_PATH}/auth/passwordreset?token=${token}`, {
         newPassword: formFields[0].value,
       })
         .then(() => {
