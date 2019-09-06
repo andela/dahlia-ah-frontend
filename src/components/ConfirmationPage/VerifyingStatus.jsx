@@ -1,9 +1,12 @@
-/* eslint-disable react/style-prop-object */
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-restricted-globals */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Axios from 'axios';
+import appConfig from '../../config/appConfig';
+
+const { BACKEND_PATH } = appConfig;
 
 const VerifyStatus = ({
   setRequestSuccess, requestSuccess, user, error, setError, history,
@@ -11,7 +14,7 @@ const VerifyStatus = ({
   useEffect(() => {
     const token = new URLSearchParams(location.search).get('token');
     if (token) {
-      Axios.patch(`https://ah-dahlia.herokuapp.com/api/v1/auth/verify/${token}`)
+      Axios.patch(`${BACKEND_PATH}/auth/verify/${token}`)
         .then(() => {
           const newUser = { ...user, isVerified: true };
           localStorage.setItem('AuthorsHavenUser', JSON.stringify(newUser));
@@ -74,7 +77,7 @@ VerifyStatus.propTypes = {
   user: PropTypes.shape({
     isVerified: PropTypes.bool.isRequired,
   }).isRequired,
-  history: ReactRouterPropTypes.history.isRequired,
+  history: ReactRouterPropTypes.history,
 };
 
 export default VerifyStatus;
