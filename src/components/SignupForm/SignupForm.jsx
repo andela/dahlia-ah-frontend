@@ -21,7 +21,7 @@ const SignupForm = ({
           index={index}
         />
       ))}
-      <button type="submit" disabled={resourceLoading} className="btn">{resourceLoading ? <i className="fa fa-spinner fa-spin loader" /> : 'signup'}</button>
+      <button type="submit" disabled={resourceLoading} className="btn">{resourceLoading ? <i className="fa fa-spinner fa-spin loader" /> : 'sign up'}</button>
       <p className="small-text">
           Already have an account?
         {' '}
