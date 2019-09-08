@@ -10,7 +10,7 @@ import UnauthenticatedNav from './UnauthenticatedNav';
 const Navbar = ({ history }) => {
   useNavigation();
   let user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
-
+  const path = history.location.pathname;
   useEffect(() => {
     user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
   }, [history]);
@@ -18,7 +18,7 @@ const Navbar = ({ history }) => {
   return (
     <>
       {
-        user && user.token
+        user && user.token && path !== '/'
           ? (
             <UserContextProvider>
               <AuthenticatedNav />

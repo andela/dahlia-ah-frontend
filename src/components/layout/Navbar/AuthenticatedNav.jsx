@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import useAuthenticatedNav from './effects/AuthenticatedNav';
 import { UserContext } from '../../../contexts/UserContext';
@@ -13,7 +14,7 @@ const AuthenticatedNav = () => {
         return (
           <div className="navSection">
             <div className="navbar-fixed">
-              <nav className={isVerified ? 'authenticated-nav navbar' : 'authenticated-nav navbar confirm-page'}>
+              <nav className={isVerified || location.pathname !== '/confirmation-page' ? 'authenticated-nav navbar' : 'authenticated-nav navbar confirm-page'}>
                 <div className="nav-wrapper">
                   <img
                     className="brand-logo center"
