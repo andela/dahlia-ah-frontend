@@ -25,8 +25,7 @@ const LandingPage = ({ history, location }) => {
   return (
     <>
       {
-        // eslint-disable-next-line no-nested-ternary
-        user && user.isVerified ? history.push('/homepage') : (user && user.isVerified === false) ? history.push('/confirmation-page') : null
+        user && user.isVerified ? history.push('/homepage') : null
       }
       <div>
         <div className="landingPage">

@@ -18,28 +18,50 @@
         width: 70px
     }
 
-    button{
+    .normal-btn{
         color:  #518EF8;
         background-color: white;
         border:none;
         cursor: pointer;
     }
 
-    button:active{
+    .normal-btn:active{
         font-size:15px;
     }
 
-    .error{
+    .success, .error{
         color:white;
-        background-color: #fa5f50; 
         display: inline-block;
-        padding: 8px;
+        width: auto;
+        margin: 30px 3em 10px;
+        padding: 7px 1rem;
         border-radius: 3px;
+    }
+
+    svg{
+        width: 17px;
+        height: 17px;
+        position: relative;
+        top: 4px;
+    }
+    .error{
+        background-color: #fa5f50; 
+    }
+
+    .success{
+        background-color: #62b559; 
     }
 
     .empty{
         display: none;
     }
+
+    .border-btn{
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+    }
+
     p{
         margin: 30px auto;
         line-height: 30px;
