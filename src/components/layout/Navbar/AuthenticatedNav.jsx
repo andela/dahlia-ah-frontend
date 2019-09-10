@@ -1,17 +1,57 @@
 /* eslint-disable no-restricted-globals */
-import React from 'react';
 import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import useAuthenticatedNav from './effects/AuthenticatedNav';
 import { UserContext } from '../../../contexts/UserContext';
+import axios from '../../../api';
 import SignOut from '../../helpers/SignOut';
+import socket from '../../../helpers/socket';
+import notificationState from '../../../hooks/Notification';
+import Notification from '../../Notification/Notification';
+import { markAllAsRead } from '../../../api/notification';
 
 const AuthenticatedNav = () => {
+  const { id } = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+  const { notifications, setNotification } = notificationState();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleInstantNotification = (data) => {
+    setNotification([data, ...notifications]);
+  };
+
+  const getUnread = () => {
+    const unread = notifications.filter((notification) => notification.isRead === false);
+    return unread.length;
+  };
+
+  socket.on(`notification-${id}`, (data) => {
+    handleInstantNotification(data);
+  });
+
+  // get notification everytime auth nav mount
+  useEffect(() => {
+    document.body.addEventListener('click', (event) => {
+      const { target: { id: elementId } } = event;
+      const dontAffect = ['notItem', 'not-collection', 'notification', 'mark-all', 'notText', 'notImage'];
+      if (!dontAffect.find((blacklistId) => blacklistId === elementId)) {
+        setIsOpen(false);
+      }
+    });
+    axios.get('/notifications')
+      .then(({ data: { notifications: userNotifications } }) => {
+        setNotification(userNotifications);
+      })
+      .catch(() => {});
+  }, []);
+
   useAuthenticatedNav();
 
   return (
     <UserContext.Consumer>
       {(context) => {
         const { firstName, isVerified } = context.user;
+
+
         return (
           <div className="navSection">
             <div className="navbar-fixed">
@@ -27,15 +67,26 @@ const AuthenticatedNav = () => {
                   </a>
                   <button type="button" className="nav-btn btn-small hide-on-med-and-down">upgrade</button>
                   <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    <li className="notification" data-target="notification-dropdown">
+                    <li className="notification" onClick={() => setIsOpen(!isOpen)} onKeyDown={() => setIsOpen(false)} role="presentation">
                       <img
                         src="https://img.icons8.com/ios/25/000000/appointment-reminders.png"
                         alt="notification icon"
+                        id="notification"
                       />
+                      { notifications.length > 0 && getUnread() > 0 ? <div className="notification-badge">{ getUnread() < 100 ? getUnread() : '99+' }</div> : null }
                     </li>
-                    <ul id="notification-dropdown" className="dropdown-content">
-                      <li>Welcome</li>
-                    </ul>
+                    {
+                      isOpen ? (
+                        <ul className="notification-content">
+                          <Notification
+                            markAllAsRead={markAllAsRead}
+                            notifications={notifications}
+                            setNotification={setNotification}
+                          />
+                        </ul>
+                      ) : null
+                    }
+
                     <li className="dropdown-trigger" data-target="nav-dropdown">
                       <img
                         src="https://img.icons8.com/color/25/000000/person-male.png"
