@@ -1,0 +1,38 @@
+.notification-container {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  .notification-desc {
+    border: none;
+  }
+  p {
+    padding-left: 10px;
+  }
+
+  .not-read {
+    background: #f1f1f1;
+    width: 100%;
+  }
+
+  .mark-all {
+    background: white;
+    border: none;
+  }
+  .mark-all:hover, .notification-desc:hover {
+    color:  #2d9cdb;
+  }
+  .notification-header {
+    display: flex;
+    position: sticky;
+    line-height: 0;
+    padding: 10px 0;
+    top: 0;
+    background: white;
+    z-index: 1000;
+    width: 100%;
+    margin-bottom: 5px;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}

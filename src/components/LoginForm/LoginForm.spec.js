@@ -29,11 +29,44 @@ describe('LoginForm component', () => {
 });
 describe('LoginFormRenderer component', () => {
   it('renders correctly', () => {
-    const mockFunc = jest.fn;
+    const mockFunc = jest.fn();
     const wrapper = shallow(
       <LoginFormRender handleSubmit={mockFunc} setEmail={mockFunc} email="" setPassword={mockFunc} password="" error="" isLoading={false} />,
     );
     expect(wrapper).toMatchSnapshot();
+  });
+  it('test for submit', () => {
+    const mockFunc = jest.fn();
+    const wrapper = shallow(
+      <LoginFormRender openModal={mockFunc} />,
+    );
+    wrapper.find('#forgot-password').simulate('click');
+    expect(mockFunc.mock.calls.length).toEqual(1);
+  });
+  it('test for on change email', () => {
+    const mockFunc = jest.fn();
+    const event = {
+      preventDefault() {},
+      target: { value: 'the-value' },
+    };
+    const wrapper = shallow(
+      <LoginFormRender isLoading={false} setEmail={mockFunc} setPassword={mockFunc} />,
+    );
+    wrapper.find('#email').simulate('change', event);
+    expect(mockFunc.mock.calls.length).toEqual(1);
+    wrapper.find('#password').simulate('change', event);
+    expect(mockFunc.mock.calls.length).toEqual(2);
+    expect(wrapper.find('.btn').text()).toEqual('Sign In');
+  });
+  it('test for loader state', () => {
+    let wrapper = shallow(
+      <LoginFormRender isLoading={false} />,
+    );
+    expect(wrapper.find('.btn').text()).toEqual('Sign In');
+    wrapper = shallow(
+      <LoginFormRender isLoading />,
+    );
+    expect(wrapper.find('.btn').text()).toEqual('');
   });
 });
 

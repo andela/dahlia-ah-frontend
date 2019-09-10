@@ -7,8 +7,8 @@ const LoginFormRender = ({
 }) => (
   <form className="login-form" onSubmit={handleSubmit}>
     <input id="email" className="login-input" type="email" autoComplete="email" name="email" placeholder="Email" onChange={(event) => setEmail(event.target.value)} value={email} required />
-    <input className="login-input" type="password" autoComplete="current-password" name="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} value={password} required />
-    <div className="align-right"><button className="forgot-password" onClick={() => openModal('reset-password')} type="button">Forgot Password?</button></div>
+    <input id="password" className="login-input" type="password" autoComplete="current-password" name="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} value={password} required />
+    <div className="align-right"><button id="forgot-password" className="forgot-password" onClick={() => openModal('reset-password')} type="button">Forgot Password?</button></div>
     <span className="form-error">{error}</span>
     <button type="submit" className="btn">
       { !isLoading ? 'Sign In' : <i className="fa fa-spinner fa-spin loader" />}
