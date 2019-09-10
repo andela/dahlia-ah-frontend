@@ -2,8 +2,11 @@ import axios from 'axios';
 import appConfig from '../config/appConfig';
 
 const { BACKEND_PATH } = appConfig;
-const { token } = JSON.parse(window.localStorage.getItem('AuthorsHavenUser')) || { token: null };
-if (token) {
+
+const user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+
+if (user) {
+  const { token } = user;
   axios.defaults.headers.common.Authorization = token;
 }
 

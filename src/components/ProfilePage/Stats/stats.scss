@@ -1,0 +1,60 @@
+.stats {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  white-space: nowrap;
+
+  .stat {
+    padding: 1rem;
+    .followers {
+      border-right: 1px solid rgba(0, 0, 0, 0.705);
+    }
+
+    .written {
+      border-left: 1px solid rgba(0, 0, 0, 0.705);
+    }
+
+    > div {
+      padding: 1.5rem 2rem;
+    }
+
+    .fas {
+      font-size: 18px;
+      opacity: 0.7;
+    }
+  }
+  
+  .stat:first-of-type {
+    padding-left: 0;
+  }
+  
+
+  @media only screen and (max-width: 540px) {
+    .stat {
+      padding: 0.5rem;
+
+      > div {
+        padding: 1.3rem 1.8rem;
+      }
+
+      .fas {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 435px) {
+    .stat {
+      padding: 0.5rem;
+
+      > div {
+        padding: 1rem 1.4rem;
+      }
+
+      .fas {
+        font-size: 15px;
+        opacity: 0.7;
+      }
+    }
+  }
+}

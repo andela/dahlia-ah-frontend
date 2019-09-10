@@ -8,13 +8,14 @@ import GenreContextProvider from '../../contexts/GenreContext';
 import Homepage from '../Homepage';
 import NotFound from '../NotFound/NotFound';
 import CreateNovel from '../CreateNovel/CreateNovelContainer';
-import Novel from '../SingleNovel/Novel';
 import AuthModalContextProvider from '../../context/AuthModalContext';
 import CommentModalContextProvider from '../../context/CommentModalContext';
 import ConfirmationPageContainer from '../ConfirmationPage/ConfirmationPageContainer';
 import ResetPasswordContainer from '../ResetPassword/ResetPasswordContainer';
 import Settings from '../Settings/Settings';
 import BooksPageWrapper from '../BooksPage/BooksPageWrapper';
+import ProfilePage from '../ProfilePage/ProfilePage';
+import ProfilePageContextProvider from '../../contexts/ProfilePageContext';
 
 const Router = () => (
   <>
@@ -32,6 +33,9 @@ const Router = () => (
               <UserProtected exact path="/homepage" component={Homepage} />
               <UserProtected exact path="/write-novel" component={CreateNovel} />
               <UserProtected exact path="/user/settings" component={Settings} />
+              <ProfilePageContextProvider>
+                <Route exact path="/profile" component={ProfilePage} />
+              </ProfilePageContextProvider>
               <Route component={NotFound} />
             </Switch>
           </GenreContextProvider>

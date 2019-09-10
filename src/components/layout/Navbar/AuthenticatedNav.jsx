@@ -102,7 +102,15 @@ const AuthenticatedNav = () => {
                       />
                     </li>
                     <ul id="nav-dropdown" className="dropdown-content">
-                      <li className="nav-link"><a href="#!">Profile</a></li>
+                      <li className="nav-link">
+                        <Link to={{
+                          pathname: '/profile',
+                        }}
+                        >
+                        Profile
+                        </Link>
+
+                      </li>
                       <li className="nav-link"><a href="#!">My Novels</a></li>
                       <li className="nav-link"><a href="#!">Bookmarks</a></li>
                       <li className="nav-link">
@@ -120,7 +128,15 @@ const AuthenticatedNav = () => {
                 </div>
               </nav>
               <ul className="sidenav" id="mobile-demo">
-                <li className="nav-link"><a href="#!">Profile</a></li>
+                <li className="nav-link">
+                  <Link to={{
+                    pathname: '/profile',
+                  }}
+                  >
+                        Profile
+                  </Link>
+
+                </li>
                 <li className="nav-link"><a href="#!">My Novels</a></li>
                 <li className="nav-link"><a href="#!">Bookmarks</a></li>
                 <li className="nav-link">
