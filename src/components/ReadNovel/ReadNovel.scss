@@ -1,0 +1,393 @@
+.read-novel {
+
+  $genre-bgcolor: red;
+  $genre-color: white;
+
+  $genre-color-blue: steelblue;
+  $genre-color-red: red;
+  $genre-color-purple: rgb(100, 100, 190);
+  $genre-color-yellow: #6e6d09;
+  $genre-color-pink: rgb(91, 6, 94);
+  $genre-color-brown: rgb(17, 1, 1);
+
+.genre-color {
+  background-color: $genre-bgcolor;
+  padding: 0.5rem 1rem;
+  color: $genre-color;
+}
+
+.cover {
+  position: relative;
+}
+
+.read-novel-cover {
+  width: 243px;
+  margin: 2rem;
+  position: absolute;
+  top: 159px;
+  color: white;
+}
+
+.text-cover {
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+img {
+  width: 772px;
+}
+
+.p-text {
+  font-size: 1rem;
+}
+
+.div-text {
+  display: flex;
+  width: 500px;
+}
+
+.span-text {
+  margin-right: 2rem;
+}
+
+
+.text-content {
+  width: 700px;
+  padding: 2rem;
+}
+
+.p-heading {
+  width: 100%;
+  padding: 2rem;
+}
+
+.main-content {
+  width: 46%;
+}
+
+.side-content {
+  width: 36%;
+}
+
+small {
+ padding-left: 1rem;
+}
+
+h3 {
+  font-size: 20px;
+  margin-left: 1.9rem;
+}
+
+.row {
+  border-left: transparent;
+  height: 500px;
+  padding: 10px;
+  opacity: 0.5;
+}
+
+.advert {
+  text-align: center;
+}
+
+.advert-here {
+  position: relative;
+  bottom: 300px;
+  margin-left: 14rem;
+  margin-right: 14rem;
+  margin-bottom: -18rem;
+  width: 400px;
+  height: 400PX;
+  padding-top: 10rem;
+  font-size: 2rem;
+  background-color: lightgrey;
+}
+
+
+.novels {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.filter-div {
+  text-align: center;
+  margin: 1.5rem;
+}
+
+.filter {
+  border-bottom: 1px solid #333333;
+  width: 500px;
+  margin: 10px auto;
+  opacity: 0.5;
+}
+
+.genre-div {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 3rem;
+}
+
+
+.genres {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.other-novels-div {
+  text-align: center;
+}
+
+ .other-novels {
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    margin-left: 15rem;
+    margin-right: 15rem;
+ }
+
+.heading-novel {
+  font-size: 24px;
+}
+
+.image-container {
+  margin: 2rem;
+}
+
+.read {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #333333;
+  width: 119px;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btn-button {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.btn-view {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  width: 200px;
+  border: 1px solid #333333;
+  background-color: white;
+  text-transform: uppercase;
+}
+
+.sub {
+  margin: 1rem;
+  width: 100px;
+  padding: 0.5rem;
+  color: white;
+}
+
+.sub-genres1 {
+  background-color: $genre-color-blue;
+}
+
+.sub-genres2 {
+  background-color: $genre-color-red;
+}
+
+.sub-genres3 {
+  background-color: $genre-color-pink;
+}
+
+.sub-genres4 {
+  background-color: $genre-color-purple;
+}
+
+.sub-genres5 {
+  background-color: $genre-color-yellow;
+}
+
+.sub-genres6 {
+  background-color: $genre-color-brown;
+}
+
+
+
+.row .col.s6 {
+  width: 87%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+
+
+.input-field.suffix i {
+  position: absolute;
+  width: 1rem;
+  font-size: 2rem;
+  transition: color .2s;
+  top: 0px;
+  right: 0px;
+}
+
+.input-field.suffix i.active {
+  color: #26a69a;
+}
+
+.input-field.suffix input,
+.input-field.suffix textarea {
+  margin-right: 3rem;
+  width: 92%;
+  width: calc(100% - 3rem);
+}
+
+.input-field.suffix textarea {
+  padding-top: .8rem;
+}
+
+.input-field.suffix label {
+  margin-right: 3rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .input-field.suffix input {
+    width: 86%;
+    width: calc(100% - 3rem);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .input-field.suffix input {
+    width: 80%;
+    width: calc(100% - 3rem);
+  }
+}
+
+
+/* Table Portrait -- medium */
+@media (min-width: 40em) {
+  
+}
+
+ /* Tablet Landscape | desktop and above - large */
+ @media (min-width: 60em) {
+  .read-novel-cover {
+    width: 500px;
+    top: 430px;
+   }
+  
+   .text-cover {
+     font-size: 64px;
+   }
+  
+  .div-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+  
+  .text-content {
+    width: 100%;
+  }
+  
+  .main-content {
+    width: 68%;
+    padding-right: 4rem;
+    padding-left:  1rem;
+  }
+
+  // .row {
+  //   border-left: 1px solid #333;
+  //   height: 700px;
+  // }
+
+  .row .col.s6 {
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .advert {
+    padding-left: 3.5rem;
+
+  }
+
+  .advert-here {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .novels {
+    text-align: left;
+  }
+
+  .filter-div {
+    text-align: left;
+    margin: 1.5rem;
+  }
+
+  .filter {
+    width: 380px;
+ }
+
+ h5 {
+   margin-left: 3.3rem;
+   margin-bottom: 1.5rem;
+ }
+
+ .genres {
+   width: 500px;
+ }
+
+ .genre-div {
+   margin-bottom: 25rem;
+ }
+
+ .genre-heading {
+  margin-right: 5rem;
+ }
+  
+ .other-novels-div {
+   position: absolute;
+   bottom: 40px;
+   left: 5px;
+   right: 5px;
+ }
+
+ .other-novels {
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: center;
+   width: 100%;
+   margin: 4rem auto;
+ }
+
+ .btn-button {
+   margin-bottom: 10px;
+ }
+
+ .btn-view {
+   position: absolute;
+   bottom: 6px;
+   left: 598px;
+   margin-bottom: 2rem;
+   padding-top: 1rem; 
+ }
+
+ h3 {
+   font-size: 24px;
+ }
+
+ .heading-novel {
+  font-size: 24px;
+  margin-top: 19px;
+}
+
+ 
+ }
+
+}
