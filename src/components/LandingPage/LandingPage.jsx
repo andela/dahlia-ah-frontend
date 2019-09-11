@@ -52,7 +52,7 @@ const LandingPage = ({ history, location }) => {
                   </ul>
                 </div>
                 <div>
-                  <p>SIGN UP</p>
+                  <p><button type="button" onClick={() => { setModalComponent('signup'); }}>SIGN UP</button></p>
                 </div>
               </div>
               <div className="subscribeMembership">
@@ -67,7 +67,7 @@ const LandingPage = ({ history, location }) => {
                   </ul>
                 </div>
                 <div>
-                  <p>SUBSCRIBE</p>
+                  <p><button type="button" onClick={() => { setModalComponent('signin'); }}>SUBSCRIBE</button></p>
                 </div>
               </div>
             </div>

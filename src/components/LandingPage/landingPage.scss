@@ -92,6 +92,12 @@ $black: #000008;
     margin-top: 65px;
   }
 
+  .freeMembership button, .subscribeMembership button {
+    border: 0;
+    background: #00000000;
+    cursor: pointer;
+  }
+
   .subscribeMembership {
     background: #eeeeee;
     box-shadow: 0px 4px 46px rgba(0, 0, 0, 0.25);
@@ -141,6 +147,7 @@ $black: #000008;
   @media(max-width: 380px){
     .membershipBox {
       grid-template-columns: 1fr;
+      grid-gap: 40px;
       width: 300px;
     }
   }

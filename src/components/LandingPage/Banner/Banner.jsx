@@ -16,7 +16,7 @@ const Banner = ({ openModal }) => {
               <h2>{bannerContent.title}</h2>
               <p>{bannerContent.description}</p>
             </div>
-            <button type="button" onClick={() => { openModal('signin'); }} className="btnLarge">View Snippet</button>
+            <button type="button" onClick={() => { openModal('signin'); }} className="btnLarge">See More</button>
           </div>
         </section>
       ) : ''}

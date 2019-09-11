@@ -20,7 +20,7 @@ const NovelOfTheWeek = ({ openModal }) => {
               <div>
                 <h3>{novelContent.title}</h3>
                 <p>{novelContent.description}</p>
-                <button type="button" onClick={() => { openModal('signin'); }} className="btnMedium">View Snippet</button>
+                <button type="button" onClick={() => { openModal('signin'); }} className="btnMedium">See More</button>
               </div>
             </div>
           </div>
