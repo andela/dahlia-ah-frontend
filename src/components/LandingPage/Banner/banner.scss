@@ -17,7 +17,8 @@ $black: #000008;
   background: url(https://res.cloudinary.com/allebd/image/upload/v1567031693/dahlia/banner.png);
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: 100% auto;
+  background-size:cover;
+  min-height:100%;
   height: 800px;
   color: $white;
 
@@ -47,7 +48,6 @@ $black: #000008;
 
 @media(max-width: 1200px){
   #banner {
-    background-size: auto;
     height: 100%;
   }
 }

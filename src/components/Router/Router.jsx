@@ -15,23 +15,25 @@ import ResetPasswordContainer from '../ResetPassword/ResetPasswordContainer';
 import Settings from '../Settings/Settings';
 
 const Router = () => (
-  <div>
+  <>
     <AuthModalContextProvider>
       <Navbar />
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
-        <Route exact path="/reset-password" component={ResetPasswordContainer} />
-        <GenreContextProvider>
-          <UserProtected exact path="/homepage" component={Homepage} />
-          <UserProtected exact path="/write-novel" component={CreateNovel} />
-        </GenreContextProvider>
-        <UserProtected exact path="/user/settings" component={Settings} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="components">
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
+          <Route exact path="/reset-password" component={ResetPasswordContainer} />
+          <GenreContextProvider>
+            <UserProtected exact path="/homepage" component={Homepage} />
+            <UserProtected exact path="/write-novel" component={CreateNovel} />
+          </GenreContextProvider>
+          <UserProtected exact path="/user/settings" component={Settings} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     </AuthModalContextProvider>
     <Footer />
-  </div>
+  </>
 );
 
 export default Router;
