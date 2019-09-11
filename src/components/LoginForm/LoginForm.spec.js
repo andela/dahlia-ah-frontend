@@ -1,3 +1,5 @@
+/* eslint-disable dot-notation */
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -79,10 +81,8 @@ describe('TEST API CALLS RESPONSE', () => {
 
     const mockFunc = jest.fn;
 
-    localStorage.setItem('AuthorsHavenToken', '');
-
     loginApiCall(mockFunc, { push: mockFunc }, mockFunc, mockFunc);
-    expect(localStorage.getItem('AuthorsHavenToken')).toBe('');
+    expect(localStorage.__STORE__['AuthorsHavenUser']).toBe(undefined);
   });
   it('should return 401 and update localStorage', () => {
     const mock = new MockAdapter(axios);
@@ -92,6 +92,6 @@ describe('TEST API CALLS RESPONSE', () => {
     const mockFunc = jest.fn;
 
     loginApiCall(mockFunc, { push: mockFunc }, mockFunc, mockFunc);
-    expect(localStorage.getItem('AuthorsHavenUser')).toBe('undefined');
+    expect(localStorage.__STORE__['AuthorsHavenUser']).toBe('');
   });
 });

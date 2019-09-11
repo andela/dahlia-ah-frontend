@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useAuthenticatedNav from './effects/AuthenticatedNav';
 import { UserContext } from '../../../contexts/UserContext';
 import SignOut from '../../helpers/SignOut';
@@ -51,7 +52,14 @@ const AuthenticatedNav = () => {
                     </li>
                     <ul id="nav-dropdown" className="dropdown-content">
                       <li className="nav-link"><a href="#!">Account</a></li>
-                      <li className="nav-link"><a href="#!">Settings</a></li>
+                      <li className="nav-link">
+                        <Link to={{
+                          pathname: '/user/settings',
+                        }}
+                        >
+                          Settings
+                        </Link>
+                      </li>
                       <li className="nav-link"><a href="#!">Help</a></li>
                       <li className="nav-link"><a href="/" onClick={SignOut}>Sign Out</a></li>
                     </ul>
@@ -60,7 +68,14 @@ const AuthenticatedNav = () => {
               </nav>
               <ul className="sidenav" id="mobile-demo">
                 <li className="nav-link"><a href="#!">Account</a></li>
-                <li className="nav-link"><a href="#!">Settings</a></li>
+                <li className="nav-link">
+                  <Link to={{
+                    pathname: '/user/settings',
+                  }}
+                  >
+                  Settings
+                  </Link>
+                </li>
                 <li className="nav-link"><a href="#!">Help</a></li>
                 <li className="nav-link"><a href="/" onClick={SignOut}>Sign Out</a></li>
               </ul>
@@ -72,5 +87,6 @@ const AuthenticatedNav = () => {
     </UserContext.Consumer>
   );
 };
+
 
 export default AuthenticatedNav;

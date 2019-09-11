@@ -1,10 +1,14 @@
 import axios from 'axios';
 import appConfig from '../config/appConfig';
 
-const { BASE_PATH } = appConfig;
-const { token } = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+const { BACKEND_PATH } = appConfig;
+const user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+if (user) {
+  const { token } = user;
+  axios.defaults.headers.common.Authorization = token;
+}
 
-axios.defaults.baseURL = BASE_PATH;
-axios.defaults.headers.common.Authorization = token;
+axios.defaults.baseURL = BACKEND_PATH;
+
 
 export default axios;
