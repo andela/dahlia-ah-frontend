@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthModalContext } from '../../../context/AuthModalContext';
 import Login from '../../Login/Login';
 import SignUpFormContainer from '../../SignupForm/SignupFormContainer';
@@ -54,11 +55,13 @@ const UnauthenticatedNav = () => {
         <div className="navbar-fixed">
           <nav className="unauthenticated-nav navbar">
             <div className="nav-wrapper">
-              <img
-                className="brand-logo center"
-                src="https://res.cloudinary.com/drlcfqzym/image/upload/v1566998517/ah-logo-white.png"
-                alt="Author's Haven"
-              />
+              <Link to="/" className="brand-logo center">
+                <img
+                  className="logo"
+                  src="https://res.cloudinary.com/drlcfqzym/image/upload/v1566998517/ah-logo-white.png"
+                  alt="Author's Haven"
+                />
+              </Link>
               <a href="#!" type="button" data-target="mobile-demo" className="sidenav-trigger">
                 <img src="https://img.icons8.com/ios/50/ffffff/menu.png" alt="menu" className="font-icon" />
               </a>

@@ -1,0 +1,25 @@
+.share-novel {
+  position: relative;
+
+  .socials {
+    display: flex;
+    position: absolute;
+
+    div {
+      margin: 1rem;
+    }
+
+    i {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .fa-facebook-square {
+      color: #3b5998;
+    }
+
+    .fa-twitter-square {
+      color: #00acee;
+    }
+  }
+}
