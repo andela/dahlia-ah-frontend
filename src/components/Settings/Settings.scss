@@ -1,0 +1,15 @@
+.settings {
+  height: calc(100vh - 240px);
+  padding: 90px 0 0 0;
+  display: flex;
+  justify-content: center;
+  .content {
+    width: 80%;
+    h5 {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+}
