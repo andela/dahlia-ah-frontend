@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useAuthenticatedNav from './effects/AuthenticatedNav';
 import { UserContext } from '../../../contexts/UserContext';
 import SignOut from '../../helpers/SignOut';
@@ -16,14 +17,22 @@ const AuthenticatedNav = () => {
             <div className="navbar-fixed">
               <nav className={isVerified || location.pathname !== '/confirmation-page' ? 'authenticated-nav navbar' : 'authenticated-nav navbar confirm-page'}>
                 <div className="nav-wrapper">
-                  <img
-                    className="brand-logo center"
-                    src="https://res.cloudinary.com/drlcfqzym/image/upload/v1567007007/ah-logo-black.png"
-                    alt="Author's Haven"
-                  />
+                  <Link to="/" className="brand-logo center">
+                    <img
+                      className="logo"
+                      src="https://res.cloudinary.com/drlcfqzym/image/upload/v1567007007/ah-logo-black.png"
+                      alt="Author's Haven"
+                    />
+                  </Link>
                   <a href="#!" type="button" data-target="mobile-demo" className="sidenav-trigger">
                     <img src="https://img.icons8.com/ios/50/000000/menu.png" alt="menu" className="font-icon" />
                   </a>
+                  <div className="notification hide-on-large-only" data-target="notification-dropdown">
+                    <img
+                      src="https://img.icons8.com/ios/25/000000/appointment-reminders.png"
+                      alt="notification icon"
+                    />
+                  </div>
                   <button type="button" className="nav-btn btn-small hide-on-med-and-down">upgrade</button>
                   <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li className="notification" data-target="notification-dropdown">
