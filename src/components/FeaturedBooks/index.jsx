@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './featuredBooks.scss';
 import { GenreContext } from '../../contexts/GenreContext';
 
@@ -38,7 +39,7 @@ const FeaturedBooks = () => {
                                       <div className="novel-image">
                                         <img src={novel.thumbImgUrl} alt="novel" />
                                       </div>
-                                      <a href="#!" className="read-btn btn">Read</a>
+                                      <Link to={`/novel/${novel.slug}`} className="read-btn btn">Read</Link>
                                     </div>
                                   );
                                 }

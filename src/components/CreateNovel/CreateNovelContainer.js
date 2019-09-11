@@ -15,6 +15,8 @@ const instance = axios.create({
   header: {},
 });
 
+delete instance.defaults.headers.common.Authorization;
+
 const imagePluginFactory = (editor) => {
   editor.plugins.get('FileRepository').createUploadAdapter = (loader) => (
     new CloudinaryImageUploadAdapter(loader, 'dahlia-ah-frontend', 'dahlia-front'));
