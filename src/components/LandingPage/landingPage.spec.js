@@ -8,9 +8,12 @@ import AuthModalContextProvider from '../../context/AuthModalContext';
 
 configure({ adapter: new Adapter() });
 
-describe('App component', () => {
-  it('renders correctly', () => {
-    const wrapper = mount(
+describe('LandingPage component', () => {
+  let wrapper;
+  const mockFunction = jest.fn();
+
+  beforeEach(() => {
+    wrapper = mount(
       <BrowserRouter>
         <Switch>
           <AuthModalContextProvider>
@@ -19,6 +22,28 @@ describe('App component', () => {
         </Switch>
       </BrowserRouter>,
     );
+  });
+
+  it('renders correctly', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('Landing page contains a button with Start Writing', () => {
+    expect(wrapper.find('button').get(0).props.children).toEqual('Start Writing');
+  });
+
+  it('modal opens on clicking start writing', () => {
+    wrapper.find('button').at(0).simulate('click');
+    expect(mockFunction.mock.calls.length).toEqual(0);
+  });
+
+  it('modal opens on clicking membership sign up', () => {
+    wrapper.find('button').at(1).simulate('click');
+    expect(mockFunction.mock.calls.length).toEqual(0);
+  });
+
+  it('modal opens on clicking membership subscribe', () => {
+    wrapper.find('button').at(2).simulate('click');
+    expect(mockFunction.mock.calls.length).toEqual(0);
   });
 });

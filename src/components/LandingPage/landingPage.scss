@@ -120,7 +120,8 @@ $black: #000008;
     font-size: 20px;
     font-weight: 400;
     text-transform: uppercase;
-    background-color: rgba(0,0,0,0)
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
   }
 
   button.btnMedium {
@@ -131,6 +132,7 @@ $black: #000008;
     font-weight: 400;
     text-transform: uppercase;
     background-color: rgba(0,0,0,0);
+    cursor: pointer;
   }
 
   @media(max-width: 900px){

@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 configure({ adapter: new Adapter() });
 
-describe('App component', () => {
+describe('Footer component', () => {
   it('renders correctly', () => {
     const wrapper = mount(
       <BrowserRouter>
