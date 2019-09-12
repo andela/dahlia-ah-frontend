@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './featuredBooks.scss';
 import { GenreContext } from '../../contexts/GenreContext';
+import appConfig from '../../config/appConfig';
+
+const { FRONTEND_PATH } = appConfig;
 
 const FeaturedBooks = () => {
   const [load, setLoad] = useState(3);
@@ -47,7 +50,7 @@ const FeaturedBooks = () => {
                               })
                             }
                           </div>
-                          <a href="#!" className="view-more-btn btn">View More</a>
+                          <a href={`${FRONTEND_PATH}/novels?genre=${genre.name}`} className="view-more-btn btn">View More</a>
                         </div>
                       </div>
                     );

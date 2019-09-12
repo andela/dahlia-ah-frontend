@@ -1,0 +1,40 @@
+._search-dropdown{
+    position: relative;
+    display:flex;
+    flex-wrap: wrap;
+    margin-top: 70px !important;
+    input::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
+
+    .hi{
+        position: relative;
+        display: flex;
+    }
+
+    label{
+        position: absolute;
+        font-weight: bold;
+        top:-22px;
+        left: 5px;
+        font-size: 15px;
+    }
+    i{
+        position: absolute;
+        z-index: -1;
+        right:20px;
+        top:16px;
+        font-size: 16px;
+        color: grey;
+    }
+
+    input{
+        border: 1px solid rgba(196, 196, 196, 0.9)!important;
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0) !important;
+        border-radius: 3px;
+        font-size: 13px;
+        padding: 0 10px;
+        color:#333;
+        margin-left:5px;
+    }
+}

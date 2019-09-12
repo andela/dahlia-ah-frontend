@@ -1,0 +1,39 @@
+.filter, .filter:focus{
+    position: absolute;
+    margin: 20px;
+    top:70px;
+    right: 30px;
+    border: 1px solid rgba(196, 196, 196, 0.9);
+    border-radius: 3px;
+    display: inline-block;
+    background-color: white;
+    padding: 8px;
+    i{
+        margin-right:3px;
+        color: grey;
+    }
+    span{
+        margin: 0;
+    }
+}
+
+.filter_true, .filter_true:focus{
+    position: absolute;
+    margin: 20px;
+    top:70px;
+    right: 30px;
+    border: 1px solid #e3eef5;
+    border-radius: 3px;
+    display: inline-block;
+    background-color: #e3eef5;;
+    padding: 8px;
+    color: #3A8BBB;
+    i{
+        margin-right:3px;
+        color: #3A8BBB;
+    }
+    span{
+        margin: 0;
+    }
+}
+
