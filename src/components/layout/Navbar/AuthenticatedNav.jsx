@@ -102,7 +102,9 @@ const AuthenticatedNav = () => {
                       />
                     </li>
                     <ul id="nav-dropdown" className="dropdown-content">
-                      <li className="nav-link"><a href="#!">Account</a></li>
+                      <li className="nav-link"><a href="#!">Profile</a></li>
+                      <li className="nav-link"><a href="#!">My Novels</a></li>
+                      <li className="nav-link"><a href="#!">Bookmarks</a></li>
                       <li className="nav-link">
                         <Link to={{
                           pathname: '/user/settings',
@@ -118,7 +120,9 @@ const AuthenticatedNav = () => {
                 </div>
               </nav>
               <ul className="sidenav" id="mobile-demo">
-                <li className="nav-link"><a href="#!">Account</a></li>
+                <li className="nav-link"><a href="#!">Profile</a></li>
+                <li className="nav-link"><a href="#!">My Novels</a></li>
+                <li className="nav-link"><a href="#!">Bookmarks</a></li>
                 <li className="nav-link">
                   <Link to={{
                     pathname: '/user/settings',
