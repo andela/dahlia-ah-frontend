@@ -1,92 +1,117 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
+import moment from 'moment';
+import axios from 'axios';
 import './ReadNovel.scss';
+import appConfig from '../../config/appConfig';
 
-const ReadNovel = () => (
-  <div className="read-novel">
+const { BACKEND_PATH } = appConfig;
+
+
+  
+
+
+const ReadNovel = ({ location }) => {
+  const [novelData, setNovelData] = useState({});
+  const [relatedData, setRelatedData] = useState([]);
+  const [genreData, setGenreData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [endPoint, setEndPoint] = useState(6);
+  const [authorsNovel, setAuthorsNovel] = useState([]);
+  const [readMore, setReadMore] = useState(false);
+
+
+
+
+  const slug = location.pathname.replace('/read-novel/', '');
+  useEffect( () => {
+    let author;
+    const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
+    axios.get(`${BACKEND_PATH}/novels/${slug}`).then((res) => {
+      author = res.data.novel.User;
+      const testNovel = res.data.novel;
+      setNovelData(res.data.novel);
+      axios.get(`${BACKEND_PATH}/novels/?slug?genre=${res.data.novel.Genre.title}`).then((res) => {
+        setRelatedData(res.data.data);
+        axios.get(`${BACKEND_PATH}/genres`).then((res) => {
+          setGenreData(res.data.data);
+          axios.get(`${BACKEND_PATH}/profiles/${author.id}/novels`).then((res) => {
+            setAuthorsNovel(res.data.novels);
+            
+            const currentNovel = res.data.novels.filter((novel) => {
+              return novel.id === testNovel.id;
+            });
+            res.data.novels.length < 6 ? setEndPoint(res.data.novels.length) : setEndPoint(6);
+            setLikes(currentNovel[0].Likes.length);
+            let likeStatus = false;
+            currentNovel[0].Likes.forEach((like) => {
+              if(user.id === like.userId){
+                likeStatus = true;
+              }
+            });
+            setHasLiked(likeStatus);
+          });
+        })
+        setLoading(false);
+      })
+    })
+    .catch((error) => {});
+    
+  }, []);
+
+  const toggle = (slug) => {
+    if(isLoading){
+      return;
+    }
+    setIsLoading(true);
+    setHasLiked(!hasLiked);
+    axios.post(`${BACKEND_PATH}/novels/${slug}/like`).then((res) => {
+      const status = /unliked/.test(res.data.message);
+      setHasLiked(!status);
+      !status ? setLikes(likes + 1) : setLikes(likes - 1);
+      setIsLoading(false);
+    })
+  }
+
+  const setReadMoreHandler = (status) => {
+    const length = !status ? authorsNovel.length : 6;
+    !status ? setReadMore(true) : setReadMore(false);
+    setEndPoint(length);
+  }
+
+  const render = !loading ? (<div><div className="read-novel">
   <div id="cover" className="cover">
-    <div>
+    <div >
       <img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568033691/fantasy-4351128_1920.png" alt="novel cover" />
     </div>
     <div className="read-novel-cover">
-      <span className="genre-color">Thriller</span>
-      <h2 className="text-cover">The man behind the mask</h2>
-      <p className="p-text">Updated at 10:32AM, Feb 21, 2019</p>
+      <span className="genre-color">{novelData.Genre.name}</span>
+      <h2 className="text-cover">{novelData.title}</h2>
+      <p className="p-text">Updated { moment(novelData.createdAt).utc().fromNow()}</p>
       <div className="div-text">
-        <span className="span-text"><i className="far fa-user" style={{ fontSize: '24px' }}><small>Alesh Parish</small></i></span>
-        <span className="span-text"><i className="far fa-clock" style={{ fontSize: '24px' }}><small>5mins read</small></i></span>
-        <span className="span-text"><i className="far fa-heart" style={{ fontSize: '24px' }}><small>2345</small></i></span>
+        <span className="span-text"><i className="far fa-user" style={{ fontSize: '24px' }}><small>{`${novelData.User.firstName} ${novelData.User.lastName}`}</small></i></span>
+        <span className="span-text"><i className="far fa-clock" style={{ fontSize: '24px' }}><small>{`${novelData.readTime}`} mins read</small></i></span>
+        <span className="span-text"><i className={hasLiked ? "fas fa-heart bg-red" : "far fa-heart bg-white"}  onClick={() => toggle(slug)} style={{ fontSize: '24px' }}></i><small>{likes}</small></span>
       </div>
     </div>
     <div className="div-content">
       <main className="main-content">
-        <p className="p-heading">Home > Thriller > The man behinf the mask</p>
-        <h3 className="chapter">Introduction</h3>
+        <div className="p-heading">
         <p className="text-content">
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
-          graphic or web designs. The passage is attributed to an unknown typesetter in the 15th cffg
-          who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use 
-          specimen book. It usually begins with:
-
-          “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntg
-          et dolore magna aliqua.”
-          The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragrapgjh
-          etc.) that doesnt distract from the layout. A practice not without controversy, laying outbh 
-          meaningless filler text can be very useful when the focus is meant to be on design, not conh
-
-          The passage experienced a surge in popularity during the 1960s when Letraset used it on thegjkh
-          transfer sheets, and again during the 90s as desktop publishers bundled the text with theirgfhfdfsew
-          Today it's seen all around the web; on templates, websites, and stock designs. Use our generfgre
-          your own, or read on for the authoritative history of lorem ipsum.
+        {novelData.body}
         </p>
-        <p className="text-content">
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
-          graphic or web designs. The passage is attributed to an unknown typesetter in the 15th cffg
-          who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use 
-          specimen book. It usually begins with:
-
-          “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntg
-          et dolore magna aliqua.”
-          The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragrapgjh
-          etc.) that doesnt distract from the layout. A practice not without controversy, laying outbh 
-          meaningless filler text can be very useful when the focus is meant to be on design, not conh
-
-          The passage experienced a surge in popularity during the 1960s when Letraset used it on thegjkh
-          transfer sheets, and again during the 90s as desktop publishers bundled the text with theirgfhfdfsew
-          Today it's seen all around the web; on templates, websites, and stock designs. Use our generfgre
-          your own, or read on for the authoritative history of lorem ipsum.
-        </p>
-        <h3 className="chapter">Chapter 1</h3>
-        <p className="text-content">
-          Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
-          graphic or web designs. The passage is attributed to an unknown typesetter in the 15th cffg
-          who is thought to have scrambled parts of Ciceros De Finibus Bonorum et Malorum for use 
-          specimen book. It usually begins with:
-
-          “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididuntg
-          et dolore magna aliqua.”
-          The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragrapgjh
-          etc.) that doesnt distract from the layout. A practice not without controversy, laying outbh 
-          meaningless filler text can be very useful when the focus is meant to be on design, not conh
-
-          The passage experienced a surge in popularity during the 1960s when Letraset used it on thegjkh
-          transfer sheets, and again during the 90s as desktop publishers bundled the text with theirgfhfdfsew
-          Today it's seen all around the web; on templates, websites, and stock designs. Use our generfgre
-          your own, or read on for the authoritative history of lorem ipsum.
-
-          The passage experienced a surge in popularity during the 1960s when Letraset used it on thegjkh
-          transfer sheets, and again during the 90s as desktop publishers bundled the text with theirgfhfdfsew
-          Today it's seen all around the web; on templates, websites, and stock designs. Use our generfgre
-          your own, or read on for the authoritative history of lorem ipsum.
-        </p>
+        </div>
       </main>
-  
+      <div>
       <sidebar className="side-content">
         <form>
           <div className="row">
             <div className="input-field suffix col s6">
               <input id="icon_prefix" type="text" className="validate" />
-              <label for="icon_prefix">Search...</label>
+              <label htmlFor="icon_prefix">Search...</label>
               <i class="fas fa-search"></i>
             </div>
           </div>
@@ -95,57 +120,39 @@ const ReadNovel = () => (
         </div>
         <div className="novels">
           <div className="similar-novels">
-            <h5>Similar Novels</h5>
-            <div className="filter-div"><p className="filter">Jurassic Park</p></div>
-            <div className="filter-div"><p className="filter">The Davinci Code</p></div>
-            <div className="filter-div"><p className="filter">The Girl On The Train</p></div>
-            <div className="filter-div"><p className="filter">In a Dark, Dark Wood</p></div>
-            <div className="filter-div"><p className="filter">Gone Girl</p></div>
-            <div className="filter-div"><p className="filter">The Fast and Furious</p></div>
+            <h5 className="similar-heading">Similar Novels</h5>
+            { relatedData.slice(0, 5).map((novel) => <div key={novel.id} className="filter-div"><p className="filter">{novel.title}</p></div>) }
           </div>
         </div>
         <div className="genre-div">
           <h5 className="genre-heading">Genres</h5>
           <div className="genres">
-             <div className="sub sub-genres1">Thriller</div>
-             <div className="sub sub-genres2">Action</div>
-             <div className="sub sub-genres3">Comedy</div>
-             <div className="sub sub-genres4">Romance</div>
-             <div className="sub sub-genres5">Sci-Fi</div>
-             <div className="sub sub-genres6">Epic</div>
+             { genreData.map((genre) => <div key={genre.id} style={{ background: genre.themeColor}} className="sub sub-genres1">{genre.name}</div> ) }
           </div>
         </div>
         </form>
-      </sidebar><br/><br/>
-      <div className="other-novels-div">
-      <div><h1 className="heading-novel">Other Novels By Shaun</h1></div>
-          <div className="other-novels">
-            <div className="image-container"><img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568117306/abstract-trendy-book-cover-design-violet-rays-pattern-applicable-for-M12N71.png" alt="image 1"  className="novel-image" style={{ width: '120px' }}/>
-            <div className="read">Read</div>
-            </div>
-            <div  className="image-container"><img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568117297/Enchantment-Book-Cover-Best-Seller1_1.png" alt="image 2"  className="novel-image" style={{ width: '120px' }}/>
-            <div className="read">Read</div>
-            </div>
-            <div  className="image-container"><img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568117301/art_bookcover.png" alt="image 3"  className="novel-image" style={{ width: '120px' }}/>
-            <div className="read">Read</div>
-            </div>
-            <div  className="image-container"><img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568117292/abstract-trendy-book-cover-design-violet-rays-pattern-applicable-for-M12N71_1.png" alt="image 4"  className="novel-image" style={{ width: '120px' }}/>
-            <div className="read">Read</div>
-            </div>
-            <div  className="image-container"><img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568117297/Enchantment-Book-Cover-Best-Seller1_1.png" alt="image 5"  className="novel-image" style={{ width: '120px' }}/>
-            <div className="read">Read</div>
-            </div>
-            <div  className="image-container"><img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568117286/art_bookcover_1.png" alt="image 6"  className="novel-image" style={{ width: '120px' }}/>
-            <div className="read">Read</div><br/><br/>
-            </div>
-          </div>
+      </sidebar></div><br/><br/>
+    </div>
+    <div className="other-novels-div">
+      <div className="heading-1"><h1 className="heading-novel">Other Novels By {`${novelData.User.firstName} ${novelData.User.lastName}`}</h1></div>
+      <div className="other-novels">
+      {authorsNovel.slice(0, endPoint).map((novel) =>
+        
+        <div className="image-container"><img src={novel.coverImgUrl} alt="image 1"  className="novel-image" style={{ width: '120px' }}/>
+        <div className="read">Read</div>
         </div>
-        <div className="btn-button">
-          <button className="btn-view">View More</button>
-        </div>
+     )}
+    </div>
+    </div>
+    <div className="btn-button">
+      {
+        authorsNovel.length <= 6 ? '' :  <button onClick={() => setReadMoreHandler(readMore)} className="btn-view">{ readMore ? 'Read Less' : 'Read More'}</button>
+      }
     </div>
   </div>
-  </div>
-);
+  </div></div>) : <div>Loading</div>;
+  return (
+    <div>{ render }</div>
+)};
 
-export default ReadNovel;
+export default withRouter(ReadNovel);

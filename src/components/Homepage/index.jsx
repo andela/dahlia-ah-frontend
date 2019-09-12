@@ -1,14 +1,20 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import SliderContextProvider from '../../contexts/SliderContext';
 import BookSlider from '../BookSlider';
 import GenreScroll from '../GenreScroll';
 import FeaturedBooks from '../FeaturedBooks';
 import './homepage.scss';
 
-const Homepage = () => (
+
+const Homepage = ({ history }) => {
+  const readNovel = (novelSlug) => {
+    history.push(`/read-novel/${novelSlug}`);
+  }
+  return (
   <div>
     <SliderContextProvider>
-      <BookSlider />
+      <BookSlider readNovel={readNovel}/>
     </SliderContextProvider>
     <GenreScroll />
     <section className="start-writing">
@@ -18,6 +24,6 @@ const Homepage = () => (
     </section>
     <FeaturedBooks />
   </div>
-);
+)};
 
-export default Homepage;
+export default withRouter(Homepage);

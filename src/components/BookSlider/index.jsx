@@ -2,8 +2,9 @@ import React from 'react';
 import './bookslider.scss';
 import useSlider from './effects';
 import { SliderContext } from '../../contexts/SliderContext';
+import ReadNovel from '../ReadNovel/ReadNovel';
 
-const BookSlider = () => {
+const BookSlider = ({readNovel}) => {
   useSlider();
   let keyValue = 0;
 
@@ -11,7 +12,7 @@ const BookSlider = () => {
     <SliderContext.Consumer>
       {(context) => (
         context.novels.length > 0
-          ? (
+          ? ( 
             <div className="carousel carousel-slider center">
               {context.novels.map((novel) => {
                 keyValue += 1;
@@ -27,7 +28,7 @@ const BookSlider = () => {
                       <p className="white-text description">
                         {novel.description}
                       </p>
-                      <a href="#!" className="read-more-btn">Read More</a>
+                      <a href="#!" onClick={() => { readNovel(novel.slug)}} className="read-more-btn">Read More</a>
                     </div>
                   </div>
                 );

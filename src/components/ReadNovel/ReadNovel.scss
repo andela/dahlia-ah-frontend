@@ -16,6 +16,14 @@
   color: $genre-color;
 }
 
+.bg-red {
+  color: red;
+}
+
+.bg-white {
+  color: white;
+}
+
 .cover {
   position: relative;
 }
@@ -35,7 +43,7 @@
 }
 
 img {
-  width: 772px;
+  width: 885px;
 }
 
 .p-text {
@@ -64,6 +72,7 @@ img {
 
 .main-content {
   width: 46%;
+  padding-left: 6rem;
 }
 
 .side-content {
@@ -93,8 +102,8 @@ h3 {
 .advert-here {
   position: relative;
   bottom: 300px;
-  margin-left: 14rem;
-  margin-right: 14rem;
+  margin-left: 18rem;
+  margin-right: 18rem;
   margin-bottom: -18rem;
   width: 400px;
   height: 400PX;
@@ -145,8 +154,8 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     width: 400px;
-    margin-left: 15rem;
-    margin-right: 15rem;
+    margin-left: 19rem;
+    margin-right: 19rem;
  }
 
 .heading-novel {
@@ -217,9 +226,7 @@ h3 {
 
 .row .col.s6 {
   width: 87%;
-  margin-left: auto;
-  left: auto;
-  right: auto;
+  margin-left: 6rem;
 }
 
 
@@ -298,13 +305,13 @@ h3 {
     padding-left:  1rem;
   }
 
-  // .row {
-  //   border-left: 1px solid #333;
-  //   height: 700px;
-  // }
+  .row {
+    border-left: 1px solid #333;
+    height: 700px;
+  }
 
   .row .col.s6 {
-    width: 100%;
+    width: 500px;
   }
 
   img {
@@ -319,6 +326,7 @@ h3 {
   .advert-here {
     margin-left: 0;
     margin-right: 0;
+    margin-top: -20rem;
   }
 
   .novels {
@@ -327,33 +335,43 @@ h3 {
 
   .filter-div {
     text-align: left;
-    margin: 1.5rem;
+    margin-left: 2.5rem;
   }
 
   .filter {
     width: 380px;
+    margin: 10px;
  }
 
- h5 {
-   margin-left: 3.3rem;
-   margin-bottom: 1.5rem;
+//  h5 {
+//    margin-left: 3.3rem;
+//    margin-bottom: 1.5rem;
+//  }
+
+ .heading-1 {
+   margin-top: 5rem;
  }
 
  .genres {
    width: 500px;
+   margin-right: 3rem;
  }
 
  .genre-div {
-   margin-bottom: 25rem;
+   margin-top: -4rem;
  }
 
  .genre-heading {
-  margin-right: 5rem;
+  margin-right: 29rem;
+ }
+
+ .similar-heading {
+   margin-left: 3rem;
  }
   
  .other-novels-div {
-   position: absolute;
-   bottom: 40px;
+   position: relative;
+   bottom: 8rem;
    left: 5px;
    right: 5px;
  }
@@ -363,7 +381,7 @@ h3 {
    flex-wrap: nowrap;
    justify-content: center;
    width: 100%;
-   margin: 4rem auto;
+   margin: 1rem auto;
  }
 
  .btn-button {
@@ -383,8 +401,7 @@ h3 {
  }
 
  .heading-novel {
-  font-size: 24px;
-  margin-top: 19px;
+  font-size: 38px;
 }
 
  
