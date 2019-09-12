@@ -8,7 +8,7 @@ import AuthModalContextProvider from '../../../context/AuthModalContext';
 
 configure({ adapter: new Adapter() });
 
-describe('App component', () => {
+describe('NavBar component', () => {
   it('renders correctly', () => {
     const wrapper = mount(
       <BrowserRouter>

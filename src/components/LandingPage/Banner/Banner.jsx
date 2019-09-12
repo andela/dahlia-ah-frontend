@@ -10,16 +10,16 @@ const Banner = ({ openModal }) => {
   return (
     <>
       { bannerContent ? (
-        <section id="banner" style={{ backgroundImage: `url(${bannerContent.coverImgUrl})` }}>
+        <section id="banner" style={{ backgroundImage: `url(${bannerContent.coverImgUrl})` }} role="button" onClick={() => { openModal('signin'); }}>
           <div className="bannerGradient">
             <div className="bannerText">
-              <h2>{bannerContent.title}</h2>
+              <h2 role="button" onClick={() => { openModal('signin'); }}>{bannerContent.title}</h2>
               <p>{bannerContent.description}</p>
             </div>
             <button type="button" onClick={() => { openModal('signin'); }} className="btnLarge">See More</button>
           </div>
         </section>
-      ) : ''}
+      ) : 'kj jk'}
     </>
   );
 };
