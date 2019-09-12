@@ -1,6 +1,10 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import './genreScroll.scss';
 import { GenreContext } from '../../contexts/GenreContext';
+import appConfig from '../../config/appConfig';
+
+const { FRONTEND_PATH } = appConfig;
 
 const GenreSlider = () => (
   <GenreContext.Consumer>
@@ -14,6 +18,8 @@ const GenreSlider = () => (
                   className="genre"
                   key={genre.id}
                   style={{ backgroundColor: genre.themeColor }}
+                  onClick={() => { location.href = `${FRONTEND_PATH}/novels?genre=${genre.name}`; }}
+                  role="presentation"
                 >
                   <span className="name">{genre.name}</span>
                 </div>

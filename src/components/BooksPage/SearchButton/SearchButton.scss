@@ -1,0 +1,18 @@
+.search-btn{
+    position: absolute;
+    top:28%;
+    display: block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width:200px;
+    background: white;
+    color:#333;
+    box-shadow: none;
+    border: 1px solid rgba(196, 196, 196, 0.9);
+    font-weight: 500
+}
+
+.search-btn:hover, .search-btn:focus{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+}

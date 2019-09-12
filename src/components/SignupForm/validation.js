@@ -78,6 +78,12 @@ const validation = (field, value, setFormData, formdata) => {
           tempFormData[0].errorMessage = 'Firstname cannot be empty';
           return tempFormData;
         });
+      } else if (validator.isInt(value)) {
+        setFormData((prevFormdata) => {
+          const tempFormData = [...prevFormdata];
+          tempFormData[0].errorMessage = 'Firstname cannot not contain only numbers';
+          return tempFormData;
+        });
       } else if (!validator.isAlphanumeric(value)) {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
@@ -97,6 +103,12 @@ const validation = (field, value, setFormData, formdata) => {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
           tempFormData[1].errorMessage = `${field} cannot be empty`;
+          return tempFormData;
+        });
+      } else if (validator.isInt(value)) {
+        setFormData((prevFormdata) => {
+          const tempFormData = [...prevFormdata];
+          tempFormData[1].errorMessage = `${field} cannot not contain only numbers`;
           return tempFormData;
         });
       } else if (!validator.isAlphanumeric(value)) {
