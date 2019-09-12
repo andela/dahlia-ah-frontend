@@ -14,7 +14,6 @@ const LandingPage = ({ history, location }) => {
   const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
 
   useEffect(() => {
-    console.log(location.search);
     if (location.search) {
       const tokenData = location.search.replace('?token=', '');
       const token = jwtDecode(tokenData);
