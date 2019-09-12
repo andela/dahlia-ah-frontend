@@ -1,0 +1,55 @@
+.report-novel {
+
+  h4 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .dropdown-content li>span {
+    color: #000000;
+  }
+
+  .select-wrapper {
+    margin: 2rem 0rem;
+  }
+
+  .select-wrapper input.select-dropdown:focus {
+    border-bottom: 1px solid #000000;
+  }
+
+  textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #000000;
+    box-shadow: 0 0 0 0 #000000;
+  }
+
+  .modal {
+    max-width: 487px;
+    padding: 0rem 1rem;
+
+    .modal-close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 18px;
+    }
+
+    .report-message {
+      text-transform: capitalize;
+      text-align: center;
+    }
+
+    .report-btn {
+      display: block;
+      margin: 0 auto;
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+      margin-top: 2rem;
+    }
+  }
+}
+
+.navSection {
+  position: fixed;
+  top: 0rem;
+  z-index: 3;
+}
