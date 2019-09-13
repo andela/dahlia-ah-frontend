@@ -28,6 +28,10 @@
   position: relative;
 }
 
+.similar-heading {
+  margin-left: 13rem;
+}
+
 .read-novel-cover {
   width: 243px;
   margin: 2rem;
@@ -102,8 +106,8 @@ h3 {
 .advert-here {
   position: relative;
   bottom: 300px;
-  margin-left: 18rem;
-  margin-right: 18rem;
+  margin-left: 13rem;
+  margin-right: 13rem;
   margin-bottom: -18rem;
   width: 400px;
   height: 400PX;
@@ -120,19 +124,21 @@ h3 {
 
 .filter-div {
   text-align: center;
-  margin: 1.5rem;
+  margin-left: 12rem
+  // margin: 1.5rem;
 }
 
 .filter {
   border-bottom: 1px solid #333333;
-  width: 500px;
-  margin: 10px auto;
+  width: 446px;
+  margin: 15px auto;
   opacity: 0.5;
 }
 
 .genre-div {
   text-align: center;
   margin-bottom: 2rem;
+  margin-left: 8rem;
   padding: 3rem;
 }
 
@@ -153,13 +159,15 @@ h3 {
  .other-novels {
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
-    margin-left: 19rem;
-    margin-right: 19rem;
+    width: 415px;
+    margin-left: 10rem;
+    margin-right: 10rem;
  }
 
 .heading-novel {
   font-size: 24px;
+  margin-left: 6rem;
+  width: 500px;
 }
 
 .image-container {
@@ -171,7 +179,7 @@ h3 {
   justify-content: center;
   align-items: center;
   border: 1px solid #333333;
-  width: 119px;
+  width: 150px;
   padding: 5px;
   text-align: center;
   text-transform: uppercase;
@@ -189,6 +197,9 @@ h3 {
   border: 1px solid #333333;
   background-color: white;
   text-transform: uppercase;
+  margin-left: 18rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .sub {
@@ -273,11 +284,6 @@ h3 {
 }
 
 
-/* Table Portrait -- medium */
-@media (min-width: 40em) {
-  
-}
-
  /* Tablet Landscape | desktop and above - large */
  @media (min-width: 60em) {
   .read-novel-cover {
@@ -358,7 +364,8 @@ h3 {
  }
 
  .genre-div {
-   margin-top: -4rem;
+   margin-top: -2rem;
+   margin-left: -3rem;
  }
 
  .genre-heading {
@@ -378,7 +385,7 @@ h3 {
 
  .other-novels {
    display: flex;
-   flex-wrap: nowrap;
+   flex-wrap: wrap;
    justify-content: center;
    width: 100%;
    margin: 1rem auto;
@@ -391,7 +398,7 @@ h3 {
  .btn-view {
    position: absolute;
    bottom: 6px;
-   left: 598px;
+   left: 355px;
    margin-bottom: 2rem;
    padding-top: 1rem; 
  }
@@ -402,6 +409,8 @@ h3 {
 
  .heading-novel {
   font-size: 38px;
+  margin-left: 17rem;
+  width: 700px;
 }
 
  

@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
+import { CommentModalContext } from '../../context/CommentModalContext';
+import CommentContextProvider from '../../context/CommentContext';
+import Comment from '../Comment/Comment';
 import moment from 'moment';
 import axios from 'axios';
 import './ReadNovel.scss';
@@ -7,11 +11,7 @@ import appConfig from '../../config/appConfig';
 
 const { BACKEND_PATH } = appConfig;
 
-
-  
-
-
-const ReadNovel = ({ location }) => {
+const ReadNovel = ({ match: { params: { slug } }}) => {
   const [novelData, setNovelData] = useState({});
   const [relatedData, setRelatedData] = useState([]);
   const [genreData, setGenreData] = useState([]);
@@ -22,11 +22,21 @@ const ReadNovel = ({ location }) => {
   const [endPoint, setEndPoint] = useState(6);
   const [authorsNovel, setAuthorsNovel] = useState([]);
   const [readMore, setReadMore] = useState(false);
+  const { modalComponent, setModalComponent } = useContext(CommentModalContext);
 
+  const handleOpenModal = (comment) => {
+    setModalComponent(comment);
+    document.body.style.height = '100vh';
+    document.body.style.overflowY = 'hidden';
+  };
 
+  const handleCloseModal = () => {
+    setModalComponent(null);
+    document.body.style.height = '100vh';
+    document.body.style.overflowY = 'auto';
+  };
 
-
-  const slug = location.pathname.replace('/read-novel/', '');
+  // const slug = location.pathname.replace('/read-novel/', '');
   useEffect( () => {
     let author;
     const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
@@ -82,7 +92,13 @@ const ReadNovel = ({ location }) => {
     setEndPoint(length);
   }
 
-  const render = !loading ? (<div><div className="read-novel">
+  const render = !loading ? (
+  <div><div className="read-novel">
+    { modalComponent ? (
+      <CommentContextProvider slug={slug}>
+        <Comment closeModal={handleCloseModal} openModal={handleOpenModal} />
+      </CommentContextProvider>
+    ) : ''}
   <div id="cover" className="cover">
     <div >
       <img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568033691/fantasy-4351128_1920.png" alt="novel cover" />
@@ -92,6 +108,7 @@ const ReadNovel = ({ location }) => {
       <h2 className="text-cover">{novelData.title}</h2>
       <p className="p-text">Updated { moment(novelData.createdAt).utc().fromNow()}</p>
       <div className="div-text">
+        <span className="span-text" role="presentation" onClick={() => { handleOpenModal('comment'); }}><i className="fas fa-comment" style={{ fontSize: '24px' }}><small>234</small></i></span>
         <span className="span-text"><i className="far fa-user" style={{ fontSize: '24px' }}><small>{`${novelData.User.firstName} ${novelData.User.lastName}`}</small></i></span>
         <span className="span-text"><i className="far fa-clock" style={{ fontSize: '24px' }}><small>{`${novelData.readTime}`} mins read</small></i></span>
         <span className="span-text"><i className={hasLiked ? "fas fa-heart bg-red" : "far fa-heart bg-white"}  onClick={() => toggle(slug)} style={{ fontSize: '24px' }}></i><small>{likes}</small></span>
@@ -134,12 +151,15 @@ const ReadNovel = ({ location }) => {
       </sidebar></div><br/><br/>
     </div>
     <div className="other-novels-div">
-      <div className="heading-1"><h1 className="heading-novel">Other Novels By {`${novelData.User.firstName} ${novelData.User.lastName}`}</h1></div>
+      <div className="heading-1">
+        <h1 className="heading-novel">Other Novels By {`${novelData.User.firstName} ${novelData.User.lastName}`}</h1>
+      </div>
       <div className="other-novels">
       {authorsNovel.slice(0, endPoint).map((novel) =>
         
-        <div className="image-container"><img src={novel.coverImgUrl} alt="image 1"  className="novel-image" style={{ width: '120px' }}/>
-        <div className="read">Read</div>
+        <div className="image-container">
+          <img src={novel.coverImgUrl} alt="image 1"  className="novel-image" style={{ width: '150px', height: '180px' }}/>
+          <div className="read">Read</div>
         </div>
      )}
     </div>
@@ -154,5 +174,9 @@ const ReadNovel = ({ location }) => {
   return (
     <div>{ render }</div>
 )};
+
+ReadNovel.propTypes = {
+  match: ReactRouterPropTypes.match.isRequired,
+};
 
 export default withRouter(ReadNovel);

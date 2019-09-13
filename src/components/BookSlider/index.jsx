@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './bookslider.scss';
 import useSlider from './effects';
 import { SliderContext } from '../../contexts/SliderContext';
-import ReadNovel from '../ReadNovel/ReadNovel';
 
-const BookSlider = ({readNovel}) => {
+const BookSlider = () => {
   useSlider();
   let keyValue = 0;
 
@@ -28,7 +28,7 @@ const BookSlider = ({readNovel}) => {
                       <p className="white-text description">
                         {novel.description}
                       </p>
-                      <a href="#!" onClick={() => { readNovel(novel.slug)}} className="read-more-btn">Read More</a>
+                      <Link to={`/novel/${novel.slug}`} className="read-more-btn">Read More</Link>
                     </div>
                   </div>
                 );

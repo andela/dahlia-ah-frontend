@@ -8,8 +8,8 @@ import GenreContextProvider from '../../contexts/GenreContext';
 import Homepage from '../Homepage';
 import NotFound from '../NotFound/NotFound';
 import CreateNovel from '../CreateNovel/CreateNovelContainer';
-import CommentModalContextProvider from '../../context/CommentModalContext';
 import AuthModalContextProvider from '../../context/AuthModalContext';
+import CommentModalContextProvider from '../../context/CommentModalContext';
 import ConfirmationPageContainer from '../ConfirmationPage/ConfirmationPageContainer';
 import ResetPasswordContainer from '../ResetPassword/ResetPasswordContainer';
 import Settings from '../Settings/Settings';
@@ -28,9 +28,9 @@ const Router = () => (
               <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
               <Route exact path="/reset-password" component={ResetPasswordContainer} />
               <UserProtected exact path="/novels" component={BooksPageWrapper} />
+              <UserProtected exact path="/novel/:slug" component={ReadNovel} />
               <UserProtected exact path="/homepage" component={Homepage} />
               <UserProtected exact path="/write-novel" component={CreateNovel} />
-              <UserProtected exact path="/novel/:slug" component={ReadNovel} />
               <UserProtected exact path="/user/settings" component={Settings} />
               <Route component={NotFound} />
             </Switch>
