@@ -10,9 +10,9 @@ const UserProtected = ({ component: Component, path }) => {
   return (
     <Route
       path={path}
-      render={({ location }) => (
+      render={({ location, match }) => (
         user && user.isVerified
-          ? <Component />
+          ? <Component match={match} />
           : <Redirect to={{ pathname: '/confirmation-page', state: { from: location } }} />
       )}
     />
