@@ -1,9 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useAuthenticatedNav from './effects/AuthenticatedNav';
 import { UserContext } from '../../../contexts/UserContext';
-import axios from '../../../api';
 import SignOut from '../../helpers/SignOut';
 import socket from '../../../helpers/socket';
 import notificationState from '../../../hooks/Notification';
