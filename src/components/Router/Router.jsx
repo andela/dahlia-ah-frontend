@@ -29,7 +29,6 @@ const Router = () => (
               <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
               <Route exact path="/reset-password" component={ResetPasswordContainer} />
               <UserProtected exact path="/novels" component={BooksPageWrapper} />
-              <UserProtected exact path="/novel/:slug" component={Novel} />
               <UserProtected exact path="/homepage" component={Homepage} />
               <UserProtected exact path="/write-novel" component={CreateNovel} />
               <UserProtected exact path="/user/settings" component={Settings} />
