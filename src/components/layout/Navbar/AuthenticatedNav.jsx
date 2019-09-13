@@ -9,6 +9,9 @@ import socket from '../../../helpers/socket';
 import notificationState from '../../../hooks/Notification';
 import Notification from '../../Notification/Notification';
 import { markAllAsRead } from '../../../api/notification';
+import appConfig from '../../../config/appConfig';
+
+const { FRONTEND_PATH } = appConfig;
 
 const AuthenticatedNav = () => {
   const { id } = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
@@ -58,6 +61,8 @@ const AuthenticatedNav = () => {
               <nav className={isVerified || location.pathname !== '/confirmation-page' ? 'authenticated-nav navbar' : 'authenticated-nav navbar confirm-page'}>
                 <div className="nav-wrapper">
                   <img
+                    onClick={() => { location.href = `${FRONTEND_PATH}/homepage`; }}
+                    role="presentation"
                     className="brand-logo center"
                     src="https://res.cloudinary.com/drlcfqzym/image/upload/v1567007007/ah-logo-black.png"
                     alt="Author's Haven"
