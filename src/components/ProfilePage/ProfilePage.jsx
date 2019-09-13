@@ -3,24 +3,56 @@ import ProfileContent from './ProfileContent/ProfileContent';
 import './profilePage.scss';
 import NovelListItem from './NovelListItem/NovelListItem';
 import { ProfilePageContext } from '../../contexts/ProfilePageContext';
+import EditProfile from './EditProfileModal/EditProfile';
+import { AuthModalContext } from '../../context/AuthModalContext';
 
 const ProfilePage = () => {
-  const { userProfile, authorNovels } = useContext(ProfilePageContext);
+  const {
+    userProfile,
+    authorNovels,
+    handleOpenModal,
+    handleCloseModal,
+    formFields,
+    handleInputChange,
+    handleSubmit,
+    ajaxLoading,
+  } = useContext(ProfilePageContext);
+
   const {
     name, image, bio, followers, following,
   } = userProfile;
+
+  const { modalComponent } = useContext(AuthModalContext);
+
+  let editModal = null;
+
+  if (modalComponent === 'edit-profile') {
+    editModal = (
+      <EditProfile
+        formdata={formFields}
+        closeModal={handleCloseModal}
+        onChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        resourceLoading={ajaxLoading}
+      />
+    );
+  }
+
   return (
     <main className="profile-page">
+      {editModal}
       <section className="profile-container">
         {userProfile.name && (
-        <ProfileContent
-          name={name}
-          image={image}
-          bio={bio}
-          following={following}
-          followers={followers}
-          written={authorNovels.length}
-        />
+          <ProfileContent
+            name={name}
+            image={image}
+            bio={bio}
+            following={following}
+            followers={followers}
+            written={authorNovels.length}
+            openModal={handleOpenModal}
+            ajaxLoading={ajaxLoading}
+          />
         )}
 
         <h4>Your Most Liked Novels</h4>
@@ -44,7 +76,6 @@ const ProfilePage = () => {
             />
           );
         })}
-
       </section>
     </main>
   );

@@ -1,4 +1,8 @@
 .novel-list-item {
+  * {
+    margin: 0;
+    padding: 0;
+  }
   display: grid;
   grid-template-columns: 100px 550px 100px;
   grid-template-rows: 70% 1fr;
@@ -9,6 +13,7 @@
     'image meta meta';
   margin: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.068);
+  padding: 0.5rem 0;
 
   .img-container {
     grid-area: image;
@@ -18,14 +23,14 @@
     justify-content: center;
     img {
       width: 90px;
-      height: 132px;
+      height: 136px;
       cursor: pointer;
     }
   }
 
   .novel-details {
     grid-area: novel;
-    padding: 0 .5rem;
+    padding: 0 .6rem;
     text-align: justify;
   }
 
