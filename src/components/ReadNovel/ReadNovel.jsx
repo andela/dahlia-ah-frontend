@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import { CommentModalContext } from '../../context/CommentModalContext';
@@ -36,11 +37,11 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
     document.body.style.overflowY = 'auto';
   };
 
-  // const slug = location.pathname.replace('/read-novel/', '');
   useEffect( () => {
     let author;
     const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
     axios.get(`${BACKEND_PATH}/novels/${slug}`).then((res) => {
+
       author = res.data.novel.User;
       const testNovel = res.data.novel;
       setNovelData(res.data.novel);
@@ -100,20 +101,20 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
       </CommentContextProvider>
     ) : ''}
   <div id="cover" className="cover">
-    <div >
-      <img src="https://res.cloudinary.com/dppmnzbtx/image/upload/v1568033691/fantasy-4351128_1920.png" alt="novel cover" />
-    </div>
-    <div className="read-novel-cover">
-      <span className="genre-color">{novelData.Genre.name}</span>
-      <h2 className="text-cover">{novelData.title}</h2>
-      <p className="p-text">Updated { moment(novelData.createdAt).utc().fromNow()}</p>
+    <div className="cover-image" style={{ backgroundImage: `url(${novelData.coverImgUrl})`}}>
+      <div className="read-novel-cover">
+        <span className="genre-color">{novelData.Genre.name}</span>
+        <h2 className="text-cover">{novelData.title}</h2>
+      <p className="p-text">Updated { moment(novelData.updatedAt).utc().fromNow()}</p>
       <div className="div-text">
-        <span className="span-text" role="presentation" onClick={() => { handleOpenModal('comment'); }}><i className="fas fa-comment" style={{ fontSize: '24px' }}><small>234</small></i></span>
-        <span className="span-text"><i className="far fa-user" style={{ fontSize: '24px' }}><small>{`${novelData.User.firstName} ${novelData.User.lastName}`}</small></i></span>
-        <span className="span-text"><i className="far fa-clock" style={{ fontSize: '24px' }}><small>{`${novelData.readTime}`} mins read</small></i></span>
-        <span className="span-text"><i className={hasLiked ? "fas fa-heart bg-red" : "far fa-heart bg-white"}  onClick={() => toggle(slug)} style={{ fontSize: '24px' }}></i><small>{likes}</small></span>
+        <span className="span-text"><i className="far fa-user action-icon"></i><span className="span-text-value">{`${novelData.User.firstName} ${novelData.User.lastName}`}</span></span>
+        <span className="span-text"><i className="far fa-clock action-icon"></i><span className="span-text-value">{`${novelData.readTime}`} mins read</span></span>
+        <span className="span-text"><i className={hasLiked ? "fas fa-heart bg-red action-icon" : "far fa-heart bg-white action-icon"}  onClick={() => toggle(slug)}></i> <span className="span-text-value">{likes}</span></span>
+        <span className="span-text" role="presentation" onClick={() => { handleOpenModal('comment'); }}><i className="far fa-comment action-icon"></i> <span className="span-text-value">234</span></span>
       </div>
     </div>
+    </div>
+    
     <div className="div-content">
       <main className="main-content">
         <div className="p-heading">
@@ -122,23 +123,22 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
         </p>
         </div>
       </main>
-      <div>
-      <sidebar className="side-content">
+      <aside className="side-content">
         <form>
           <div className="row">
-            <div className="input-field suffix col s6">
+            <div className="input-field suffix col s6 search-container">
               <input id="icon_prefix" type="text" className="validate" />
               <label htmlFor="icon_prefix">Search...</label>
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
             </div>
           </div>
-        <div className="advert">
-          <div className="advert-here">Advertise Here</div>
+        <div className="advert-here">
+          <p className="advert">Advertise Here</p>
         </div>
         <div className="novels">
           <div className="similar-novels">
             <h5 className="similar-heading">Similar Novels</h5>
-            { relatedData.slice(0, 5).map((novel) => <div key={novel.id} className="filter-div"><p className="filter">{novel.title}</p></div>) }
+            { relatedData.slice(0, 5).map((novel) => <div key={novel.id} className="filter-div"><p className="filter-title">{novel.title}</p></div>) }
           </div>
         </div>
         <div className="genre-div">
@@ -148,7 +148,7 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
           </div>
         </div>
         </form>
-      </sidebar></div><br/><br/>
+      </aside><br/><br/>
     </div>
     <div className="other-novels-div">
       <div className="heading-1">
@@ -157,16 +157,16 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
       <div className="other-novels">
       {authorsNovel.slice(0, endPoint).map((novel) =>
         
-        <div className="image-container">
+        <div className="image-container" key={novel.id}>
           <img src={novel.coverImgUrl} alt="image 1"  className="novel-image" style={{ width: '150px', height: '180px' }}/>
-          <div className="read">Read</div>
+          <a href={`/novel/${novel.slug}`} className="read">Read</a>
         </div>
      )}
     </div>
     </div>
     <div className="btn-button">
       {
-        authorsNovel.length <= 6 ? '' :  <button onClick={() => setReadMoreHandler(readMore)} className="btn-view">{ readMore ? 'Read Less' : 'Read More'}</button>
+        authorsNovel.length <= 6 ? '' :  <button onClick={() => setReadMoreHandler(readMore)} className="btn-view">{ readMore ? 'View Less' : 'View More'}</button>
       }
     </div>
   </div>

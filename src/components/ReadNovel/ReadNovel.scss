@@ -11,6 +11,7 @@
   $genre-color-brown: rgb(17, 1, 1);
 
 .genre-color {
+  text-transform: capitalize;
   background-color: $genre-bgcolor;
   padding: 0.5rem 1rem;
   color: $genre-color;
@@ -26,24 +27,28 @@
 
 .cover {
   position: relative;
-}
-
-.similar-heading {
-  margin-left: 13rem;
+  .cover-image {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center; 
+    display: flex;
+    align-items: flex-end;
+  }
 }
 
 .read-novel-cover {
-  width: 243px;
+  width: 80vw;
   margin: 2rem;
-  position: absolute;
-  top: 159px;
   color: white;
 }
 
 .text-cover {
   font-family: 'Source Sans Pro';
   text-transform: uppercase;
-  font-size: 30px;
+  font-size: 3.5em;
+  margin: 10px 0;
+  margin-bottom: 0;
 }
 
 img {
@@ -51,22 +56,29 @@ img {
 }
 
 .p-text {
+  margin: 10px 0;
+  margin-top: 0;
+  margin-bottom: 20p;
   font-size: 1rem;
+  font-weight: 100;
 }
 
 .div-text {
   display: flex;
-  width: 500px;
+  width: 80vw;
+
+  .action-icon {
+    font-size: 22px;
+    padding-right: 10px;
+  }
 }
 
 .span-text {
   margin-right: 2rem;
-}
-
-
-.text-content {
-  width: 700px;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
 }
 
 .p-heading {
@@ -75,12 +87,14 @@ img {
 }
 
 .main-content {
-  width: 46%;
-  padding-left: 6rem;
+  width: 68%;
 }
 
 .side-content {
-  width: 36%;
+  width: 32%;
+  min-width: 300px;
+  padding-left: 3rem;
+  border-left: 1px solid #c4c4c4;
 }
 
 small {
@@ -94,8 +108,6 @@ h3 {
 
 .row {
   border-left: transparent;
-  height: 500px;
-  padding: 10px;
   opacity: 0.5;
 }
 
@@ -105,17 +117,19 @@ h3 {
 
 .advert-here {
   position: relative;
-  bottom: 300px;
-  margin-left: 13rem;
-  margin-right: 13rem;
-  margin-bottom: -18rem;
-  width: 400px;
+  width: 100%;
   height: 400PX;
-  padding-top: 10rem;
   font-size: 2rem;
   background-color: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
 }
 
+.search-container {
+  position: relative;
+}
 
 .novels {
   text-align: center;
@@ -124,22 +138,17 @@ h3 {
 
 .filter-div {
   text-align: center;
-  margin-left: 12rem
-  // margin: 1.5rem;
 }
 
-.filter {
+.filter-title {
   border-bottom: 1px solid #333333;
-  width: 446px;
   margin: 15px auto;
   opacity: 0.5;
 }
 
 .genre-div {
   text-align: center;
-  margin-bottom: 2rem;
-  margin-left: 8rem;
-  padding: 3rem;
+  margin: 2rem 0rem;
 }
 
 
@@ -148,7 +157,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  width: 400px;
+  justify-content: center;
   margin: 0 auto;
 }
 
@@ -159,15 +168,12 @@ h3 {
  .other-novels {
     display: flex;
     flex-wrap: wrap;
-    width: 415px;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    width: 100%;
+    justify-content: center;
  }
 
 .heading-novel {
   font-size: 24px;
-  margin-left: 6rem;
-  width: 500px;
 }
 
 .image-container {
@@ -192,14 +198,14 @@ h3 {
 
 .btn-view {
   text-align: center;
-  padding: 1.5rem 2rem;
-  width: 200px;
+  padding: 1rem 1rem;
   border: 1px solid #333333;
   background-color: white;
   text-transform: uppercase;
-  margin-left: 18rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin: 2rem auto;
+  display: block;
+  position: relative;
+  margin-bottom: 1rem;
 }
 
 .sub {
@@ -233,21 +239,17 @@ h3 {
   background-color: $genre-color-brown;
 }
 
-
-
 .row .col.s6 {
-  width: 87%;
-  margin-left: 6rem;
+  width: 100%;
 }
 
 
 .input-field.suffix i {
   position: absolute;
-  width: 1rem;
-  font-size: 2rem;
-  transition: color .2s;
-  top: 0px;
-  right: 0px;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .input-field.suffix i.active {
@@ -256,9 +258,7 @@ h3 {
 
 .input-field.suffix input,
 .input-field.suffix textarea {
-  margin-right: 3rem;
-  width: 92%;
-  width: calc(100% - 3rem);
+  width: 100%;
 }
 
 .input-field.suffix textarea {
@@ -269,10 +269,31 @@ h3 {
   margin-right: 3rem;
 }
 
+@media (max-width: 500px) {
+  .span-text .span-text-value{
+    display: none;
+  }
+
+  .span-text .action-icon {
+    display: block;
+  }
+}
+
 @media only screen and (max-width: 992px) {
   .input-field.suffix input {
     width: 86%;
     width: calc(100% - 3rem);
+  }
+}
+
+@media only screen and (max-width: 959px) {
+  .main-content {
+    width: 100%;
+  }
+
+  .side-content {
+    width: 100%;
+    padding: 0rem 2rem;
   }
 }
 
@@ -286,10 +307,16 @@ h3 {
 
  /* Tablet Landscape | desktop and above - large */
  @media (min-width: 60em) {
-  .read-novel-cover {
-    width: 500px;
-    top: 430px;
-   }
+
+  .span-text {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: row;
+    small {
+      margin-top: 0;
+    }
+  }
+  
   
    .text-cover {
      font-size: 64px;
@@ -297,7 +324,7 @@ h3 {
   
   .div-content {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     padding: 2rem;
   }
   
@@ -306,33 +333,16 @@ h3 {
   }
   
   .main-content {
-    width: 68%;
     padding-right: 4rem;
     padding-left:  1rem;
   }
 
-  .row {
-    border-left: 1px solid #333;
-    height: 700px;
-  }
-
   .row .col.s6 {
-    width: 500px;
+    width: 100%;
   }
 
   img {
     width: 100%;
-  }
-
-  .advert {
-    padding-left: 3.5rem;
-
-  }
-
-  .advert-here {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: -20rem;
   }
 
   .novels {
@@ -341,46 +351,21 @@ h3 {
 
   .filter-div {
     text-align: left;
-    margin-left: 2.5rem;
   }
-
-  .filter {
-    width: 380px;
-    margin: 10px;
- }
-
-//  h5 {
-//    margin-left: 3.3rem;
-//    margin-bottom: 1.5rem;
-//  }
 
  .heading-1 {
    margin-top: 5rem;
  }
 
- .genres {
-   width: 500px;
-   margin-right: 3rem;
- }
-
- .genre-div {
-   margin-top: -2rem;
-   margin-left: -3rem;
- }
-
  .genre-heading {
   margin-right: 29rem;
  }
-
- .similar-heading {
-   margin-left: 3rem;
- }
   
  .other-novels-div {
-   position: relative;
-   bottom: 8rem;
-   left: 5px;
-   right: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
  }
 
  .other-novels {
@@ -395,22 +380,12 @@ h3 {
    margin-bottom: 10px;
  }
 
- .btn-view {
-   position: absolute;
-   bottom: 6px;
-   left: 355px;
-   margin-bottom: 2rem;
-   padding-top: 1rem; 
- }
-
  h3 {
    font-size: 24px;
  }
 
  .heading-novel {
   font-size: 38px;
-  margin-left: 17rem;
-  width: 700px;
 }
 
  
