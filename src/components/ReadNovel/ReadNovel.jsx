@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 import { CommentModalContext } from '../../context/CommentModalContext';
@@ -119,7 +120,7 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
       <main className="main-content">
         <div className="p-heading">
         <p className="text-content">
-        {novelData.body}
+        {ReactHtmlParser(novelData.body)}git
         </p>
         </div>
       </main>
