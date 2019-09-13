@@ -12,7 +12,7 @@ const Settings = () => {
           <SettingsItem
             initialState={user.allowEmailNotification}
             title="Receive email notification"
-            description="An Email will be sent to you when ever you receive a notification or any other event"
+            description="An email will be sent to you when ever you receive a notification or any other event"
           />
         </div>
       </div>
