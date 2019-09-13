@@ -21,42 +21,37 @@ const SearchContextProvider = ({ children }) => {
   const [notFound, setNotFound] = useState(false);
   const [page, setPage] = useState(1);
   const [loadMore, setLoadMore] = useState(false);
-  const [params, setParam] = useState('');
-  let initialParams;
+  const [params, setParams] = useState();
 
-  const handleSearch = () => {
-    const tempValues = Object.keys(filterValues);
-    let query = [];
-    for (let i = 0; i < tempValues.length; i += 1) {
-      if (tempValues[i] === 'keyword' && filterValues[tempValues[i]] && filterValues[tempValues[i]] !== '') {
-        query = [`keyword=${filterValues[tempValues[i]]}`];
-        break;
-      }
-      if (filterValues[tempValues[i]] && filterValues[tempValues[i]] !== '') {
-        query.push(`${tempValues[i]}=${filterValues[tempValues[i]]}`);
-      }
-    }
-    initialParams = query.join('&');
-    setParam(initialParams);
+  const getParams = (local) => {
+    const searchParams = new URLSearchParams(local.search);
+    const param = [...searchParams.entries()];
+    setParams(param);
+    return param.map((query) => query.join('=')).join('&');
+  };
 
-    if (query.length) {
-      axios.get(`${BACKEND_PATH}/novels?${initialParams}&limit=18`)
-        .then((res) => {
-          const { currentPage, totalPages, data } = res.data;
-          setPage(currentPage + 1);
-          setNotFound(false);
-          setNovels(data);
-          if (currentPage < totalPages) {
-            setLoadMore(true);
-          }
-        })
-        .catch((err) => {
-          if (err.response.data.message === 'no novels found in database') {
-            setNovels([]);
-            setNotFound(true);
-          }
-        });
+  const isEmpty = (value) => (
+    (typeof value === 'string' && value.trim().length === 0)
+    || (typeof value === 'object' && Object.keys(value) === 0)
+    || (value === undefined)
+  );
+
+  const updateUrl = (query, history) => {
+    const newQuery = new URLSearchParams(query);
+    history.push(`?${newQuery.toString()}`);
+  };
+
+  const handleSearch = (history) => {
+    const tempValues = Object.entries(filterValues);
+    let query;
+    let values;
+    if (filterValues.keyword === null || isEmpty(filterValues.keyword)) {
+      values = tempValues.filter((val) => val[1] !== null && !isEmpty(val[1]));
+      query = values.map((item) => item.join('=')).join('&');
+    } else {
+      query = `keyword=${filterValues.keyword}`;
     }
+    updateUrl(query, history);
   };
 
   const handleClick = () => {
@@ -90,11 +85,11 @@ const SearchContextProvider = ({ children }) => {
       notFound,
       handleClick,
       loadMore,
-      setParam,
       setNovels,
       setNotFound,
       setPage,
       setLoadMore,
+      getParams,
     }}
     >
       {children}
