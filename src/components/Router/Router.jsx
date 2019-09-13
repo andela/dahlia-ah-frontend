@@ -23,11 +23,11 @@ const Router = () => (
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/confirmation-page" component={ConfirmationPageContainer} />
           <Route exact path="/reset-password" component={ResetPasswordContainer} />
+          <UserProtected exact path="/user/settings" component={Settings} />
           <GenreContextProvider>
             <UserProtected exact path="/homepage" component={Homepage} />
             <UserProtected exact path="/write-novel" component={CreateNovel} />
           </GenreContextProvider>
-          <UserProtected exact path="/user/settings" component={Settings} />
           <Route component={NotFound} />
         </Switch>
       </div>
