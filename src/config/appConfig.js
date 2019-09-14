@@ -1,5 +1,5 @@
 export default {
-  FRONTEND_PATH: 'https://dahlia-ah-frontend-staging.herokuapp.com',
-  BASE_PATH: 'https://ah-dahlia.herokuapp.com',
-  BACKEND_PATH: 'https://ah-dahlia-staging.herokuapp.com/api/v1',
+  FRONTEND_PATH: 'http://localhost:3000',
+  BASE_PATH: 'http://localhost:5000',
+  BACKEND_PATH: 'http://localhost:5000/api/v1',
 };

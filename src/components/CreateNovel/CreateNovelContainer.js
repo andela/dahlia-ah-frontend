@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CloudinaryImageUploadAdapter } from 'ckeditor-cloudinary-uploader-adapter';
 import axios from 'axios';
+import M from 'materialize-css';
+import toastr from 'toastr';
 import config from '../../config/appConfig';
 import { GenreContext } from '../../contexts/GenreContext';
 import TopSectionDiv from './TopSectionDiv/TopSectionDiv';
@@ -14,8 +16,17 @@ const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/dahlia-ah-frontend/image/
 const instance = axios.create({
   header: {},
 });
-
 delete instance.defaults.headers.common.Authorization;
+
+toastr.options = {
+  debug: false,
+  positionClass: 'toast-top-left',
+  onclick: null,
+  fadeIn: 300,
+  fadeOut: 1000,
+  timeOut: 5000,
+  extendedTimeOut: 1000,
+};
 
 const imagePluginFactory = (editor) => {
   editor.plugins.get('FileRepository').createUploadAdapter = (loader) => (
@@ -28,18 +39,18 @@ const CreateNovelsContainer = () => {
   const [description, setDescription] = useState('');
   const [chosenGenre, setChosenGenre] = useState('');
   const [editor, setEditor] = useState('');
+  const [slug, setSlug] = useState('');
   const [uploadedCover, setUploadedCover] = useState(false);
   const [uploadedThumb, setUploadedThumb] = useState(false);
   const [coverImgSrc, setCoverImgSrc] = useState('');
   const [thumbImgSrc, setThumbImgSrc] = useState('');
   const [genres, setGenres] = useState([]);
-  const [statusColor, setStatusColor] = useState('redColor');
   const [ajaxSaveLoading, setAjaxSaveLoading] = useState(false);
   const [ajaxCoverUploadLoading, setAjaxCoverUploadLoading] = useState(false);
   const [ajaxThumbUploadLoading, setAjaxThumbUploadLoading] = useState(false);
   const [editorError, setEditorError] = useState(false);
-  const [publishError, setPublishError] = useState('');
   const [ajaxPublishLoading, setAjaxPublishLoading] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     ClassicEditor
@@ -81,6 +92,11 @@ const CreateNovelsContainer = () => {
     }
   }, [providedGenres]);
 
+  useEffect(() => {
+    const elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+  }, [genres]);
+
   const handleChange = (e, setlocalState) => {
     setlocalState(e.target.value);
   };
@@ -113,10 +129,7 @@ const CreateNovelsContainer = () => {
         setAjaxThumbUploadLoading(false);
       }
     }).catch(() => {
-      setPublishError('An error occured while attempting to upload image');
-      setTimeout(() => {
-        setPublishError('');
-      }, 2000);
+      toastr.error('An error occured while attempting to upload image');
       if (imageType === 'cover') {
         setAjaxCoverUploadLoading(false);
       } else {
@@ -133,10 +146,7 @@ const CreateNovelsContainer = () => {
     }
     const empty = editor.getData() === '' || title === '' || description === '' || chosenGenre === '' || coverImgSrc === '' || thumbImgSrc === '';
     if (empty) {
-      setPublishError(`Cannot ${submitType} novel. One of the required fields is missing`);
-      setTimeout(() => {
-        setPublishError('');
-      }, 2000);
+      toastr.error(`Cannot ${submitType} novel. One of the required fields is missing`);
     } else {
       if (submitType === 'publish') {
         setAjaxPublishLoading(true);
@@ -152,23 +162,26 @@ const CreateNovelsContainer = () => {
         isPublished,
         body: editor.getData(),
       };
-      instance.post(`${config.BACKEND_PATH}/novels`, { ...newNovel }, { headers: { authorization: `${user.token}` } }).then(() => {
+
+      const method = saved ? 'patch' : 'post';
+
+      instance[method](`${config.BACKEND_PATH}/novels/${slug}`, { ...newNovel }, { headers: { authorization: `${user.token}` } }).then((response) => {
         setAjaxSaveLoading(false);
         setAjaxPublishLoading(false);
-        setStatusColor('greenColor');
-        setPublishError(`Successfully ${submitType}ed novel!`);
-        setTimeout(() => {
-          setPublishError('');
-          setStatusColor('redColor');
-          window.location.assign('/profile');
-        }, 3000);
+        const msg = submitType === 'publish' ? 'published' : 'saved';
+        toastr.success(`Successfully ${msg} novel!`);
+        if (submitType === 'save') {
+          setSaved(true);
+          setSlug(response.data.novel.slug);
+        } else {
+          setTimeout(() => {
+            window.location.assign('/profile');
+          }, 500);
+        }
       }).catch((error) => {
         setAjaxSaveLoading(false);
         setAjaxPublishLoading(false);
-        setPublishError(error.response.data.errors);
-        setTimeout(() => {
-          setPublishError('');
-        }, 3000);
+        toastr.error(error.response.data.errors);
       });
     }
   };
@@ -190,8 +203,6 @@ const CreateNovelsContainer = () => {
               onSubmit={handleSubmit}
               ajaxSaveLoading={ajaxSaveLoading}
               ajaxPublishLoading={ajaxPublishLoading}
-              statusColor={statusColor}
-              publishError={publishError}
             />
             <NovelInputSection
               setTitle={setTitle}

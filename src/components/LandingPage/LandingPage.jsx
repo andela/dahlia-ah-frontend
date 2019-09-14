@@ -51,8 +51,8 @@ const LandingPage = ({ history, location }) => {
                     <li>Follow Authors</li>
                   </ul>
                 </div>
-                <div>
-                  <p><button type="button" onClick={() => { setModalComponent('signup'); }}>SIGN UP</button></p>
+                <div className="membershipButton" onClick={() => { setModalComponent('signup'); }} role="presentation">
+                  <p>SIGN UP</p>
                 </div>
               </div>
               <div className="subscribeMembership">
@@ -66,8 +66,8 @@ const LandingPage = ({ history, location }) => {
                     <li>Novel Review and Analytics</li>
                   </ul>
                 </div>
-                <div>
-                  <p><button type="button" onClick={() => { setModalComponent('signin'); }}>SUBSCRIBE</button></p>
+                <div className="membershipButton" onClick={() => { setModalComponent('signup'); }} role="presentation">
+                  <p>SUBSCRIBE</p>
                 </div>
               </div>
             </div>

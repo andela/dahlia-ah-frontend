@@ -60,6 +60,17 @@ $black: #000008;
       border-bottom: 1px solid $white;
     }
 
+    .membershipButton {
+      height: 50px;
+      cursor: pointer;
+
+      p {
+        margin: 0;
+        cursor: pointer;
+        padding-top: 15px;
+      }
+    }
+
     .subscribeMembership h4 {
       border-bottom: 1px solid $black;
     }
@@ -73,13 +84,13 @@ $black: #000008;
     grid-area: membership-box;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    background: $white;
     width: 550px;
     justify-self: center;
   }
 
   .freeMembership {
     border: 1px solid $black;
+    background: $white;
   }
 
   .freeMembership div:first-child {
@@ -146,7 +157,7 @@ $black: #000008;
     }
   }
 
-  @media(max-width: 380px){
+  @media(max-width: 500px){
     .membershipBox {
       grid-template-columns: 1fr;
       grid-gap: 40px;

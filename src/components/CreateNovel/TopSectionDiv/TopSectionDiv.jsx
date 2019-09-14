@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const TopSectionDiv = ({
   uploadedCover, ajaxCoverUploadLoading, handleFileCapture,
   coverImgSrc, uploadedThumb, ajaxThumbUploadLoading, thumbImgSrc,
-  onSubmit, ajaxSaveLoading, ajaxPublishLoading, statusColor, publishError,
+  onSubmit, ajaxSaveLoading, ajaxPublishLoading,
 }) => (
   <div className="topSectionDiv">
     <div className="photoImage">
@@ -12,11 +12,16 @@ const TopSectionDiv = ({
         <>
           <p>Upload Cover Photo</p>
           <label htmlFor="cover-image">
-            { !ajaxCoverUploadLoading ? <img alt="upload" src="https://img.icons8.com/ios/50/000000/camera.png" /> : <i className="fa fa-spinner fa-spin loader" /> }
+            { !ajaxCoverUploadLoading ? <img alt="upload" src="https://img.icons8.com/ios/50/000000/camera.png" /> : <i className="fa fa-spinner fa-spin" /> }
             <input type="file" id="cover-image" onChange={(e) => handleFileCapture(e, 'cover')} />
           </label>
         </>
-      ) : <img className="uploaded" alt="preview-upload" src={coverImgSrc} /> }
+      ) : (
+        <label htmlFor="cover-image">
+          { !ajaxCoverUploadLoading ? <img className="uploaded" alt="preview-upload" src={coverImgSrc} /> : <i className="fa fa-spinner fa-spin loader" /> }
+          <input type="file" id="cover-image" onChange={(e) => handleFileCapture(e, 'cover')} />
+        </label>
+      ) }
     </div>
     {' '}
     <div className="photoImage thumbImage">
@@ -24,14 +29,18 @@ const TopSectionDiv = ({
         <>
           <p>Upload Thumbnail Photo</p>
           <label htmlFor="thumb-image">
-            { !ajaxThumbUploadLoading ? <img alt="upload" src="https://img.icons8.com/ios/50/000000/camera.png" /> : <i className="fa fa-spinner fa-spin loader" /> }
+            { !ajaxThumbUploadLoading ? <img alt="upload" src="https://img.icons8.com/ios/50/000000/camera.png" /> : <i className="fa fa-spinner fa-spin" /> }
             <input type="file" id="thumb-image" onChange={(e) => handleFileCapture(e, 'thumb')} />
           </label>
         </>
-      ) : <img className="uploaded" alt="preview-upload" src={thumbImgSrc} /> }
+      ) : (
+        <label htmlFor="thumb-image">
+          { !ajaxThumbUploadLoading ? <img className="uploaded" alt="preview-upload" src={thumbImgSrc} /> : <i className="fa fa-spinner fa-spin loader" /> }
+          <input type="file" id="thumb-image" onChange={(e) => handleFileCapture(e, 'thumb')} />
+        </label>
+      ) }
     </div>
     <button type="button" onClick={() => onSubmit('publish')} disabled={ajaxSaveLoading}>{ajaxPublishLoading ? 'Publishing...' : 'Publish'}</button>
-    <p className={`publish-error ${statusColor}`}>{publishError}</p>
   </div>
 );
 
@@ -46,8 +55,6 @@ TopSectionDiv.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   ajaxSaveLoading: PropTypes.bool.isRequired,
   ajaxPublishLoading: PropTypes.bool.isRequired,
-  statusColor: PropTypes.string.isRequired,
-  publishError: PropTypes.string.isRequired,
 };
 
 export default TopSectionDiv;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const NovelInputSection = ({
   setTitle, title, onChange, description,
-  setDescription, chosenGenre, setChosenGenre, genres,
+  setDescription, setChosenGenre, genres,
 }) => (
   <>
     <div>
@@ -20,14 +20,14 @@ const NovelInputSection = ({
     </div>
     <div className="novel-genre">
       <label htmlFor="genre">
-              Genre
-        <input type="text" value={chosenGenre} list="genres" onChange={(e) => onChange(e, setChosenGenre)} />
+        Genre
+        <select id="genre" defaultValue="-- Select Genre --" onChange={(e) => onChange(e, setChosenGenre)}>
+          <option value="">-- Select Genre --</option>
+          {genres.map((genre) => (
+            <option key={genre.id} value={genre.name}>{genre.name}</option>
+          ))}
+        </select>
       </label>
-      <datalist id="genres">
-        {genres.map((genre) => (
-          <option key={genre.id}>{genre.name}</option>
-        ))}
-      </datalist>
     </div>
   </>
 );
@@ -38,7 +38,6 @@ NovelInputSection.propTypes = {
   onChange: PropTypes.func.isRequired,
   description: PropTypes.string.isRequired,
   setDescription: PropTypes.func.isRequired,
-  chosenGenre: PropTypes.string.isRequired,
   setChosenGenre: PropTypes.func.isRequired,
   genres: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
