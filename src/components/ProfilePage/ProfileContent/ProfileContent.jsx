@@ -4,11 +4,25 @@ import Stats from '../Stats/Stats';
 import './profileContent.scss';
 
 const ProfileContent = ({
-  name, image, bio, followers, following, written, openModal,
+  name,
+  image,
+  bio,
+  followers,
+  following,
+  written,
+  openModal,
 }) => (
   <div className="profile-content">
     <div className="avatar-container">
-      <img src={image} alt="avatar" onClick={() => { openModal('upload-modal'); }} onKeyDown={openModal} role="presentation" />
+      <i
+        className="fas fa-camera"
+        onClick={() => {
+          openModal('avatar-modal');
+        }}
+        onKeyDown={openModal}
+        role="presentation"
+      />
+      <img src={image} alt="avatar" className="img" />
     </div>
     <div className="bio-container">
       <h3 className="name">{name}</h3>
@@ -21,7 +35,7 @@ const ProfileContent = ({
           openModal('edit-profile');
         }}
       >
-          Edit Profile
+        Edit Profile
       </button>
     </div>
   </div>

@@ -9,6 +9,9 @@ import appConfig from '../config/appConfig';
 
 export const ProfilePageContext = createContext();
 
+const axiosInstance = axios.create();
+delete axiosInstance.defaults.headers.common.Authorization;
+
 const user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
 
 let id;
@@ -17,33 +20,21 @@ if (user) {
 }
 
 const ProfilePageContextProvider = ({ children }) => {
-  const [userProfile, setProfileState] = useState({});
+  const [userProfile, setProfileState] = useState({
+    firstName: 'Jon',
+    lastName: 'Doe',
+    bio: '',
+    image: '',
+    formErrors: {},
+    followers: 0,
+    following: 0,
+  });
   const [authorNovels, setAuthorNovels] = useState([]);
   const [ajaxSuccess, setAjaxSuccess] = useState(false);
   const [ajaxLoading, setAjaxLoading] = useState(false);
   const [failureMessage, setFailureMessage] = useState('');
   const [ajaxError, setAjaxError] = useState(false);
-  const [desc, setDesc] = useState('Please enter your email address to reset your password');
-  const [formFields, setFormFields] = useState([
-    {
-      name: 'First name',
-      id: 1,
-      value: '',
-      errorMessage: null,
-    },
-    {
-      name: 'Last name',
-      id: 2,
-      value: '',
-      errorMessage: null,
-    },
-    {
-      name: 'Bio',
-      id: 3,
-      value: '',
-      errorMessage: null,
-    },
-  ]);
+  const [validationError, setValidationError] = useState(false);
 
   const { Provider } = ProfilePageContext;
 
@@ -57,22 +48,17 @@ const ProfilePageContextProvider = ({ children }) => {
         },
       } = res.data;
 
-      setProfileState({
-        name: `${firstName} ${lastName}`,
+      setProfileState((prevState) => ({
+        ...prevState,
+        firstName,
+        lastName,
         image:
           image
           || 'https://res.cloudinary.com/dsxwn7t6p/image/upload/v1567704320/icons8-user-100_1_jpisz3.png',
         bio,
         followers: followers.length,
         following: follows.length,
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get(`/profiles/${id}/novels`).then((res) => {
-      const { novels: novelData } = res.data;
-      setAuthorNovels(novelData);
+      }));
     });
   }, []);
 
@@ -86,81 +72,117 @@ const ProfilePageContextProvider = ({ children }) => {
     setModalComponent(null);
     document.body.style.height = '100vh';
     document.body.style.overflowY = 'auto';
+    window.location.reload();
   };
 
-  const handleInputChange = (e, index) => {
-    const { value } = e.target;
-    setFormFields((prevFormFields) => {
-      const fields = [...prevFormFields];
-      fields[index] = {
-        ...fields[index],
-        value,
-        errorMessage: null,
-      };
-      return fields;
-    });
-    setAjaxError(false);
-  };
+  useEffect(() => {
+    axios
+      .get(`/profiles/${id}/novels`)
+      .then((res) => {
+        const { novels: novelData } = res.data;
+        setAuthorNovels(novelData);
+      })
+      .catch((err) => {
+        setAjaxError(err.message);
+        handleOpenModal('page-load-error-modal');
+      });
+  }, []);
 
-  const handleValidations = () => {
-    const isRequired = !validator.isAlpha(formFields[0].value);
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    const { formErrors } = userProfile;
+    const validateName = (fieldName) => {
+      if (value.length < 2) {
+        formErrors[fieldName] = 'Field must be at least 2 characters in length';
+      } else if (!validator.isAlpha(value)) {
+        formErrors[fieldName] = 'Field must contain only alphabets';
+      } else {
+        formErrors[fieldName] = '';
+      }
+    };
 
-    const validations = [isRequired];
-
-    const validationIndex = validations.findIndex((e) => e);
-
-    let inputError;
-
-    switch (validationIndex) {
-      case 0:
-        inputError = 'name field can only be alphabets';
+    switch (name) {
+      case 'firstName':
+        validateName(name);
         break;
-      case 1:
-        inputError = 'bio provide a valid email';
+      case 'lastName':
+        validateName(name);
+        break;
+      case 'bio':
+        formErrors.bio = value.length < 8 ? 'Bio must be at least 8 characters long!' : null;
         break;
       default:
-        inputError = null;
+        break;
     }
-
-    return inputError;
+    setProfileState((prevState) => ({
+      ...prevState,
+      [name]: value,
+      formErrors,
+    }));
+    const isValidationError = Object.keys(formErrors).some(
+      (field) => formErrors[field].length > 0,
+    );
+    setValidationError(isValidationError);
+    setAjaxError(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const inputError = handleValidations();
-
-    if (!inputError) {
-      setAjaxLoading(true);
-      axios
-        .patch(`${appConfig.BACKEND_PATH}/profiles/`, {
-          firstName: formFields[0].value,
-          lastName: formFields[1].value,
-          bio: formFields[2].value,
-        })
-        .then(() => {
-          setDesc(
-            'Kindly check your email for the next steps to reset your password',
-          );
-          setAjaxLoading(false);
-          setAjaxSuccess(true);
-          window.location.reload();
-        })
-        .catch((error) => {
-          setFailureMessage(error.response.data.error);
-          setAjaxLoading(false);
-          setAjaxError(true);
-        });
-    } else {
-      setFormFields((prevFormFields) => {
-        const fields = [...prevFormFields];
-        fields[0] = {
-          ...fields[0],
-          errorMessage: inputError,
-        };
-        return fields;
+    setAjaxLoading(true);
+    axios
+      .patch(`${appConfig.BACKEND_PATH}/profiles/`, {
+        firstName: userProfile.firstName,
+        lastName: userProfile.lastName,
+        bio: userProfile.bio,
+      })
+      .then(() => {
+        setAjaxLoading(false);
+        setAjaxSuccess(true);
+        window.location.reload();
+      })
+      .catch((error) => {
+        setFailureMessage(error.message);
+        setAjaxLoading(false);
+        setAjaxError(true);
       });
-    }
+  };
+
+  const handleAvatarUpload = (e) => {
+    e.preventDefault();
+    setAjaxLoading(true);
+    const avatar = document.querySelector('#avatar_upload').files[0];
+    const cloudName = 'dsxwn7t6p';
+    const unsignedPreset = 'ah_preset';
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+    const formData = new FormData();
+    formData.append('file', avatar);
+    formData.append('upload_preset', unsignedPreset);
+    formData.append('tags', 'ah_avatar');
+
+    axiosInstance
+      .post(url, formData)
+      .then((res) => {
+        const response = res.data;
+        const avatarUrl = response.secure_url;
+        return avatarUrl;
+      })
+      .then((avatarUrl) => {
+        axios
+          .patch(`${appConfig.BACKEND_PATH}/profiles/`, {
+            avatarUrl,
+          })
+          .then(() => {
+            setAjaxLoading(false);
+            setAjaxSuccess(true);
+            window.location.reload();
+          });
+      })
+      .catch((error) => {
+        setFailureMessage(error.message);
+        setAjaxLoading(false);
+        setAjaxError(true);
+      });
   };
 
   return (
@@ -170,15 +192,14 @@ const ProfilePageContextProvider = ({ children }) => {
         authorNovels,
         handleOpenModal,
         handleCloseModal,
-        formFields,
         handleSubmit,
-        handleValidations,
         handleInputChange,
-        desc,
+        handleAvatarUpload,
         ajaxSuccess,
         ajaxError,
         ajaxLoading,
         failureMessage,
+        validationError,
       }}
     >
       {children}

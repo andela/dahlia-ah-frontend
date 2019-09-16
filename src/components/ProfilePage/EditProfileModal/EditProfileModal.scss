@@ -1,0 +1,30 @@
+main.profile-page {
+  .backdrop-div {
+    .modal {
+      .modal-content {
+        padding-bottom: 50px !important;
+        .btn[disabled],
+        .btn[disabled]:hover {
+          border: 1px solid gray;
+          cursor: not-allowed;
+        }
+      }
+      .validation-error {
+        color: red;
+        font-size: 0.9em;
+      }
+
+      label.form-control,
+      label.active {
+        color: rgba(0, 0, 0, 0.7);
+      }
+
+      .edit-profile-input:focus,
+      .edit-profile-input:focus,
+      .edit-profile-input:focus {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.7) !important;
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.7) !important;
+      }
+    }
+  }
+}
