@@ -78,16 +78,10 @@ const validation = (field, value, setFormData, formdata) => {
           tempFormData[0].errorMessage = 'Firstname cannot be empty';
           return tempFormData;
         });
-      } else if (validator.isInt(value)) {
+      } else if (!validator.isAlpha(value)) {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
-          tempFormData[0].errorMessage = 'Firstname cannot not contain only numbers';
-          return tempFormData;
-        });
-      } else if (!validator.isAlphanumeric(value)) {
-        setFormData((prevFormdata) => {
-          const tempFormData = [...prevFormdata];
-          tempFormData[0].errorMessage = 'Firstname must contain only alphanumeric input';
+          tempFormData[0].errorMessage = 'Firstname can only be alphabets';
           return tempFormData;
         });
       } else {
@@ -105,16 +99,10 @@ const validation = (field, value, setFormData, formdata) => {
           tempFormData[1].errorMessage = `${field} cannot be empty`;
           return tempFormData;
         });
-      } else if (validator.isInt(value)) {
+      } else if (!validator.isAlpha(value)) {
         setFormData((prevFormdata) => {
           const tempFormData = [...prevFormdata];
-          tempFormData[1].errorMessage = `${field} cannot not contain only numbers`;
-          return tempFormData;
-        });
-      } else if (!validator.isAlphanumeric(value)) {
-        setFormData((prevFormdata) => {
-          const tempFormData = [...prevFormdata];
-          tempFormData[1].errorMessage = `${field} must contain only alphanumeric input`;
+          tempFormData[1].errorMessage = `${field} can only be alphabets`;
           return tempFormData;
         });
       } else {

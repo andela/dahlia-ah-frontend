@@ -38,12 +38,12 @@ describe('LandingPage component', () => {
   });
 
   it('modal opens on clicking membership sign up', () => {
-    wrapper.find('button').at(1).simulate('click');
+    wrapper.find('.membershipButton').at(1).simulate('click');
     expect(mockFunction.mock.calls.length).toEqual(0);
   });
 
   it('modal opens on clicking membership subscribe', () => {
-    wrapper.find('button').at(2).simulate('click');
+    wrapper.find('.membershipButton').at(1).simulate('click');
     expect(mockFunction.mock.calls.length).toEqual(0);
   });
 });

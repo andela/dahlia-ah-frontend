@@ -33,6 +33,10 @@ $image-upload-color: #747474;
       box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.9) !important;
     }
 
+    .dropdown-content li>span {
+      color: #333;
+    }
+
     .ajax-button, .ajax-button:hover, .ajax-button:focus  {
       color: rgba(0, 0, 0, 0.9);
       background: #ffffff;
@@ -64,20 +68,6 @@ $image-upload-color: #747474;
       height: 138px;
       margin-bottom: 50px;
 
-      .publish-error {
-        padding-top: 160px;
-        text-align: center;
-        font-size: 18px;
-      }
-
-      .greenColor {
-        color: #56bd75;
-      }
-
-      .redColor {
-        color: #f80303;
-      }
-
       button {
         float: right;
         background: #000000;
@@ -90,6 +80,10 @@ $image-upload-color: #747474;
         line-height: 21px;
         border: none;
         cursor: pointer;
+      }
+
+      .loader {
+        padding: 60px;
       }
     }
 
@@ -152,11 +146,6 @@ $image-upload-color: #747474;
       
       .topSectionDiv {
         height: fit-content;
-  
-        .publish-error {
-          padding-top: 0;
-          font-size: 14px;
-        }
   
         button {
           float: none;
