@@ -1,0 +1,33 @@
+.profile-page {
+  .avatar-form {
+    * {
+      margin: 0;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    min-width: 80%;
+    min-height: 250px;
+
+    input[type='file'],
+    input[type='file']:hover,
+    input[type='file']:active {
+      width: 80%;
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .form-control {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      label {
+        font-size: 1.9em;
+        cursor: pointer;
+      }
+    }
+  }
+}
