@@ -9,6 +9,11 @@ main.profile-page {
           cursor: not-allowed;
         }
       }
+
+      .edit-bio-input{
+        padding-left: 10px;
+      }
+
       .validation-error {
         color: red;
         font-size: 0.9em;

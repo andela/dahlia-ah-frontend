@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import React, {
   createContext, useState, useEffect, useContext,
 } from 'react';
@@ -12,7 +13,7 @@ export const ProfilePageContext = createContext();
 const axiosInstance = axios.create();
 delete axiosInstance.defaults.headers.common.Authorization;
 
-const user = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
+const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
 
 let id;
 if (user) {
@@ -21,11 +22,10 @@ if (user) {
 
 const ProfilePageContextProvider = ({ children }) => {
   const [userProfile, setProfileState] = useState({
-    firstName: 'Jon',
-    lastName: 'Doe',
+    firstName: '',
+    lastName: '',
     bio: '',
     image: '',
-    formErrors: {},
     followers: 0,
     following: 0,
   });
@@ -35,11 +35,13 @@ const ProfilePageContextProvider = ({ children }) => {
   const [failureMessage, setFailureMessage] = useState('');
   const [ajaxError, setAjaxError] = useState(false);
   const [validationError, setValidationError] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
 
   const { Provider } = ProfilePageContext;
 
   const { setModalComponent } = useContext(AuthModalContext);
 
+  // fetch user profile on load
   useEffect(() => {
     axios.get(`/profiles/${id}`).then((res) => {
       const {
@@ -72,9 +74,9 @@ const ProfilePageContextProvider = ({ children }) => {
     setModalComponent(null);
     document.body.style.height = '100vh';
     document.body.style.overflowY = 'auto';
-    window.location.reload();
   };
 
+  // fetch novels of an author
   useEffect(() => {
     axios
       .get(`/profiles/${id}/novels`)
@@ -91,14 +93,14 @@ const ProfilePageContextProvider = ({ children }) => {
   const handleInputChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    const { formErrors } = userProfile;
+    const inputErrors = {};
     const validateName = (fieldName) => {
-      if (value.length < 2) {
-        formErrors[fieldName] = 'Field must be at least 2 characters in length';
+      if (value && value.length < 2) {
+        inputErrors[fieldName] = 'Field must be at least 2 characters in length';
       } else if (!validator.isAlpha(value)) {
-        formErrors[fieldName] = 'Field must contain only alphabets';
+        inputErrors[fieldName] = 'Field must contain only alphabets';
       } else {
-        formErrors[fieldName] = '';
+        inputErrors[fieldName] = '';
       }
     };
 
@@ -110,18 +112,17 @@ const ProfilePageContextProvider = ({ children }) => {
         validateName(name);
         break;
       case 'bio':
-        formErrors.bio = value.length < 8 ? 'Bio must be at least 8 characters long!' : null;
+        inputErrors.bio = value && value.length < 8 ? 'Bio must be at least 8 characters long!' : '';
         break;
       default:
         break;
     }
-    setProfileState((prevState) => ({
+    setFormErrors((prevState) => ({
       ...prevState,
-      [name]: value,
-      formErrors,
+      ...inputErrors,
     }));
-    const isValidationError = Object.keys(formErrors).some(
-      (field) => formErrors[field].length > 0,
+    const isValidationError = Object.keys(inputErrors).some(
+      (field) => inputErrors[field].length > 0,
     );
     setValidationError(isValidationError);
     setAjaxError(false);
@@ -129,17 +130,32 @@ const ProfilePageContextProvider = ({ children }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const profileForm = new FormData(e.target);
+    const updatedProfile = {};
+    for (const [key, value] of profileForm) {
+      updatedProfile[key] = value;
+    }
+
     setAjaxLoading(true);
     axios
-      .patch(`${appConfig.BACKEND_PATH}/profiles/`, {
-        firstName: userProfile.firstName,
-        lastName: userProfile.lastName,
-        bio: userProfile.bio,
-      })
-      .then(() => {
+      .patch(`${appConfig.BACKEND_PATH}/profiles/`, updatedProfile)
+      .then((res) => {
         setAjaxLoading(false);
         setAjaxSuccess(true);
-        window.location.reload();
+        const { profile: { firstName, lastName, bio } } = res.data.data;
+
+        setProfileState((prevState) => ({
+          ...prevState,
+          firstName,
+          lastName,
+          bio,
+        }));
+
+        localStorage.setItem('AuthorsHavenUser', JSON.stringify({
+          ...user, firstName, lastName, bio,
+        }));
+
+        handleCloseModal('edit-modal-profile');
       })
       .catch((error) => {
         setFailureMessage(error.message);
@@ -172,10 +188,15 @@ const ProfilePageContextProvider = ({ children }) => {
           .patch(`${appConfig.BACKEND_PATH}/profiles/`, {
             avatarUrl,
           })
-          .then(() => {
+          .then((res) => {
+            const { profile } = res.data.data;
+            setProfileState((prevState) => ({
+              ...prevState,
+              image: profile.avatarUrl,
+            }));
             setAjaxLoading(false);
             setAjaxSuccess(true);
-            window.location.reload();
+            handleCloseModal('avatar-modal');
           });
       })
       .catch((error) => {
@@ -199,6 +220,7 @@ const ProfilePageContextProvider = ({ children }) => {
         ajaxError,
         ajaxLoading,
         failureMessage,
+        formErrors,
         validationError,
       }}
     >

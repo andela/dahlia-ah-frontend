@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import useAuthenticatedNav from './effects/AuthenticatedNav';
 import { UserContext } from '../../../contexts/UserContext';
 import axios from '../../../api';
@@ -9,11 +10,14 @@ import socket from '../../../helpers/socket';
 import notificationState from '../../../hooks/Notification';
 import Notification from '../../Notification/Notification';
 import { markAllAsRead } from '../../../api/notification';
+import { AuthModalContext } from '../../../context/AuthModalContext';
 
-const AuthenticatedNav = () => {
+const AuthenticatedNav = ({ history }) => {
   const { id } = JSON.parse(window.localStorage.getItem('AuthorsHavenUser'));
   const { notifications, setNotification } = notificationState();
   const [isOpen, setIsOpen] = useState(false);
+  const { canWrite } = useContext(AuthModalContext);
+
 
   const handleInstantNotification = (data) => {
     setNotification([data, ...notifications]);
@@ -51,6 +55,15 @@ const AuthenticatedNav = () => {
       {(context) => {
         const { firstName, isVerified } = context.user;
 
+        const startWritingBtn = canWrite ? (
+          <button type="button" className="nav-btn btn-small hide-on-med-and-down" onClick={() => { history.push('/write-novel'); }}>
+            Start Writing
+          </button>
+        ) : (
+          <button type="button" className="nav-btn btn-small hide-on-med-and-down">
+            upgrade
+          </button>
+        );
 
         return (
           <div className="navSection">
@@ -65,7 +78,7 @@ const AuthenticatedNav = () => {
                   <a href="#!" type="button" data-target="mobile-demo" className="sidenav-trigger">
                     <img src="https://img.icons8.com/ios/50/000000/menu.png" alt="menu" className="font-icon" />
                   </a>
-                  <button type="button" className="nav-btn btn-small hide-on-med-and-down">upgrade</button>
+                  {startWritingBtn}
                   <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li className="notification" onClick={() => setIsOpen(!isOpen)} onKeyDown={() => setIsOpen(false)} role="presentation">
                       <img
@@ -128,6 +141,16 @@ const AuthenticatedNav = () => {
                 </div>
               </nav>
               <ul className="sidenav" id="mobile-demo">
+                { canWrite ? (
+                  <li className="nav-link">
+                    <Link to={{
+                      pathname: '/write-novel',
+                    }}
+                    >
+                    Start Writing
+                    </Link>
+                  </li>
+                ) : null }
                 <li className="nav-link">
                   <Link to={{
                     pathname: '/profile',
@@ -159,5 +182,10 @@ const AuthenticatedNav = () => {
   );
 };
 
+AuthenticatedNav.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
-export default AuthenticatedNav;
+export default withRouter(AuthenticatedNav);

@@ -29,7 +29,7 @@ const EditProfile = ({
       desc=""
       title="EDIT YOUR PROFILE"
       closeModal={() => {
-        closeModal('edit-profile');
+        closeModal('edit-profile-modal');
       }}
     >
       <form onSubmit={handleSubmit} className="signup-form">
@@ -72,7 +72,7 @@ const EditProfile = ({
         <div className="input-field col s12">
           <textarea
             id="textarea1"
-            className="materialize-textarea edit-profile-input"
+            className="materialize-textarea edit-profile-input edit-bio-input"
             onChange={(e) => handleInputChange(e)}
             name="bio"
             defaultValue={bio}

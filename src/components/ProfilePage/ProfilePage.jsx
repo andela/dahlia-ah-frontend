@@ -14,24 +14,18 @@ const ProfilePage = () => {
     authorNovels,
     handleOpenModal,
     handleCloseModal,
-    formFields,
     handleInputChange,
     handleSubmit,
     ajaxError,
     ajaxLoading,
     handleAvatarUpload,
+    formErrors,
     validationError,
     failureMessage,
   } = useContext(ProfilePageContext);
 
   const {
-    firstName,
-    lastName,
-    image,
-    bio,
-    followers,
-    following,
-    formErrors,
+    firstName, lastName, image, bio, followers, following,
   } = userProfile;
 
   const { modalComponent } = useContext(AuthModalContext);
@@ -44,10 +38,9 @@ const ProfilePage = () => {
     pageLoadErrorModal = <PageLoadErrorModal description={ajaxError} />;
   }
 
-  if (modalComponent === 'edit-profile') {
+  if (modalComponent === 'edit-profile-modal') {
     editModal = (
       <EditProfileModal
-        formdata={formFields}
         closeModal={handleCloseModal}
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
@@ -57,6 +50,7 @@ const ProfilePage = () => {
         bio={bio}
         formErrors={formErrors}
         validationError={validationError}
+        ajaxError={ajaxError}
         failureMessage={failureMessage}
       />
     );
@@ -78,29 +72,16 @@ const ProfilePage = () => {
       {editModal}
       {avatarUploadModal}
       <section className="profile-container">
-        {firstName && lastName ? (
-          <ProfileContent
-            name={`${firstName} ${lastName}`}
-            image={image}
-            bio={bio}
-            following={following}
-            followers={followers}
-            written={authorNovels.length}
-            openModal={handleOpenModal}
-            ajaxLoading={ajaxLoading}
-          />
-        ) : (
-          <ProfileContent
-            name="Jon Doe"
-            image={image}
-            bio="Name cannot be blank"
-            followers={0}
-            following={0}
-            written={0}
-            openModal={handleOpenModal}
-            ajaxLoading={ajaxLoading}
-          />
-        )}
+        <ProfileContent
+          name={`${firstName} ${lastName}`}
+          image={image}
+          bio={bio}
+          following={following}
+          followers={followers}
+          written={authorNovels.length}
+          openModal={handleOpenModal}
+          ajaxLoading={ajaxLoading}
+        />
 
         {authorNovels.length ? (
           <>

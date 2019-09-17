@@ -32,7 +32,7 @@ const ProfileContent = ({
         className="generic-btn"
         type="button"
         onClick={() => {
-          openModal('edit-profile');
+          openModal('edit-profile-modal');
         }}
       >
         Edit Profile
