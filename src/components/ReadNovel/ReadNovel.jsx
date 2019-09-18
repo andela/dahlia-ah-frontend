@@ -10,6 +10,7 @@ import moment from 'moment';
 import axios from 'axios';
 import './ReadNovel.scss';
 import appConfig from '../../config/appConfig';
+import { getNovel }  from '../../../src/api/novel';
 
 const { BACKEND_PATH } = appConfig;
 
@@ -39,40 +40,24 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
   };
 
   useEffect( () => {
-    let author;
-    const user = JSON.parse(localStorage.getItem('AuthorsHavenUser'));
-    axios.get(`${BACKEND_PATH}/novels/${slug}`).then((res) => {
-
-      author = res.data.novel.User;
-      const testNovel = res.data.novel;
-      setNovelData(res.data.novel);
-      axios.get(`${BACKEND_PATH}/novels/?slug?genre=${res.data.novel.Genre.title}`).then((res) => {
-        setRelatedData(res.data.data);
-        axios.get(`${BACKEND_PATH}/genres`).then((res) => {
-          setGenreData(res.data.data);
-          axios.get(`${BACKEND_PATH}/profiles/${author.id}/novels`).then((res) => {
-            setAuthorsNovel(res.data.novels);
-            
-            const currentNovel = res.data.novels.filter((novel) => {
-              return novel.id === testNovel.id;
-            });
-            res.data.novels.length < 6 ? setEndPoint(res.data.novels.length) : setEndPoint(6);
-            setLikes(currentNovel[0].Likes.length);
-            let likeStatus = false;
-            currentNovel[0].Likes.forEach((like) => {
-              if(user.id === like.userId){
-                likeStatus = true;
-              }
-            });
-            setHasLiked(likeStatus);
-          });
-        })
-        setLoading(false);
-      })
-    })
-    .catch((error) => {});
-    
+    getNovel(slug, setNovelData, setRelatedData, setGenreData, setAuthorsNovel);
   }, []);
+ 
+  if (novelData.length && relatedData.length && genreData.length && authorsNovel.length) {
+    const currentNovel = novelData.filter((novel) => {
+      return novel.id === testNovel.id;
+    });
+    novelData.length < 6 ? setEndPoint(novelData.length) : setEndPoint(6);
+    setLikes(currentNovel[0].Likes.length);
+    let likeStatus = false;
+    currentNovel[0].Likes.forEach((like) => {
+      if(user.id === like.userId){
+        likeStatus = true;
+      }
+    });
+    setHasLiked(likeStatus);
+    setLoading(false);
+  }
 
   const toggle = (slug) => {
     if(isLoading){
@@ -93,8 +78,8 @@ const ReadNovel = ({ match: { params: { slug } }}) => {
     !status ? setReadMore(true) : setReadMore(false);
     setEndPoint(length);
   }
-
-  const render = !loading ? (
+  
+  const render = novelData.User ? (
   <div><div className="read-novel">
     { modalComponent ? (
       <CommentContextProvider slug={slug}>
