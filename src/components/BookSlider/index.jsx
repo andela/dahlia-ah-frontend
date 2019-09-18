@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './bookslider.scss';
 import useSlider from './effects';
 import { SliderContext } from '../../contexts/SliderContext';
@@ -11,7 +12,7 @@ const BookSlider = () => {
     <SliderContext.Consumer>
       {(context) => (
         context.novels.length > 0
-          ? (
+          ? ( 
             <div className="carousel carousel-slider center">
               {context.novels.map((novel) => {
                 keyValue += 1;
@@ -27,7 +28,7 @@ const BookSlider = () => {
                       <p className="white-text description">
                         {novel.description}
                       </p>
-                      <a href="#!" className="read-more-btn">Read More</a>
+                      <Link to={`/novel/${novel.slug}`} className="read-more-btn">Read More</Link>
                     </div>
                   </div>
                 );

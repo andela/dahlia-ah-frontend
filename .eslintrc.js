@@ -6,7 +6,7 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'airbnb',
+    'airbnb'
   ],
   globals: {
     Atomics: 'readonly',
@@ -27,7 +27,14 @@ module.exports = {
   ],
   rules: {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "no-param-reassign": ["error", { "props": false }]
+    "no-param-reassign": ["error", { "props": false }],
+    "rules": {
+      "jsx-a11y/label-has-for": [ 2, {
+        "required": {
+            "every": [ "id" ]
+        }
+    }]
+    }
   },
   parser: "babel-eslint"
 };

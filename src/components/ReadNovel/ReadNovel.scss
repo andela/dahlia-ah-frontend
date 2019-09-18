@@ -1,0 +1,399 @@
+.read-novel {
+
+  $genre-bgcolor: red;
+  $genre-color: white;
+
+  $genre-color-blue: steelblue;
+  $genre-color-red: red;
+  $genre-color-purple: rgb(100, 100, 190);
+  $genre-color-yellow: #6e6d09;
+  $genre-color-pink: rgb(91, 6, 94);
+  $genre-color-brown: rgb(17, 1, 1);
+
+.genre-color {
+  text-transform: capitalize;
+  background-color: $genre-bgcolor;
+  padding: 0.5rem 1rem;
+  color: $genre-color;
+}
+
+.bg-red {
+  color: red;
+}
+
+.bg-white {
+  color: white;
+}
+
+.cover {
+  position: relative;
+  .cover-image {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center; 
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.read-novel-cover {
+  width: 80vw;
+  margin: 2rem;
+  color: white;
+}
+
+.text-cover {
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+  font-size: 3.5em;
+  margin: 10px 0;
+  margin-bottom: 0;
+}
+
+img {
+  width: 885px;
+}
+
+.p-text {
+  margin: 10px 0;
+  margin-top: 0;
+  margin-bottom: 20p;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.div-text {
+  display: flex;
+  width: 80vw;
+
+  .action-icon {
+    font-size: 22px;
+    padding-right: 10px;
+  }
+}
+
+.span-text {
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+}
+
+.p-heading {
+  width: 100%;
+  padding: 2rem;
+}
+
+.main-content {
+  width: 68%;
+}
+
+.side-content {
+  width: 32%;
+  min-width: 300px;
+  padding-left: 3rem;
+  border-left: 1px solid #c4c4c4;
+}
+
+small {
+ padding-left: 1rem;
+}
+
+h3 {
+  font-size: 20px;
+  margin-left: 1.9rem;
+}
+
+.row {
+  border-left: transparent;
+  opacity: 0.5;
+}
+
+.advert {
+  text-align: center;
+}
+
+.advert-here {
+  position: relative;
+  width: 100%;
+  height: 400PX;
+  font-size: 2rem;
+  background-color: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.search-container {
+  position: relative;
+}
+
+.novels {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.filter-div {
+  text-align: center;
+}
+
+.filter-title {
+  border-bottom: 1px solid #333333;
+  margin: 15px auto;
+  opacity: 0.5;
+}
+
+.genre-div {
+  text-align: center;
+  margin: 2rem 0rem;
+}
+
+
+.genres {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+
+.other-novels-div {
+  text-align: center;
+}
+
+ .other-novels {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+ }
+
+.heading-novel {
+  font-size: 24px;
+}
+
+.image-container {
+  margin: 2rem;
+}
+
+.read {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #333333;
+  width: 150px;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btn-button {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.btn-view {
+  text-align: center;
+  padding: 1rem 1rem;
+  border: 1px solid #333333;
+  background-color: white;
+  text-transform: uppercase;
+  margin: 2rem auto;
+  display: block;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.sub {
+  margin: 1rem;
+  width: 100px;
+  padding: 0.5rem;
+  color: white;
+  margin-left: 0rem;
+}
+
+.sub-genres1 {
+  background-color: $genre-color-blue;
+}
+
+.sub-genres2 {
+  background-color: $genre-color-red;
+}
+
+.sub-genres3 {
+  background-color: $genre-color-pink;
+}
+
+.sub-genres4 {
+  background-color: $genre-color-purple;
+}
+
+.sub-genres5 {
+  background-color: $genre-color-yellow;
+}
+
+.sub-genres6 {
+  background-color: $genre-color-brown;
+}
+
+.row .col.s6 {
+  width: 100%;
+}
+
+
+.input-field.suffix i {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.input-field.suffix i.active {
+  color: #26a69a;
+}
+
+.input-field.suffix input,
+.input-field.suffix textarea {
+  width: 100%;
+}
+
+.input-field.suffix textarea {
+  padding-top: .8rem;
+}
+
+.input-field.suffix label {
+  margin-right: 3rem;
+}
+
+@media (max-width: 500px) {
+  .span-text .span-text-value{
+    display: none;
+  }
+
+  .span-text .action-icon {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .input-field.suffix input {
+    width: 86%;
+    width: calc(100% - 3rem);
+  }
+}
+
+@media only screen and (max-width: 959px) {
+  .main-content {
+    width: 100%;
+  }
+
+  .side-content {
+    width: 100%;
+    padding: 0rem 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .input-field.suffix input {
+    width: 80%;
+    width: calc(100% - 3rem);
+  }
+
+  .genres {
+  justify-content: center;
+}
+}
+
+
+ /* Tablet Landscape | desktop and above - large */
+ @media (min-width: 60em) {
+
+  .span-text {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: row;
+    small {
+      margin-top: 0;
+    }
+  }
+  
+  
+   .text-cover {
+     font-size: 64px;
+   }
+  
+  .div-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+  }
+  
+  .text-content {
+    width: 100%;
+  }
+  
+  .main-content {
+    padding-right: 4rem;
+    padding-left:  1rem;
+  }
+
+  .row .col.s6 {
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .novels {
+    text-align: left;
+  }
+
+  .filter-div {
+    text-align: left;
+  }
+
+ .heading-1 {
+   margin-top: 5rem;
+ }
+
+ .genre-heading {
+  margin-right: 29rem;
+ }
+  
+ .other-novels-div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+ }
+
+ .other-novels {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   width: 100%;
+   margin: 1rem auto;
+ }
+
+ .btn-button {
+   margin-bottom: 10px;
+ }
+
+ h3 {
+   font-size: 24px;
+ }
+
+ .heading-novel {
+  font-size: 38px;
+}
+
+ 
+ }
+
+}
